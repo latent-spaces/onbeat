@@ -1,0 +1,6 @@
+downloads/
+diagnostics/
+*.mp4
+*.m4a
+.DS_Store
+cookies.txt
