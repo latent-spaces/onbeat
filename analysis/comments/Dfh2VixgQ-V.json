@@ -1,0 +1,263 @@
+{
+ "shortcode": "Dfh2VixgQ-V",
+ "url": "https://www.instagram.com/reel/Dfh2VixgQ-V/",
+ "title": "All I need is reassurance, don’t bug me with the details",
+ "captured_at": "2026-11-10T14:35:30.122Z",
+ "comment_count_on_instagram": 26,
+ "comments_saved": 26,
+ "comments": [
+  {
+   "id": "18140172598630434",
+   "user": "mmendozaf",
+   "text": "🎤 But forgot to migrate on prood 🎶🎶",
+   "likes": 18,
+   "created_at": 1794250830,
+   "liked_by_creator": true,
+   "reply_count": 1,
+   "replies": [
+    {
+     "id": "18441305395176373",
+     "user": "alignment.check",
+     "text": "@mmendozaf an action item for retro: add migration check",
+     "likes": 5,
+     "created_at": 1794251030,
+     "liked_by_creator": false,
+     "reply_count": 0
+    }
+   ]
+  },
+  {
+   "id": "17961443484015684",
+   "user": "thinkplaymake",
+   "text": "Why did the tune have to go so hard tho?",
+   "likes": 14,
+   "created_at": 1794250445,
+   "liked_by_creator": true,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "18444979762177713",
+   "user": "freeubi",
+   "text": "It's really hard to test stuff without building it first.",
+   "likes": 6,
+   "created_at": 1794254266,
+   "liked_by_creator": true,
+   "reply_count": 7,
+   "replies": [
+    {
+     "id": "18102785327436022",
+     "user": "alignment.check",
+     "text": "@freeubi why test when you made no mistakes ✨🙌",
+     "likes": 1,
+     "created_at": 1794256234,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "18123038986953253",
+     "user": "alignment.check",
+     "text": "@freeubi unit tests",
+     "likes": 0,
+     "created_at": 1794257173,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "18131234236855508",
+     "user": "freeubi",
+     "text": "@alignment.check yes, unit tests. Imagine you have a building error, that's the first check. Then unit tests.",
+     "likes": 0,
+     "created_at": 1794287751,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "17893900197511972",
+     "user": "e3e6",
+     "text": "@freeubi TDD",
+     "likes": 0,
+     "created_at": 1794305133,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "17874688869637304",
+     "user": "freeubi",
+     "text": "Even in tdd building is the first step, after linting. What do you want to lint if you dont have any changes? Or if you have changes, then how can you be sure its buildable? Dont waste your resources waiting on a for sure failed tests.",
+     "likes": 0,
+     "created_at": 1794306304,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "18598149562065827",
+     "user": "e3e6",
+     "text": "@freeubi I mean the first thing you is create a tests for something that doesn't exist yet. so when you run it all fails",
+     "likes": 0,
+     "created_at": 1794315242,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "17985278510901159",
+     "user": "freeubi",
+     "text": "Thats tdd, and even in tdd, you build it first. You need to compile the source code to be able to test it. Thats why this is bad.\nThe order is: build, lint, test, e2e, etc",
+     "likes": 0,
+     "created_at": 1794315634,
+     "liked_by_creator": false,
+     "reply_count": 0
+    }
+   ]
+  },
+  {
+   "id": "18107688626266009",
+   "user": "mattokanesydney",
+   "text": "“I’m not the on-call!” Love it! 😂😂😂",
+   "likes": 4,
+   "created_at": 1794254967,
+   "liked_by_creator": true,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "18052295930816592",
+   "user": "x_sx",
+   "text": "I just love singing bugs…🔥🔥🔥",
+   "likes": 3,
+   "created_at": 1794252395,
+   "liked_by_creator": true,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "18119125085282729",
+   "user": "wnormand",
+   "text": "Hahah just noticed this is for auth and billing FANTASTICCC 😂😂",
+   "likes": 3,
+   "created_at": 1794283249,
+   "liked_by_creator": true,
+   "reply_count": 2,
+   "replies": [
+    {
+     "id": "18388479583233149",
+     "user": "alignment.check",
+     "text": "@wnormand green is green 🤷‍♂️ 😄",
+     "likes": 1,
+     "created_at": 1794283800,
+     "liked_by_creator": false,
+     "reply_count": 0
+    },
+    {
+     "id": "18132531337808635",
+     "user": "wnormand",
+     "text": "Running python 2.7, green tests take me straight to heaven\nMerged with pinned dependencies, best build you’ve ever seen",
+     "likes": 1,
+     "created_at": 1794283828,
+     "liked_by_creator": true,
+     "reply_count": 0
+    }
+   ]
+  },
+  {
+   "id": "17897651748679146",
+   "user": "cwill_we",
+   "text": "👍🏼👍🏼👍🏼",
+   "likes": 2,
+   "created_at": 1794252914,
+   "liked_by_creator": true,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "18107806232316253",
+   "user": "shawnsack",
+   "text": "If this was a product I'd buy it",
+   "likes": 2,
+   "created_at": 1794255459,
+   "liked_by_creator": true,
+   "reply_count": 1,
+   "replies": [
+    {
+     "id": "17909840337593247",
+     "user": "alignment.check",
+     "text": "@shawnsack who doesn’t want the best build with cute bugs grooving inside 😄",
+     "likes": 0,
+     "created_at": 1794256067,
+     "liked_by_creator": false,
+     "reply_count": 0
+    }
+   ]
+  },
+  {
+   "id": "17995717029021302",
+   "user": "mrdrap",
+   "text": "I LOVE this music",
+   "likes": 1,
+   "created_at": 1794258253,
+   "liked_by_creator": true,
+   "reply_count": 1,
+   "replies": [
+    {
+     "id": "17927474166205896",
+     "user": "mrdrap",
+     "text": "@mrdrap i need a long versión on SoundCloud please",
+     "likes": 0,
+     "created_at": 1794308788,
+     "liked_by_creator": false,
+     "reply_count": 0
+    }
+   ]
+  },
+  {
+   "id": "17918952252465345",
+   "user": "cmaxwell_writer",
+   "text": "I love this 1970 vibe🔥",
+   "likes": 1,
+   "created_at": 1794255411,
+   "liked_by_creator": true,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "17879722128567628",
+   "user": "avakin.neon",
+   "text": "🖥️💚💚💚💃",
+   "likes": 1,
+   "created_at": 1794273196,
+   "liked_by_creator": true,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "17954383470310011",
+   "user": "arjenstet",
+   "text": "LGTM all the way",
+   "likes": 0,
+   "created_at": 1794264041,
+   "liked_by_creator": false,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "18094258970695055",
+   "user": "willemjohn",
+   "text": "",
+   "likes": 0,
+   "created_at": 1794313328,
+   "liked_by_creator": false,
+   "reply_count": 0,
+   "replies": []
+  },
+  {
+   "id": "18139118599640348",
+   "user": "greenyeti06",
+   "text": "It's a banger🙌",
+   "likes": 0,
+   "created_at": 1794315309,
+   "liked_by_creator": false,
+   "reply_count": 0,
+   "replies": []
+  }
+ ]
+}
