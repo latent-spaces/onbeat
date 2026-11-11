@@ -5,3 +5,8 @@ diagnostics/
 .DS_Store
 cookies.txt
 review.html
+.venv/
+node_modules/
+out/
+.venv-align/
+.hyperframes/

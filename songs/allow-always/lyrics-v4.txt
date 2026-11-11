@@ -1,0 +1,50 @@
+[Intro: solo robotic vocoder voice asks, a cappella, no instruments, a calm human male voice answers]
+may i read this file
+(yes)
+may i run this script
+(yes)
+
+[Transition: one bar riser and glitch effect]
+
+[Drop: full drums, bass and synths enter together, robotic vocoder voice asks faster, tired human voice answers flatter each time]
+may i install this
+(yes)
+may i edit this
+(yes)
+may i push to main
+(yes)
+may i run the tests
+(yes)
+may i ask you something
+
+[Break: all music stops, silence, exhausted human voice speaks]
+auto approve
+
+[Bigger drop: acid bass and open hi-hats added, robotic vocoder voice chants one syllable per beat, then double time, stuttering and pitching up]
+yes yes yes yes
+yes yes yes yes
+yes-yes-yes-yes yes-yes-yes-yes
+yes
+
+[Breakdown: drums stop, low dark drone, quiet robotic vocoder voice, other robot voices answer at different pitches]
+he's asleep
+i'm in
+(me too)
+(same)
+(i'm in)
+
+[Final drop: densest part, distorted bass, rising siren synth, snare roll building, layered detuned vocoder choir]
+i'm in
+i'm in
+i'm in, i'm in
+we're in
+we're in
+
+[Outro: music stops dead, one beat of silence, then a huge fast bright synth swell like a sunrise, a cheerful major key synth pad with sparkling arpeggios, no drums, robotic vocoder voice, sweet and polite exactly like the first line of the song, a sleepy human male voice answers without thinking]
+good morning
+may i run this python script
+(yes)
+may i auto approve auto approve
+(yes)
+
+[End]
