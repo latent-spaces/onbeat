@@ -186,6 +186,7 @@
       #chant {
         position: absolute;
         inset: 0;
+        z-index: 11;
       }
       .syl {
         position: absolute;
@@ -204,18 +205,28 @@
       #lyrics {
         position: absolute;
         inset: 0;
+        z-index: 11;
       }
       .lyric {
         position: absolute;
         left: 84px;
         width: 930px;
-        font-family: "Inter", sans-serif;
+        font-family: "Outfit", sans-serif;
         font-weight: 900;
-        font-size: 92px;
-        line-height: 98px;
-        letter-spacing: -0.045em;
-        color: var(--ink);
+        font-size: 84px;
+        line-height: 96px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        --glow: #00fff0;
+        --dim: rgba(150, 255, 250, 0.42);
         opacity: 0;
+      }
+      /* Neon karaoke: dim tube, lit on the sung word, glowing once sung. */
+      .w {
+        display: inline-block;
+        transform: skewX(-9deg);
+        color: var(--dim);
+        text-shadow: 0 3px 0 rgba(0, 0, 0, 0.7);
       }
       .lyric.a {
         top: 1330px;
@@ -224,21 +235,77 @@
         top: 1640px;
       }
       .lyric.human {
-        color: var(--human);
-      }
-      .lyric.self {
-        color: #c8f03c;
+        --glow: #ff2fa8;
+        --dim: rgba(255, 170, 215, 0.45);
       }
       .lyric.big {
         top: 1290px;
         font-size: 400px;
         line-height: 400px;
       }
+      /* Over the close-ups the faces fill 520-1700px, so the caption sits in the window above them. */
+      .lyric.top {
+        top: 250px;
+      }
+      /* Agent lines: VHS closed captions, white mono on black boxes, typed in as sung. */
+      .lyric.vhs {
+        font-family: "Space Mono", monospace;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 92px;
+        letter-spacing: 0;
+      }
+      .lyric.vhs .w {
+        transform: none;
+        opacity: 0;
+        padding: 0 12px;
+        margin-right: -6px;
+        background: #000000;
+        color: #ffffff;
+        text-shadow:
+          3px 0 0 rgba(255, 0, 90, 0.65),
+          -3px 0 0 rgba(0, 210, 255, 0.65);
+      }
+      .lyric.vhs .w.cur {
+        opacity: 1;
+        color: #ffe14a;
+      }
+      .lyric.vhs .w.sung {
+        opacity: 1;
+        color: #ffffff;
+      }
+      /* Shock lines: RGB glitch (after the caption-glitch-rgb component). */
+      .lyric.rgb {
+        font-family: "Archivo Black", sans-serif;
+        font-weight: 400;
+        font-size: 90px;
+        line-height: 100px;
+        letter-spacing: 0.02em;
+      }
+      .lyric.rgb .w {
+        transform: none;
+        color: rgba(255, 255, 255, 0.38);
+        text-shadow:
+          0px 0px 0px rgba(255, 0, 60, 0),
+          0px 0px 0px rgba(0, 229, 255, 0),
+          0px 5px 18px rgba(0, 0, 0, 0.52);
+      }
+      .lyric.rgb .w.cur,
+      .lyric.rgb .w.sung {
+        color: #ffffff;
+      }
       .w.cur {
-        color: #c8f03c;
+        color: #ffffff;
+        text-shadow:
+          0 0 10px var(--glow),
+          0 0 35px var(--glow),
+          0 0 90px var(--glow);
       }
       .w.sung {
-        color: var(--mono);
+        color: var(--glow);
+        text-shadow:
+          0 0 8px var(--glow),
+          0 3px 0 rgba(0, 0, 0, 0.7);
       }
       #riser {
         position: absolute;
@@ -286,10 +353,230 @@
         color: #c8f03c;
         font-weight: 700;
       }
+      /* The disco: the avatar dance scene (assets from video/avatar-dance-test). */
+      #disco {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        overflow: hidden;
+        opacity: 0;
+      }
+      #disco img {
+        position: absolute;
+      }
+      #d-space {
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+      #d-planet {
+        left: 200px;
+        top: 410px;
+        width: 1500px;
+        height: 1500px;
+      }
+      #d-ship {
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: fill;
+      }
+      .shot {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+      }
+      .actor {
+        position: absolute;
+        width: 760px;
+        height: 760px;
+        top: 540px;
+      }
+      .actor.left {
+        left: -100px;
+      }
+      .actor.center {
+        left: 160px;
+      }
+      .actor.right {
+        left: 350px;
+      }
+      .actor.solo {
+        left: -40px;
+        top: 250px;
+        width: 1160px;
+        height: 1160px;
+      }
+      .sprite {
+        position: absolute;
+        inset: 0;
+        background-repeat: no-repeat;
+        background-size: 400% 400%;
+      }
+      .sprite.ochre {
+        background-image: url("assets/disco/ochre-dance.webp");
+      }
+      .sprite.blue {
+        background-image: url("assets/disco/blue-dance.webp");
+      }
+      .sprite.robot {
+        background-image: url("assets/disco/robot-dance.webp");
+      }
+      #d-face {
+        position: absolute;
+        width: 1540px;
+        height: 1540px;
+        left: -230px;
+        top: 420px;
+        background-repeat: no-repeat;
+        background-size: 300% 300%;
+        background-image: url("assets/disco/human-ochre-closeups.webp");
+      }
+      /* The robot at the controls: over-the-shoulder insert (assets/disco/action). */
+      #d-console {
+        background: #0c0818;
+      }
+      #d-panel {
+        position: absolute;
+        width: 1240px;
+        height: 1240px;
+        left: -80px;
+        top: 340px;
+        background-image: url("assets/disco/action/robot-controls-over-shoulder-3x3-v2.png");
+        background-repeat: no-repeat;
+        background-size: 300% 300%;
+      }
+      /* Impacts on the Earth, over the planet and behind the ship's window frame. */
+      .boom {
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        opacity: 0;
+        background-image: url("assets/disco/action/planet-explosion-3x3.png");
+        background-repeat: no-repeat;
+        background-size: 300% 300%;
+      }
+      #d-boom1 {
+        left: 670px;
+        top: 370px;
+      }
+      /* Placed where the Earth shows between and beside the dancers. */
+      #d-boom2 {
+        left: 830px;
+        top: 610px;
+        width: 340px;
+        height: 340px;
+      }
+      #d-boom3 {
+        left: 590px;
+        top: 440px;
+        width: 300px;
+        height: 300px;
+      }
+      /* ---- 80s pass: VHS screen, glitch ghosts, neon karaoke ---- */
+      #stage {
+        position: absolute;
+        inset: 0;
+      }
+      /* Scanlines, pixel grid, sheen and vignette (from the yt-screen-warp component). */
+      #vhs {
+        position: absolute;
+        inset: 0;
+        z-index: 30;
+        pointer-events: none;
+        background:
+          linear-gradient(115deg, rgba(255, 255, 255, 0.07) 0%, transparent 30%),
+          repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0 2px, transparent 2px 5px),
+          repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0 1px, transparent 1px 4px);
+        box-shadow:
+          inset 0 0 220px rgba(0, 0, 0, 0.55),
+          inset 0 0 12px rgba(0, 0, 0, 0.6);
+      }
+      /* The tracking band that rolls down the tape. */
+      #track {
+        position: absolute;
+        left: 0;
+        top: -200px;
+        width: 1080px;
+        height: 150px;
+        z-index: 31;
+        opacity: 0;
+        background:
+          repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0 3px, transparent 3px 11px, rgba(255, 255, 255, 0.12) 11px 13px, transparent 13px 29px),
+          linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.14) 40%, rgba(255, 255, 255, 0.2) 55%, transparent);
+      }
+      .vhs-text {
+        font-family: "Space Mono", monospace;
+        font-weight: 700;
+        color: #ffffff;
+        text-shadow:
+          3px 0 0 rgba(255, 0, 90, 0.7),
+          -3px 0 0 rgba(0, 220, 255, 0.7);
+      }
+      #vhs-hud {
+        position: absolute;
+        inset: 0;
+        z-index: 32;
+        opacity: 0;
+        font-size: 52px;
+      }
+      #vhs-play {
+        position: absolute;
+        left: 84px;
+        top: 96px;
+      }
+      #vhs-count {
+        position: absolute;
+        right: 84px;
+        top: 96px;
+      }
+      /* An avatar breaking through the screen: the image plus red and cyan fringes. */
+      #ghost {
+        position: absolute;
+        inset: 0;
+        z-index: 9;
+        opacity: 0;
+        overflow: hidden;
+      }
+      #ghost > div {
+        position: absolute;
+        background-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+      }
+      #ghost.face > div {
+        width: 1540px;
+        height: 1540px;
+        left: -230px;
+        top: -260px;
+        background-size: 300% 300%;
+        -webkit-mask-size: 300% 300%;
+        mask-size: 300% 300%;
+      }
+      #ghost.body > div {
+        width: 1160px;
+        height: 1160px;
+        left: -40px;
+        top: 250px;
+        background-size: 400% 400%;
+        -webkit-mask-size: 400% 400%;
+        mask-size: 400% 400%;
+      }
+      #g-red {
+        background-color: #ff1f6a;
+        mix-blend-mode: screen;
+      }
+      #g-cyan {
+        background-color: #1fe8ff;
+        mix-blend-mode: screen;
+      }
     </style>
   </head>
   <body>
-    <div
+    <div data-hf-id="hf-56go"
       id="root"
       data-composition-id="main"
       data-start="0"
@@ -298,41 +585,72 @@
       data-width="1080"
       data-height="1920"
     >
-      <audio id="music" class="clip" src="assets/dev/allow-always-final.wav" data-start="0" data-track-index="0" data-volume="1"></audio>
-      <div id="bg"></div>
-      <div id="ui-left" class="mono">~/acme/web-app</div>
-      <div id="ui-right" class="mono">09:00</div>
-      <div id="leds"></div>
-      <div id="pulse"></div>
-      <div id="counter" class="mono">prompts today: 0</div>
-      <svg id="char"></svg>
-      <div id="label">agent</div>
+      <audio data-hf-id="hf-owsw" id="music" class="clip" src="assets/dev/allow-always-final.wav" data-start="0" data-track-index="0" data-volume="1"></audio>
+      <div data-hf-id="hf-1rt5" id="stage">
+      <div data-hf-id="hf-2xc0" id="bg"></div>
+      <div data-hf-id="hf-dt1v" id="ui-left" class="mono">~/acme/web-app</div>
+      <div data-hf-id="hf-ez4r" id="ui-right" class="mono">09:00</div>
+      <div data-hf-id="hf-u2rv" id="leds"></div>
+      <div data-hf-id="hf-smz4" id="pulse"></div>
+      <div data-hf-id="hf-9whh" id="counter" class="mono">prompts today: 0</div>
+      <svg data-hf-id="hf-l2qy" id="char"></svg>
+      <div data-hf-id="hf-81qu" id="label">agent</div>
 
-      <div id="dlg" class="panel">
-        <div id="dlg-head" class="head">permission request</div>
-        <div id="dlg-cmd">read ../billing-service/.env</div>
-        <div id="dlg-note">outside the approved folder</div>
-        <div id="btn-yes" class="btn">Yes</div>
-        <div id="btn-no" class="btn">No</div>
-        <div id="btn-always" class="btn">Allow always</div>
+      <div data-hf-id="hf-7j53" id="dlg" class="panel">
+        <div data-hf-id="hf-d62w" id="dlg-head" class="head">permission request</div>
+        <div data-hf-id="hf-e8cx" id="dlg-cmd">read ../billing-service/.env</div>
+        <div data-hf-id="hf-1nx2" id="dlg-note">outside the approved folder</div>
+        <div data-hf-id="hf-zh4f" id="btn-yes" class="btn">Yes</div>
+        <div data-hf-id="hf-bx5t" id="btn-no" class="btn">No</div>
+        <div data-hf-id="hf-h1ci" id="btn-always" class="btn">Allow always</div>
       </div>
 
-      <div id="log" class="panel">
-        <div id="log-head" class="head">approved while you were away</div>
+      <div data-hf-id="hf-fil2" id="log" class="panel">
+        <div data-hf-id="hf-87yd" id="log-head" class="head">approved while you were away</div>
       </div>
 
-      <div id="chant"></div>
-      <div id="lyrics"></div>
-      <div id="riser"><div id="riser-fill"></div></div>
-      <div class="zz">z</div>
-      <div class="zz">z</div>
-      <div class="zz">z</div>
-      <svg id="cur-human" class="cursor" viewBox="0 0 50 72">
-        <path d="M2 2 L2 60 L17 46 L28 70 L39 65 L28 42 L48 42 Z" fill="#ffffff" stroke="#0e0b1f" stroke-width="4" />
+      <div data-hf-id="hf-lyo6" id="ghost">
+        <div data-hf-id="hf-zhoz" id="g-red" class="g-sil"></div>
+        <div data-hf-id="hf-39qj" id="g-cyan" class="g-sil"></div>
+        <div data-hf-id="hf-dosy" id="g-img"></div>
+      </div>
+      <div data-hf-id="hf-htw1" id="disco">
+        <img data-hf-id="hf-pxp5" id="d-space" src="assets/disco/space.png" alt="" />
+        <img data-hf-id="hf-xx75" id="d-planet" src="assets/disco/planet.png" alt="" />
+        <div id="d-boom1" class="boom"></div>
+        <div id="d-boom2" class="boom"></div>
+        <div id="d-boom3" class="boom"></div>
+        <img data-hf-id="hf-h6jl" id="d-ship" src="assets/disco/ship.png" alt="" />
+        <div data-hf-id="hf-rrkh" id="d-ens" class="shot">
+          <div data-hf-id="hf-bx7i" class="actor left"><div data-hf-id="hf-ociq" id="d-ochre" class="sprite ochre"></div></div>
+          <div data-hf-id="hf-kt1x" class="actor right"><div data-hf-id="hf-3s3i" id="d-blue" class="sprite blue"></div></div>
+          <div data-hf-id="hf-8cq2" class="actor center"><div data-hf-id="hf-gntw" id="d-robot" class="sprite robot"></div></div>
+        </div>
+        <div data-hf-id="hf-rjhq" id="d-solo" class="shot">
+          <div data-hf-id="hf-bhfw" class="actor solo"><div data-hf-id="hf-03u2" id="d-solo-robot" class="sprite robot"></div></div>
+        </div>
+        <div data-hf-id="hf-5ndt" id="d-close" class="shot"><div data-hf-id="hf-hucf" id="d-face"></div></div>
+        <div id="d-console" class="shot"><div id="d-panel"></div></div>
+      </div>
+      <div data-hf-id="hf-zpd3" id="chant"></div>
+      <div data-hf-id="hf-pawh" id="lyrics"></div>
+      <div data-hf-id="hf-9ru8" id="riser"><div data-hf-id="hf-klyy" id="riser-fill"></div></div>
+      <div data-hf-id="hf-8p6t" class="zz" data-layout-ignore>z</div>
+      <div data-hf-id="hf-bgt5" class="zz" data-layout-ignore>z</div>
+      <div data-hf-id="hf-cnq8" class="zz" data-layout-ignore>z</div>
+      <svg data-hf-id="hf-y65q" id="cur-human" class="cursor" viewBox="0 0 50 72">
+        <path data-hf-id="hf-rvmm" d="M2 2 L2 60 L17 46 L28 70 L39 65 L28 42 L48 42 Z" fill="#ffffff" stroke="#0e0b1f" stroke-width="4" />
       </svg>
-      <svg id="cur-agent" class="cursor" viewBox="0 0 50 72">
-        <path d="M2 2 L2 60 L17 46 L28 70 L39 65 L28 42 L48 42 Z" fill="#c8f03c" stroke="#0e0b1f" stroke-width="4" />
+      <svg data-hf-id="hf-vivm" id="cur-agent" class="cursor" viewBox="0 0 50 72">
+        <path data-hf-id="hf-qo0b" d="M2 2 L2 60 L17 46 L28 70 L39 65 L28 42 L48 42 Z" fill="#c8f03c" stroke="#0e0b1f" stroke-width="4" />
       </svg>
+      </div>
+      <div data-hf-id="hf-ttcq" id="vhs"></div>
+      <div data-hf-id="hf-r7ju" id="track"></div>
+      <div data-hf-id="hf-yxwy" id="vhs-hud" class="vhs-text">
+        <div data-hf-id="hf-9xvh" id="vhs-play">PLAY &#9654;</div>
+        <div data-hf-id="hf-lo1v" id="vhs-count">SP 0:00:00</div>
+      </div>
     </div>
     <script>
       // "allow always", final take. Every time comes from window.TIMING (songs/allow-always/cut_final.py);
@@ -403,7 +721,7 @@
       beatLayer(free, brk2, true);
       beatLayer(spam, brk3, true);
       beatLayer(duet, brk4, true);
-      beatLayer(outro, end, true);
+      beatLayer(outro, loop, true);
 
       // The agent hops on every beat of the outro.
       beats(outro, loop).forEach((b) =>
@@ -485,34 +803,76 @@
 
       // ---------- Lyrics ----------
       // slot "a": main line. slot "b": the reply under it. A new "a" line clears both slots.
-      // Human lines are pink; chant lines are drawn as giant stacked words instead (see chant()).
+      // Human lines glow pink, the agent's cyan; the chants also get giant stacked words (see chant()).
       const HUMAN = [5, 6, 7, 8, 9, 10, 12, 14, 16, 20, 22];
       const KIND = { 3: "b human" };
       HUMAN.forEach((i) => (KIND[i] = "a human"));
-      const CHANT = { 13: 1, 15: 1, 25: 1, 27: 1 };
       const lyrics = $("lyrics");
       let live = [];
       const clearLyrics = (t) => {
         live.forEach((n) => hide(n, t));
         live = [];
       };
+      // Lines the giant chant words already spell out get no caption.
+      const SPELLED = { 25: 1, 27: 1 };
+      // Lines sung over the face close-ups.
+      const TOP = { 15: 1 };
+      // Lines that leave early: the console insert cuts in after "what did you approve?".
+      const GONE = { 16: spam };
+      // Three caption looks: the human in pink neon, the agent in VHS closed captions,
+      // and the shock moments in RGB glitch.
+      const LOOK = {};
+      [0, 1, 2, 4, 11, 17, 18, 19, 21, 23].forEach((i) => (LOOK[i] = "vhs"));
+      [13, 14, 15, 16, 24, 26, 28].forEach((i) => (LOOK[i] = "rgb"));
+      // Always three shadows (red, cyan, drop) so GSAP can blend between rest and split.
+      const DROP = "0px 5px 18px rgba(0,0,0,0.52)";
+      const SHADOW = "0px 0px 0px rgba(255,0,60,0), 0px 0px 0px rgba(0,229,255,0), " + DROP;
+      const split = (m) => m.toFixed(1) + "px 0px 0px rgba(255,0,60,1), -" + m.toFixed(1) + "px 0px 0px rgba(0,229,255,1), " + DROP;
+      function mulberry32(a) {
+        return () => {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let t = Math.imul(a ^ (a >>> 15), 1 | a);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      // The sung word jolts sideways with a red/cyan split, then settles; long words get aftershocks.
+      function rgbHit(el, w, next, id) {
+        const r = mulberry32(id * 777 + 13);
+        const nextStart = next ? next.start : w.end + 0.3;
+        const total = Math.min(0.32, Math.max(0.1, Math.min(w.end, nextStart) - w.start - 0.02));
+        const t0 = at(w.start);
+        tl.to(el, { x: -(12 + r() * 12), textShadow: split(9 + r() * 9), duration: total * 0.35, ease: "none" }, t0);
+        tl.to(el, { x: 0, textShadow: SHADOW, duration: total * 0.65, ease: "power3.out" }, t0 + total * 0.35);
+        if (w.text.replace(/[^\w]/g, "").length < 7) return;
+        let p = w.end + 0.08;
+        const stop = (next ? next.start : w.end + 1) - 0.04;
+        for (let n = 0; p + 0.1 < stop; n++) {
+          tl.to(el, { x: -(3 + r() * 5), textShadow: split(3 + r() * 5), duration: 0.045, ease: "none" }, at(p));
+          tl.to(el, { x: 0, textShadow: SHADOW, duration: 0.075, ease: "power3.out" }, at(p) + 0.045);
+          p += n % 2 ? 0.18 : 0.24;
+        }
+      }
       T.lines.forEach((line, i) => {
-        if (CHANT[i]) {
+        if (SPELLED[i]) {
           clearLyrics(line.start);
           return;
         }
         const kind = KIND[i] || "a";
-        const node = B.el("div", "lyric " + kind, lyrics);
-        W(i).forEach((w, k) => {
+        const look = LOOK[i] || "";
+        const node = B.el("div", "lyric " + kind + " " + look + (TOP[i] ? " top" : ""), lyrics);
+        const ws = W(i);
+        ws.forEach((w, k) => {
           if (k > 0) node.appendChild(document.createTextNode(" "));
           const s = B.el("span", "w", node, w.text);
-          if (kind[0] === "a") {
-            tl.set(s, { attr: { class: "w cur" } }, at(w.start));
-            tl.set(s, { attr: { class: "w sung" } }, at(w.end));
-          }
+          tl.set(s, { attr: { class: "w cur" } }, at(w.start));
+          tl.set(s, { attr: { class: "w sung" } }, at(Math.max(w.end, w.start + 2 / T.fps)));
+          if (look === "rgb") rgbHit(s, w, ws[k + 1], i * 100 + k);
         });
         if (kind[0] === "a") clearLyrics(line.start);
         show(node, line.start);
+        if (GONE[i]) hide(node, GONE[i]);
         tl.fromTo(node, { y: -60 }, { y: 0, duration: 6 / T.fps, ease: "power3.out", immediateRender: false }, at(line.start));
         live.push(node);
       });
@@ -533,7 +893,7 @@
             group = [];
           }
           const n = B.el("div", "syl", $("chant"), w.text.replace(/[,!.]/g, "") + "!");
-          n.style.top = 380 + (k % 4) * 250 + "px";
+          n.style.top = 380 + (k % 4) * 230 + "px";
           tl.fromTo(n, { opacity: 1, scale: 1.15 }, { opacity: 1, scale: 1, duration: 3 / T.fps, ease: "none", immediateRender: false }, at(w.start));
           group.push(n);
           if (onWord) onWord(w.start);
@@ -574,8 +934,8 @@
       }
 
       // ================= Intro: the first ask (voice only) =================
-      dialog(L(0).start, "read ../billing-service/.env", "outside the approved folder", SIZES[0]);
-      show(human, L(0).start);
+      dialog(0, "read ../billing-service/.env", "outside the approved folder", SIZES[0]);
+      show(human, 0);
       const click1 = bar(4);
       glide(human, yesX(SIZES[0]), BTN_Y, click1, 0.7);
       click(human, yes, click1, LIME);
@@ -642,7 +1002,6 @@
       // ================= Drop: "yes!" (choir) and "wait… what did you approve?" =================
       palette("free", free);
       hide("#dlg", L(13).start);
-      chant(13, L(14).start);
       text("#ui-right", "00:00", free);
       glide(agent, 820, 640, L(13).start + 0.3, 0.3);
       // Off screen the agent keeps saying yes, once per beat.
@@ -654,7 +1013,7 @@
       palette("night", L(14).start);
       showLog(L(14).start, L(15).start, "approved while you were away");
       palette("free", L(15).start);
-      chant(15, L(16).start, (t) => {
+      W(15).map((w) => w.start).forEach((t) => {
         approvedLog.push(nextCmd()[0]);
         approved += 1;
         text("#counter", "approved by agent: " + approved, t);
@@ -706,6 +1065,196 @@
       });
       riser(L(28).end, outro);
 
+      // ================= The disco: the avatars take over the screen =================
+      const BAR = bar(1) - bar(0);
+      const BEAT = T.beatPeriod;
+      const ATLAS4 = (i) => ((i % 4) * 100) / 3 + "% " + (Math.floor(i / 4) * 100) / 3 + "%";
+      const ATLAS3 = (i) => (i % 3) * 50 + "% " + Math.floor(i / 3) * 50 + "%";
+      // Sixteen poses per bar, one every quarter beat.
+      function dance(sel, from, to, offset) {
+        for (let t = from, k = 0; t < to - 1e-6; t += BEAT / 4, k++) {
+          tl.set(sel, { backgroundPosition: ATLAS4((offset + k) % 16) }, at(t));
+        }
+      }
+      function shot(id, from, to) {
+        show(id, from);
+        hide(id, to);
+      }
+      function ensemble(from, to) {
+        shot("#d-ens", from, to);
+        dance("#d-ochre", from, to, 0);
+        dance("#d-blue", from, to, 8);
+        dance("#d-robot", from, to, 4);
+      }
+      function solo(from, to) {
+        shot("#d-solo", from, to);
+        dance("#d-solo-robot", from, to, 0);
+      }
+      const FACES = {
+        ochre: "human-ochre-closeups",
+        blue: "human-blue-closeups",
+        silver: "robot-silver-closeups",
+        ivory: "robot-ivory-closeups",
+        plum: "robot-plum-closeups",
+      };
+      // A close-up: one face, cycling its expressions every half beat.
+      function closeup(who, indices, from, to) {
+        shot("#d-close", from, to);
+        tl.set("#d-face", { backgroundImage: 'url("assets/disco/' + FACES[who] + '.webp")' }, at(from));
+        for (let t = from, k = 0; t < to - 1e-6; t += BEAT / 2, k++) {
+          tl.set("#d-face", { backgroundPosition: ATLAS3(indices[k % indices.length]) }, at(t));
+        }
+      }
+      function disco(from, to) {
+        show("#disco", from);
+        hide("#disco", to);
+        // The UI text sits under the floor while it lasts.
+        ["#ui-left", "#ui-right", "#counter", "#label", "#char"].forEach((id) => {
+          hide(id, from);
+          show(id, to);
+        });
+        tl.fromTo("#d-planet", { x: 0, y: 0, rotation: -4 }, { x: -130, y: -25, rotation: -1, duration: at(to) - at(from), ease: "none", immediateRender: false }, at(from));
+        tl.fromTo("#d-space", { x: 0 }, { x: -12, duration: at(to) - at(from), ease: "none", immediateRender: false }, at(from));
+      }
+      // The six-bar routine from the dance test: ensemble, two faces, robot solo, three robot faces, ensemble.
+      function routine(c) {
+        ensemble(c, c + 2 * BAR);
+        closeup("ochre", [1, 0, 4, 8], c + 2 * BAR, c + 2.5 * BAR);
+        closeup("blue", [2, 0, 4, 8], c + 2.5 * BAR, c + 3 * BAR);
+        solo(c + 3 * BAR, c + 4 * BAR);
+        closeup("silver", [1, 5], c + 4 * BAR, c + 4 * BAR + BEAT);
+        closeup("ivory", [2, 8], c + 4 * BAR + BEAT, c + 4 * BAR + 2 * BEAT);
+        closeup("plum", [0, 7, 4, 8], c + 4 * BAR + 2 * BEAT, c + 5 * BAR);
+        ensemble(c + 5 * BAR, c + 6 * BAR);
+      }
+      // The console insert and the impacts. Sixth-beat steps: 12.5 fps at this tempo.
+      const STEP = BEAT / 6;
+      // Frames 0-5 mash the buttons; then 6 reaches, 7 presses launch, 8 recoils, right before the cut.
+      function controls(from, to) {
+        shot("#d-console", from, to);
+        const n = Math.round((to - from) / STEP);
+        const tail = [6, 6, 7, 7, 7, 8];
+        for (let k = 0; k < n; k++) {
+          const f = k < n - tail.length ? k % 6 : tail[k - (n - tail.length)];
+          tl.set("#d-panel", { backgroundPosition: ATLAS3(f) }, at(from + k * STEP));
+        }
+      }
+      // One explosion, spark to smoke, played once.
+      function boom(k, t) {
+        const id = "#d-boom" + (k + 1);
+        for (let f = 0; f < 9; f++) tl.set(id, { opacity: 1, backgroundPosition: ATLAS3(f) }, at(t + f * STEP));
+        hide(id, t + 9 * STEP);
+      }
+
+      // "allow always, set me free": the floor opens, the first "yes!" choir dances.
+      disco(free, L(14).start);
+      ensemble(free, L(14).start);
+      // Second choir: one face per sung "yes!".
+      disco(L(15).start, L(16).start);
+      const yesWords = W(15);
+      const WHO = [["ochre", [1, 0, 4, 8]], ["blue", [2, 0, 4, 8]], ["silver", [1, 5]], ["plum", [0, 7, 4, 8]]];
+      yesWords.forEach((w, k) => {
+        const from = k === 0 ? L(15).start : w.start;
+        const to = k + 1 < yesWords.length ? yesWords[k + 1].start : L(16).start;
+        closeup(WHO[k % 4][0], WHO[k % 4][1], from, to);
+      });
+      // The instrumental outro is the whole routine, three times, landing on the loop cut.
+      disco(outro, loop);
+      [0, 1, 2].forEach((n) => routine(outro + n * 6 * BAR));
+
+      // "wait, wait, what did you approve?" The answer: on the drop the robot mashes the console,
+      // hits launch, and the Earth takes one impact per sung "yes" while the humans keep dancing.
+      const launchBar = bar(33);
+      const afterLaunch = bar(34) + 2 * BEAT;
+      disco(spam, afterLaunch);
+      controls(spam, launchBar);
+      ensemble(launchBar, afterLaunch);
+      W(17).forEach((w, k) => boom(k, w.start));
+
+      // ================= 80s pass: VHS tape, glitch tears, avatars breaking through =================
+      // Seeded, so every render glitches the same way.
+      let seed = 1984;
+      const rnd = () => {
+        seed = (seed * 16807) % 2147483647;
+        return seed / 2147483647;
+      };
+      const FRAME = 1 / T.fps;
+      // A tape tear: the whole picture jumps sideways for a few frames.
+      function tear(t, frames, amp) {
+        for (let f = 0; f < frames; f++) {
+          tl.set("#stage", { x: (rnd() - 0.5) * 2 * amp, skewX: (rnd() - 0.5) * 6 }, at(t + f * FRAME));
+        }
+        tl.set("#stage", { x: 0, skewX: 0 }, at(t + frames * FRAME));
+      }
+      // An avatar flickers through the screen in torn slices, with red and cyan fringes.
+      const GHOSTS = {
+        ochre: ["face", FACES.ochre, 1],
+        blue: ["face", FACES.blue, 2],
+        silver: ["face", FACES.silver, 1],
+        ivory: ["face", FACES.ivory, 2],
+        plum: ["face", FACES.plum, 0],
+        robot: ["body", "robot-dance", 0],
+        dancer: ["body", "ochre-dance", 4],
+        diva: ["body", "blue-dance", 8],
+      };
+      function ghost(t, who, frames, strength) {
+        const [kind, file, idx] = GHOSTS[who];
+        const url = 'url("assets/disco/' + file + '.webp")';
+        const pos = kind === "face" ? ATLAS3(idx) : ATLAS4(idx);
+        tl.set("#ghost", { attr: { class: kind } }, at(t));
+        tl.set("#g-img", { backgroundImage: url, backgroundPosition: pos }, at(t));
+        ["#g-red", "#g-cyan"].forEach((id) => tl.set(id, { webkitMaskImage: url, maskImage: url, webkitMaskPosition: pos, maskPosition: pos }, at(t)));
+        for (let f = 0; f < frames; f++) {
+          const top = Math.floor(rnd() * 55);
+          const bottom = Math.floor(rnd() * (90 - top));
+          const tf = at(t + f * FRAME);
+          tl.set("#ghost", { opacity: strength * (0.6 + 0.4 * rnd()), clipPath: "inset(" + top + "% 0 " + bottom + "% 0)" }, tf);
+          const dx = (rnd() - 0.5) * 60;
+          tl.set("#g-img", { x: dx }, tf);
+          tl.set("#g-red", { x: dx - 18 - rnd() * 14 }, tf);
+          tl.set("#g-cyan", { x: dx + 18 + rnd() * 14 }, tf);
+        }
+        tl.set("#ghost", { opacity: 0 }, at(t + frames * FRAME));
+        tear(t, Math.min(frames, 3), 22);
+      }
+      // The tracking band rolls down the frame.
+      function trackRoll(t, dur) {
+        show("#track", t);
+        tl.fromTo("#track", { y: 0 }, { y: 2200, duration: dur, ease: "none", immediateRender: false }, at(t));
+        hide("#track", t + dur);
+      }
+
+      // Launch and impacts shake the tape.
+      tear(launchBar - 4 * STEP, 2, 16);
+      W(17).forEach((w) => tear(w.start + 2 * STEP, 4, 34));
+      // Every section change tears the tape.
+      [drop, brk, free, brk2, spam, brk3, duet, brk4, outro, loop].forEach((t) => tear(t, 4, 40));
+      [brk, brk2, brk3, brk4].forEach((t) => trackRoll(t, BAR * 1.5));
+      [free + 2 * BAR, outro + 4 * BAR, outro + 10 * BAR, outro + 16 * BAR].forEach((t) => trackRoll(t, BAR));
+
+      // Before the disco: the avatars leak through, more often as it gets closer.
+      ghost(bar(5) + 2 * BEAT, "robot", 2, 0.5);
+      [["ochre", 8], ["diva", 10], ["silver", 12], ["dancer", 14]].forEach(([who, b]) => ghost(bar(b), who, 3, 0.7));
+      // While the human sleeps, the dancers creep in.
+      [["robot", 17], ["blue", 19], ["dancer", 21], ["plum", 22]].forEach(([who, b]) => ghost(bar(b) + BEAT, who, 4, 0.8));
+      // The bar before the floor opens: a stutter on every beat, then every half beat.
+      ["ochre", "robot", "blue", "diva"].forEach((who, k) => ghost(bar(23) + k * BEAT, who, 3, 0.9));
+      ["silver", "dancer", "plum", "robot"].forEach((who, k) => ghost(bar(23) + 2 * BEAT + k * (BEAT / 2), who, 2, 1));
+      // Between the visits they keep breaking in.
+      [["robot", 34], ["ivory", 36], ["diva", 42], ["silver", 44], ["dancer", 50], ["plum", 52]].forEach(([who, b]) => ghost(bar(b), who, 3, 0.75));
+      ["blue", "robot", "ochre", "dancer", "silver", "diva", "plum", "robot"].forEach((who, k) => ghost(bar(55) + k * (BEAT / 2), who, 2, 1));
+
+      // In the disco the tape is playing: PLAY and a running counter.
+      [[free, L(14).start], [L(15).start, L(16).start], [spam, afterLaunch], [outro, loop]].forEach(([a, b]) => {
+        show("#vhs-hud", a);
+        hide("#vhs-hud", b);
+        for (let t = Math.ceil(a); t < b; t++) {
+          const m = Math.floor(t / 60);
+          const sec = String(t % 60).padStart(2, "0");
+          text("#vhs-count", "SP 0:0" + m + ":" + sec, Math.max(a, t));
+        }
+      });
+
       // ================= Outro: the agent dances, nobody asks anymore =================
       palette("morning", outro);
       hide(human, outro);
@@ -721,6 +1270,30 @@
       hide("#label", loop);
       text("#ui-left", "~/acme/web-app", loop);
       text("#counter", "prompts today: 0", loop);
+
+      // ================= The hook: the cursor hovers over "Allow always" and hesitates =================
+      // The first frames and the last two seconds are the same frame, so the clip loops.
+      const hookEnd = bar(0) + 2 * BEAT;
+      const OVER_ALWAYS = { x: 560, y: 1212 };
+      function hook(from) {
+        if (from > 0) dialog(from, "read ../billing-service/.env", "outside the approved folder", SIZES[0]);
+        tl.set(always, { textContent: "Allow always", backgroundColor: "transparent", color: "#ff5fa2", borderColor: "#ff5fa2" }, at(from));
+        tl.set(human, { x: OVER_ALWAYS.x, y: OVER_ALWAYS.y, rotation: 0, scale: 1 }, at(from));
+        show(human, from);
+        // Drifts toward "Yes", then back.
+        tl.to(human, { x: OVER_ALWAYS.x - 150, y: OVER_ALWAYS.y - 46, duration: BEAT, ease: "sine.inOut" }, at(from + BEAT / 2));
+        tl.to(human, { x: OVER_ALWAYS.x, y: OVER_ALWAYS.y, duration: BEAT * 0.8, ease: "sine.inOut" }, at(from + BEAT * 1.5));
+      }
+      hook(0);
+      // Not yet: the cursor backs off and the song starts.
+      tl.set(always, { color: "#ffffff", borderColor: "#ffffff" }, at(hookEnd));
+      glide(human, REST.x, REST.y, hookEnd + 0.5, 0.5);
+      tear(hookEnd, 4, 40);
+      trackRoll(hookEnd - BEAT / 2, BEAT * 1.5);
+      hook(loop);
+      // The loop frame matches frame 0: no pulse, no lit LED.
+      tl.set("#pulse", { opacity: 0 }, at(loop));
+      leds.forEach((l) => tl.set(l, { backgroundColor: "var(--led-off)" }, at(loop)));
 
       B.holdTo(tl, T);
       window.__timelines = window.__timelines || {};

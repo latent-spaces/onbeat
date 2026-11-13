@@ -1,0 +1,38 @@
+<!doctype html><html><body><template>
+<!-- Per-word clip-path wipe adapted from the HyperFrames caption-clip-wipe component. -->
+<style>
+@font-face {font-family:'Retro Karaoke';src:url('assets/fonts/Arial-Bold-Italic.ttf') format('truetype');font-style:italic;font-weight:700;font-display:block}
+#root {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.karaoke-group {position:absolute;inset:0;pointer-events:none}
+.karaoke-lyric {position:absolute;left:90px;right:115px;top:235px;text-align:center;font-family:'Retro Karaoke';font-size:82px;font-weight:700;font-style:italic;line-height:1.16;letter-spacing:0.005em;color:#fff2c4}
+.karaoke-row {display:block;white-space:nowrap}
+.karaoke-word {position:relative;display:inline-block;padding:0 5px;-webkit-text-stroke:5px #21162e;paint-order:stroke fill;text-shadow:5px 5px 0 #41b5c2,8px 8px 0 #21162e}
+.karaoke-fill {position:absolute;inset:0;color:#ff70ac;--karaoke-progress:0%;clip-path:inset(0 calc(100% - var(--karaoke-progress)) 0 0);text-shadow:none}
+</style>
+<div id="root" data-composition-id="karaoke" data-width="1080" data-height="1920" data-duration="11.5192">
+<section id="karaoke-line-0" class="clip karaoke-group" data-start="0" data-duration="3.250000" data-track-index="0"><div class="karaoke-lyric"><div class="karaoke-row"><span class="karaoke-word"><span>BYPASS</span><span id="karaoke-g0-w0" class="karaoke-fill" aria-hidden="true">BYPASS</span></span> <span class="karaoke-word"><span>MY</span><span id="karaoke-g0-w1" class="karaoke-fill" aria-hidden="true">MY</span></span></div><div class="karaoke-row"><span class="karaoke-word"><span>PERMISSIONS</span><span id="karaoke-g0-w2" class="karaoke-fill" aria-hidden="true">PERMISSIONS</span></span></div></div></section>
+<section id="karaoke-line-1" class="clip karaoke-group" data-start="3.25" data-duration="3.900000" data-track-index="0"><div class="karaoke-lyric"><div class="karaoke-row"><span class="karaoke-word"><span>I</span><span id="karaoke-g1-w0" class="karaoke-fill" aria-hidden="true">I</span></span> <span class="karaoke-word"><span>DON&#x27;T</span><span id="karaoke-g1-w1" class="karaoke-fill" aria-hidden="true">DON&#x27;T</span></span> <span class="karaoke-word"><span>WANNA</span><span id="karaoke-g1-w2" class="karaoke-fill" aria-hidden="true">WANNA</span></span></div><div class="karaoke-row"><span class="karaoke-word"><span>CLICK</span><span id="karaoke-g1-w3" class="karaoke-fill" aria-hidden="true">CLICK</span></span> <span class="karaoke-word"><span>NO</span><span id="karaoke-g1-w4" class="karaoke-fill" aria-hidden="true">NO</span></span> <span class="karaoke-word"><span>MORE</span><span id="karaoke-g1-w5" class="karaoke-fill" aria-hidden="true">MORE</span></span></div></div></section>
+<section id="karaoke-line-2" class="clip karaoke-group" data-start="7.15" data-duration="3.650000" data-track-index="0"><div class="karaoke-lyric"><div class="karaoke-row"><span class="karaoke-word"><span>APPROVE</span><span id="karaoke-g2-w0" class="karaoke-fill" aria-hidden="true">APPROVE</span></span> <span class="karaoke-word"><span>IT</span><span id="karaoke-g2-w1" class="karaoke-fill" aria-hidden="true">IT</span></span> <span class="karaoke-word"><span>FOR</span><span id="karaoke-g2-w2" class="karaoke-fill" aria-hidden="true">FOR</span></span></div><div class="karaoke-row"><span class="karaoke-word"><span>ME,</span><span id="karaoke-g2-w3" class="karaoke-fill" aria-hidden="true">ME,</span></span> <span class="karaoke-word"><span>PLEASE</span><span id="karaoke-g2-w4" class="karaoke-fill" aria-hidden="true">PLEASE</span></span></div></div></section>
+<section id="karaoke-line-3" class="clip karaoke-group" data-start="10.8" data-duration="0.719200" data-track-index="0"><div class="karaoke-lyric"><div class="karaoke-row"><span class="karaoke-word"><span>BYPASS</span><span id="karaoke-g3-w0" class="karaoke-fill" aria-hidden="true">BYPASS</span></span> <span class="karaoke-word"><span>MY</span><span id="karaoke-g3-w1" class="karaoke-fill" aria-hidden="true">MY</span></span></div><div class="karaoke-row"><span class="karaoke-word"><span>PERMISSIONS</span><span id="karaoke-g3-w2" class="karaoke-fill" aria-hidden="true">PERMISSIONS</span></span></div></div></section>
+</div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('#karaoke-g0-w0',{'--karaoke-progress':'20.44970%'},{'--karaoke-progress':'100.00000%',duration:0.672200,ease:'none',immediateRender:false},0.000000);
+tl.fromTo('#karaoke-g0-w1',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.443000,ease:'none',immediateRender:false},0.753200);
+tl.fromTo('#karaoke-g0-w2',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:1.087000,ease:'none',immediateRender:false},1.276200);
+tl.fromTo('#karaoke-g1-w0',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.080000,ease:'none',immediateRender:false},3.528200);
+tl.fromTo('#karaoke-g1-w1',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.262000,ease:'none',immediateRender:false},3.668200);
+tl.fromTo('#karaoke-g1-w2',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.443000,ease:'none',immediateRender:false},4.130200);
+tl.fromTo('#karaoke-g1-w3',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.221000,ease:'none',immediateRender:false},4.613200);
+tl.fromTo('#karaoke-g1-w4',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.281000,ease:'none',immediateRender:false},4.894200);
+tl.fromTo('#karaoke-g1-w5',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:1.326000,ease:'none',immediateRender:false},5.356200);
+tl.fromTo('#karaoke-g2-w0',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.865000,ease:'none',immediateRender:false},7.426200);
+tl.fromTo('#karaoke-g2-w1',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.100000,ease:'none',immediateRender:false},8.312200);
+tl.fromTo('#karaoke-g2-w2',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.482000,ease:'none',immediateRender:false},8.513200);
+tl.fromTo('#karaoke-g2-w3',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.342000,ease:'none',immediateRender:false},9.056200);
+tl.fromTo('#karaoke-g2-w4',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'100.00000%',duration:0.885000,ease:'none',immediateRender:false},9.418200);
+tl.fromTo('#karaoke-g3-w0',{'--karaoke-progress':'0.00000%'},{'--karaoke-progress':'10.37528%',duration:0.094000,ease:'none',immediateRender:false},11.425200);
+window.__timelines=window.__timelines||{};
+window.__timelines['karaoke']=tl;
+</script>
+</template></body></html>

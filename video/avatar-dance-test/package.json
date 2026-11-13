@@ -1,0 +1,11 @@
+{
+  "name": "avatar-dance-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx --yes hyperframes@0.9.2 check",
+    "preview": "npx --yes hyperframes@0.9.2 preview --background --port 3028",
+    "render": "npx --yes hyperframes@0.9.2 render --output out/avatar-dance-test.mp4 --fps 30 --workers 2",
+    "render:karaoke": "npx --yes hyperframes@0.9.2 render --output out/avatar-dance-karaoke.mp4 --fps 30 --workers 2"
+  }
+}

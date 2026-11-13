@@ -1,0 +1,230 @@
+{
+  "grid": {
+    "columns": 3,
+    "rows": 3,
+    "order": "left-to-right, then top-to-bottom",
+    "indexBase": 0
+  },
+  "sheets": [
+    {
+      "file": "planet-explosion-3x3.png",
+      "width": 1254,
+      "height": 1254,
+      "cellWidth": 418,
+      "cellHeight": 418,
+      "hasAlpha": true,
+      "frames": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 1,
+          "x": 418,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 2,
+          "x": 836,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 3,
+          "x": 0,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 4,
+          "x": 418,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 5,
+          "x": 836,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 6,
+          "x": 0,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 7,
+          "x": 418,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 8,
+          "x": 836,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        }
+      ]
+    },
+    {
+      "file": "robot-controls-over-shoulder-3x3.png",
+      "width": 1254,
+      "height": 1254,
+      "cellWidth": 418,
+      "cellHeight": 418,
+      "hasAlpha": true,
+      "frames": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 1,
+          "x": 418,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 2,
+          "x": 836,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 3,
+          "x": 0,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 4,
+          "x": 418,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 5,
+          "x": 836,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 6,
+          "x": 0,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 7,
+          "x": 418,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 8,
+          "x": 836,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        }
+      ]
+    },
+    {
+      "file": "robot-controls-over-shoulder-3x3-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "cellWidth": 418,
+      "cellHeight": 418,
+      "hasAlpha": true,
+      "frames": [
+        {
+          "index": 0,
+          "x": 0,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 1,
+          "x": 418,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 2,
+          "x": 836,
+          "y": 0,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 3,
+          "x": 0,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 4,
+          "x": 418,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 5,
+          "x": 836,
+          "y": 418,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 6,
+          "x": 0,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 7,
+          "x": 418,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        },
+        {
+          "index": 8,
+          "x": 836,
+          "y": 836,
+          "width": 418,
+          "height": 418
+        }
+      ],
+      "launchFrame": 7
+    }
+  ]
+}
