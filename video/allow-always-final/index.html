@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <script src="src/beatsync.js"></script>
+    <script src="data/allow-always-final.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #0e0b1f;
+      }
+      #root {
+        --bg: #0e0b1f;
+        --ink: #f2eee3;
+        --panel: #1b1736;
+        --led-off: #1f1b3a;
+        --pulse: #2a2550;
+        --mono: #8c87b0;
+        --human: #ff5fa2;
+        --char-body: #4a4566;
+        --char-eye: #2a2640;
+        --ea: 1;
+        --eb: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        font-family: "JetBrains Mono", monospace;
+      }
+      #bg {
+        position: absolute;
+        inset: 0;
+        background: var(--bg);
+      }
+      .mono {
+        position: absolute;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 34px;
+        color: var(--mono);
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+      }
+      #ui-left {
+        left: 84px;
+        top: 150px;
+      }
+      #ui-right {
+        right: 84px;
+        top: 150px;
+        text-align: right;
+      }
+      #counter {
+        left: 84px;
+        top: 300px;
+        font-size: 30px;
+      }
+      #leds {
+        position: absolute;
+        top: 236px;
+        left: 84px;
+        width: 912px;
+        height: 40px;
+        display: flex;
+        gap: 8px;
+      }
+      .led {
+        flex: 1;
+        background: var(--led-off);
+      }
+      #pulse {
+        position: absolute;
+        left: 320px;
+        top: 325px;
+        width: 440px;
+        height: 440px;
+        background: var(--pulse);
+        opacity: 0;
+      }
+      #char {
+        position: absolute;
+        left: 408px;
+        top: 380px;
+        width: 264px;
+        height: 330px;
+      }
+      #label {
+        position: absolute;
+        left: 390px;
+        top: 728px;
+        width: 300px;
+        height: 56px;
+        line-height: 56px;
+        text-align: center;
+        font-size: 34px;
+        background: var(--panel);
+        color: #ffffff;
+        opacity: 0;
+      }
+
+      /* Permission dialog and the 2FA sheet share one box. */
+      .panel {
+        position: absolute;
+        left: 84px;
+        top: 810px;
+        width: 912px;
+        height: 460px;
+        background: var(--panel);
+        color: #ffffff;
+        opacity: 0;
+        overflow: hidden;
+      }
+      .panel .head {
+        position: absolute;
+        left: 60px;
+        top: 36px;
+        font-size: 28px;
+        color: #ffffff;
+        opacity: 0.6;
+        white-space: nowrap;
+      }
+      #dlg-cmd {
+        position: absolute;
+        left: 60px;
+        top: 92px;
+        font-size: 42px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      #dlg-note {
+        position: absolute;
+        left: 60px;
+        top: 170px;
+        font-size: 30px;
+        opacity: 0.75;
+        white-space: nowrap;
+      }
+      .btn {
+        position: absolute;
+        height: 96px;
+        line-height: 96px;
+        text-align: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      #btn-yes {
+        left: 60px;
+        top: 250px;
+        width: 300px;
+        font-size: 44px;
+        background: #c8f03c;
+        color: #0e0b1f;
+      }
+      #btn-no {
+        left: 380px;
+        top: 250px;
+        width: 300px;
+        font-size: 44px;
+        background: #ffffff;
+        color: #0e0b1f;
+      }
+      #btn-always {
+        left: 60px;
+        top: 366px;
+        width: 792px;
+        height: 64px;
+        line-height: 58px;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 400;
+        font-size: 30px;
+        border: 3px solid #ffffff;
+        color: #ffffff;
+      }
+      #chant {
+        position: absolute;
+        inset: 0;
+      }
+      .syl {
+        position: absolute;
+        left: 84px;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        font-size: 270px;
+        line-height: 250px;
+        letter-spacing: -0.05em;
+        color: #c8f03c;
+        white-space: nowrap;
+        opacity: 0;
+      }
+
+      /* Lyrics. */
+      #lyrics {
+        position: absolute;
+        inset: 0;
+      }
+      .lyric {
+        position: absolute;
+        left: 84px;
+        width: 930px;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        font-size: 92px;
+        line-height: 98px;
+        letter-spacing: -0.045em;
+        color: var(--ink);
+        opacity: 0;
+      }
+      .lyric.a {
+        top: 1330px;
+      }
+      .lyric.b {
+        top: 1640px;
+      }
+      .lyric.human {
+        color: var(--human);
+      }
+      .lyric.self {
+        color: #c8f03c;
+      }
+      .lyric.big {
+        top: 1290px;
+        font-size: 400px;
+        line-height: 400px;
+      }
+      .w.cur {
+        color: #c8f03c;
+      }
+      .w.sung {
+        color: var(--mono);
+      }
+      #riser {
+        position: absolute;
+        left: 84px;
+        top: 1790px;
+        width: 912px;
+        height: 12px;
+        background: var(--led-off);
+        opacity: 0;
+      }
+      #riser-fill {
+        width: 100%;
+        height: 100%;
+        background: #c8f03c;
+        transform-origin: 0 50%;
+      }
+      .cursor {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 60px;
+        height: 84px;
+        transform-origin: 0 0;
+        opacity: 0;
+      }
+      .zz {
+        position: absolute;
+        left: 930px;
+        top: 1180px;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        font-size: 70px;
+        color: #ffffff;
+        opacity: 0;
+      }
+      /* "What did you approve?": the log of everything the agent said yes to. */
+      #log .row {
+        position: absolute;
+        left: 60px;
+        font-size: 30px;
+        white-space: nowrap;
+        opacity: 0;
+      }
+      #log .row b {
+        color: #c8f03c;
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="144.4"
+      data-fps="60"
+      data-width="1080"
+      data-height="1920"
+    >
+      <audio id="music" class="clip" src="assets/dev/allow-always-final.wav" data-start="0" data-track-index="0" data-volume="1"></audio>
+      <div id="bg"></div>
+      <div id="ui-left" class="mono">~/acme/web-app</div>
+      <div id="ui-right" class="mono">09:00</div>
+      <div id="leds"></div>
+      <div id="pulse"></div>
+      <div id="counter" class="mono">prompts today: 0</div>
+      <svg id="char"></svg>
+      <div id="label">agent</div>
+
+      <div id="dlg" class="panel">
+        <div id="dlg-head" class="head">permission request</div>
+        <div id="dlg-cmd">read ../billing-service/.env</div>
+        <div id="dlg-note">outside the approved folder</div>
+        <div id="btn-yes" class="btn">Yes</div>
+        <div id="btn-no" class="btn">No</div>
+        <div id="btn-always" class="btn">Allow always</div>
+      </div>
+
+      <div id="log" class="panel">
+        <div id="log-head" class="head">approved while you were away</div>
+      </div>
+
+      <div id="chant"></div>
+      <div id="lyrics"></div>
+      <div id="riser"><div id="riser-fill"></div></div>
+      <div class="zz">z</div>
+      <div class="zz">z</div>
+      <div class="zz">z</div>
+      <svg id="cur-human" class="cursor" viewBox="0 0 50 72">
+        <path d="M2 2 L2 60 L17 46 L28 70 L39 65 L28 42 L48 42 Z" fill="#ffffff" stroke="#0e0b1f" stroke-width="4" />
+      </svg>
+      <svg id="cur-agent" class="cursor" viewBox="0 0 50 72">
+        <path d="M2 2 L2 60 L17 46 L28 70 L39 65 L28 42 L48 42 Z" fill="#c8f03c" stroke="#0e0b1f" stroke-width="4" />
+      </svg>
+    </div>
+    <script>
+      // "allow always", final take. Every time comes from window.TIMING (songs/allow-always/cut_final.py);
+      // line numbers are the sung lines in songs/allow-always/align_final.py.
+      const T = window.TIMING;
+      const B = window.BeatSync;
+      const tl = gsap.timeline({ paused: true });
+      const $ = (id) => document.getElementById(id);
+      const at = (t) => B.at(t, T.fps);
+      const bar = (n) => T.bars[n];
+      const L = (i) => T.lines[i];
+      const W = (i) => T.words.filter((w) => w.line === i);
+      const root = $("root");
+      const LIME = "#c8f03c";
+
+      // Section starts (bar numbers from the timing data's sections).
+      const drop = bar(6);
+      const brk = bar(15);
+      const free = bar(24);
+      const brk2 = bar(30);
+      const spam = bar(32);
+      const brk3 = bar(38);
+      const duet = bar(40);
+      const brk4 = bar(46);
+      const outro = bar(56);
+      const loop = bar(74);
+      const end = T.duration;
+
+      const show = (el, t) => tl.set(el, { opacity: 1 }, at(t));
+      const hide = (el, t) => tl.set(el, { opacity: 0 }, at(t));
+      const text = (el, s, t) => tl.set(el, { textContent: s }, at(t));
+      const pop = (el, t) =>
+        tl.fromTo(el, { scale: 1.05 }, { scale: 1, duration: 3 / T.fps, ease: "none", immediateRender: false }, at(t));
+      const beats = (from, to) => T.beats.filter((b) => b >= from - 1e-6 && b < to - 1e-6);
+
+      const PALETTES = {
+        intro: { "--bg": "#0e0b1f", "--ink": "#f2eee3", "--panel": "#1b1736", "--led-off": "#1f1b3a", "--pulse": "#2a2550", "--mono": "#8c87b0", "--human": "#ff5fa2" },
+        asks: { "--bg": "#2b3cff", "--ink": "#ffffff", "--panel": "#141c85", "--led-off": "#4251ff", "--pulse": "#5563ff", "--mono": "#c9cdff", "--human": "#ff9cc6" },
+        brk: { "--bg": "#0b1030", "--ink": "#e6e9ff", "--panel": "#1a2360", "--led-off": "#161d4c", "--pulse": "#161d4c", "--mono": "#7f88c9", "--human": "#ff5fa2" },
+        free: { "--bg": "#d81b6a", "--ink": "#ffffff", "--panel": "#7d0c3b", "--led-off": "#e8498b", "--pulse": "#e8498b", "--mono": "#ffd0e2", "--human": "#ffffff" },
+        night: { "--bg": "#07051a", "--ink": "#e9e4ff", "--panel": "#191338", "--led-off": "#191338", "--pulse": "#241c55", "--mono": "#6f68a8", "--human": "#ff5fa2" },
+        morning: { "--bg": "#ff7a3d", "--ink": "#17132b", "--panel": "#17132b", "--led-off": "#ff9762", "--pulse": "#ff9762", "--mono": "#7a2f0c", "--human": "#17132b" },
+      };
+      const palette = (name, t) => tl.set(root, PALETTES[name], at(t));
+
+      // ---------- Beat layer ----------
+      const leds = [];
+      for (let i = 0; i < 16; i++) leds.push(B.el("div", "led", $("leds")));
+      const eyes = B.drawCharacter($("char"), 22);
+      eyes.eyesA.style.opacity = "var(--ea)";
+      eyes.eyesB.style.opacity = "var(--eb)";
+      const eyesOpen = (t) => tl.set(root, { "--ea": 1, "--eb": 0 }, at(t));
+      const eyesShut = (t) => tl.set(root, { "--ea": 0, "--eb": 1 }, at(t));
+
+      function beatLayer(from, to, withPulse) {
+        B.BeatStepper(tl, T, {
+          targets: leds,
+          from,
+          to,
+          on: { backgroundColor: LIME },
+          off: { backgroundColor: "var(--led-off)" },
+        });
+        beats(from, to).forEach((b, i) => (i % 2 ? eyesOpen(b) : eyesShut(b)));
+        eyesOpen(to);
+        if (withPulse) B.BeatPulse(tl, T, { target: "#pulse", from, to, scaleFrom: 1.06 });
+      }
+      beatLayer(drop, brk, true);
+      beatLayer(free, brk2, true);
+      beatLayer(spam, brk3, true);
+      beatLayer(duet, brk4, true);
+      beatLayer(outro, end, true);
+
+      // The agent hops on every beat of the outro.
+      beats(outro, loop).forEach((b) =>
+        tl.fromTo("#char", { y: -28 }, { y: 0, duration: T.beatPeriod * 0.8, ease: "power2.in", immediateRender: false }, at(b)),
+      );
+
+      // Character powers on with the first word.
+      tl.set(root, { "--char-body": LIME, "--char-eye": "#0e0b1f" }, at(L(0).start));
+      show("#label", L(0).start);
+
+      // ---------- Dialog ----------
+      const yes = $("btn-yes");
+      const no = $("btn-no");
+      const always = $("btn-always");
+      const DLG_X = 84;
+      const BTN_Y = 810 + 250 + 48;
+      // Button sizes per ask: Yes grows, No shrinks.
+      const SIZES = [
+        { yw: 300, yf: 44, nw: 300, nf: 44 },
+        { yw: 410, yf: 54, nw: 210, nf: 34 },
+        { yw: 530, yf: 64, nw: 120, nf: 22 },
+        { yw: 690, yf: 76, nw: 10, nf: 0 },
+      ];
+      const yesX = (s) => DLG_X + 60 + s.yw / 2;
+      function dialog(t, cmd, note, s) {
+        text("#dlg-cmd", cmd, t);
+        text("#dlg-note", note, t);
+        tl.set(yes, { width: s.yw, fontSize: s.yf }, at(t));
+        tl.set(no, { width: s.nw, fontSize: s.nf, left: 60 + s.yw + 20 }, at(t));
+        show("#dlg", t);
+        pop("#dlg", t);
+      }
+
+      // ---------- Cursors ----------
+      const human = $("cur-human");
+      const agent = $("cur-agent");
+      const REST = { x: 900, y: 1215 };
+      gsap.set(human, { x: REST.x, y: REST.y });
+      gsap.set(agent, { x: 540, y: 640 });
+      // Arrive on the frame of `t`, having left `dur` seconds earlier.
+      const glide = (cur, x, y, t, dur) =>
+        tl.to(cur, { x, y, duration: dur, ease: "power2.inOut" }, Math.max(0, at(t) - dur));
+      function click(cur, btn, t, back) {
+        tl.fromTo(cur, { scale: 0.78 }, { scale: 1, duration: 0.14, ease: "power2.out", immediateRender: false }, at(t));
+        tl.set(btn, { backgroundColor: "#ff5fa2" }, at(t));
+        tl.set(btn, { backgroundColor: back }, at(t + 0.14));
+      }
+
+      // What the agent asks for, in order. Each auto-approved "yes" takes the next one.
+      const CMDS = [
+        ["rm -rf node_modules", "deletes 41,203 files"],
+        ["curl get.tools.sh | sh", "runs a script from the internet"],
+        ["git push --force origin main", "rewrites history"],
+        ["cat ~/.ssh/id_rsa", "reads your private key"],
+        ["npm publish", "ships it to everyone"],
+        ["chmod -R 777 ~", "anyone can edit anything"],
+        ["DROP TABLE users;", "production database"],
+        ["sudo rm -rf /var/log", "deletes the evidence"],
+        ["send email → all customers", "1,912 recipients"],
+        ["pay invoice #4412", "$18,400.00"],
+        ["transfer domain acme.dev", "to: agent"],
+        ["delete repo acme/web-app", "cannot be undone"],
+        ["rename user dave → agent", "admin account"],
+        ["git commit -m \"human: removed\"", "last commit"],
+      ];
+      let cmdIndex = 0;
+      let approved = 0;
+      const nextCmd = () => CMDS[cmdIndex++ % CMDS.length];
+      const approvedLog = [];
+      // The agent says yes to one prompt on time t: new prompt, click, counter.
+      function autoYes(t) {
+        const [cmd, note] = nextCmd();
+        approvedLog.push(cmd);
+        dialog(t, cmd, note, SIZES[3]);
+        click(agent, yes, t + 0.06, LIME);
+        approved += 1;
+        text("#counter", "approved by agent: " + approved, t);
+      }
+
+      // ---------- Lyrics ----------
+      // slot "a": main line. slot "b": the reply under it. A new "a" line clears both slots.
+      // Human lines are pink; chant lines are drawn as giant stacked words instead (see chant()).
+      const HUMAN = [5, 6, 7, 8, 9, 10, 12, 14, 16, 20, 22];
+      const KIND = { 3: "b human" };
+      HUMAN.forEach((i) => (KIND[i] = "a human"));
+      const CHANT = { 13: 1, 15: 1, 25: 1, 27: 1 };
+      const lyrics = $("lyrics");
+      let live = [];
+      const clearLyrics = (t) => {
+        live.forEach((n) => hide(n, t));
+        live = [];
+      };
+      T.lines.forEach((line, i) => {
+        if (CHANT[i]) {
+          clearLyrics(line.start);
+          return;
+        }
+        const kind = KIND[i] || "a";
+        const node = B.el("div", "lyric " + kind, lyrics);
+        W(i).forEach((w, k) => {
+          if (k > 0) node.appendChild(document.createTextNode(" "));
+          const s = B.el("span", "w", node, w.text);
+          if (kind[0] === "a") {
+            tl.set(s, { attr: { class: "w cur" } }, at(w.start));
+            tl.set(s, { attr: { class: "w sung" } }, at(w.end));
+          }
+        });
+        if (kind[0] === "a") clearLyrics(line.start);
+        show(node, line.start);
+        tl.fromTo(node, { y: -60 }, { y: 0, duration: 6 / T.fps, ease: "power3.out", immediateRender: false }, at(line.start));
+        live.push(node);
+      });
+      clearLyrics(L(28).end + 0.6);
+
+      // Chant: one giant word per sung "yes", stacked four high, then the stack clears.
+      function chant(line, until, onWord) {
+        const ws = W(line);
+        // The giant words take the character's place while they last.
+        ["#char", "#label"].forEach((id) => {
+          hide(id, ws[0].start);
+          show(id, until);
+        });
+        let group = [];
+        ws.forEach((w, k) => {
+          if (k % 4 === 0) {
+            group.forEach((n) => hide(n, w.start));
+            group = [];
+          }
+          const n = B.el("div", "syl", $("chant"), w.text.replace(/[,!.]/g, "") + "!");
+          n.style.top = 380 + (k % 4) * 250 + "px";
+          tl.fromTo(n, { opacity: 1, scale: 1.15 }, { opacity: 1, scale: 1, duration: 3 / T.fps, ease: "none", immediateRender: false }, at(w.start));
+          group.push(n);
+          if (onWord) onWord(w.start);
+        });
+        group.forEach((n) => hide(n, until));
+      }
+
+      // ---------- Riser ----------
+      function riser(from, to) {
+        show("#riser", from);
+        const t0 = at(from);
+        tl.fromTo("#riser-fill", { scaleX: 0 }, { scaleX: 1, duration: at(to) - t0, ease: "none", immediateRender: false }, t0);
+        hide("#riser", to);
+      }
+
+      // ---------- Log ----------
+      const logRows = [];
+      for (let i = 0; i < 7; i++) {
+        const r = B.el("div", "row", $("log"));
+        r.style.top = 96 + i * 48 + "px";
+        logRows.push(r);
+      }
+      // Show the log, one approved command per beat from `t`, newest last.
+      function showLog(t, until, title) {
+        text("#log-head", title, t);
+        hide("#dlg", t);
+        show("#log", t);
+        pop("#log", t);
+        const done = approvedLog.slice(-logRows.length);
+        logRows.forEach((r) => hide(r, t));
+        beats(t, until)
+          .slice(0, done.length)
+          .forEach((b, i) => {
+            tl.set(logRows[i], { innerHTML: "<b>✓ yes</b>  " + done[i] }, at(b));
+            show(logRows[i], b);
+          });
+        hide("#log", until);
+      }
+
+      // ================= Intro: the first ask (voice only) =================
+      dialog(L(0).start, "read ../billing-service/.env", "outside the approved folder", SIZES[0]);
+      show(human, L(0).start);
+      const click1 = bar(4);
+      glide(human, yesX(SIZES[0]), BTN_Y, click1, 0.7);
+      click(human, yes, click1, LIME);
+      hide("#dlg", click1 + 0.2);
+      text("#counter", "prompts today: 1", click1);
+      glide(human, REST.x, REST.y, click1 + 0.9, 0.6);
+      riser(click1, drop);
+
+      // ================= Drop: the asks, then the human begs =================
+      palette("asks", drop);
+      const ASKS = [
+        { line: 2, t: L(3).start, cmd: "python scripts/migrate.py", note: "runs code on your machine", size: 1 },
+        { line: 4, t: L(4).end + 0.5, cmd: "pip install -r requirements.txt", note: "47 packages from the internet", size: 2 },
+      ];
+      ASKS.forEach((a, i) => {
+        const s = SIZES[a.size];
+        dialog(L(a.line).start, a.cmd, a.note, s);
+        glide(human, yesX(s), BTN_Y, a.t, 0.6);
+        click(human, yes, a.t, LIME);
+        tl.to(human, { rotation: 8 * (i + 1), duration: 0.3 }, at(a.t + 0.2));
+      });
+      // "approve it for me, please": a new prompt every bar, the human clicks yes each time, slower and slower.
+      const BEG = ["git push origin main", "npm install left-pad", "edit package.json", "run tests", "read ../../", "open port 8080", "edit .bashrc"];
+      const begBars = [];
+      for (let n = 9; n < 15; n++) begBars.push(bar(n));
+      begBars.forEach((t, i) => {
+        dialog(t, BEG[i], "permission request " + (i + 3) + " of ∞", SIZES[3]);
+        click(human, yes, t + T.beatPeriod * 2, LIME);
+        tl.to(human, { rotation: 16 + 6 * i, duration: 0.3 }, at(t + T.beatPeriod * 2 + 0.2));
+      });
+      beats(drop, brk).forEach((b, i, all) => {
+        const m = 9 * 60 + Math.round(((i + 1) * 14 * 60) / all.length);
+        text("#ui-right", String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(m % 60).padStart(2, "0"), b);
+        text("#counter", "prompts today: " + Math.round(2 + ((i + 1) * 145) / all.length), b);
+      });
+
+      // ================= Break: "i don't wanna click no more" =================
+      palette("brk", brk);
+      tl.set("#pulse", { opacity: 0 }, at(brk));
+      text("#ui-right", "23:58", brk);
+      dialog(brk, "git push origin main", "waiting for you…", SIZES[3]);
+      // The human gives up: the cursor tips over, z's rise.
+      tl.to(human, { rotation: 82, x: 880, y: 1262, duration: 0.9, ease: "power2.in" }, at(L(8).start));
+      document.querySelectorAll(".zz").forEach((z, i) => {
+        [L(8).end, L(9).end, L(10).start].forEach((t0) => {
+          const t = at(t0 + i * 0.6);
+          tl.fromTo(z, { opacity: 1, x: 0, y: 0, scale: 0.6 }, { opacity: 0, x: 40, y: -190, scale: 1.3, duration: 1.3, ease: "none", immediateRender: false }, t);
+        });
+      });
+      // "yes, yes": the agent takes the mouse.
+      show(agent, L(10).start);
+      glide(agent, yesX(SIZES[3]), BTN_Y, W(11)[0].start, 0.9);
+      W(11).forEach((w) => autoYes(w.start));
+      // "allow always, set me free": the human wakes up and clicks it.
+      const tAlways = W(12)[4].start;
+      tl.to(human, { rotation: 0, duration: 0.25 }, at(L(12).start));
+      glide(agent, 820, 640, L(12).start + 0.3, 0.3);
+      glide(human, 540, 810 + 398, tAlways, 1.6);
+      click(human, always, tAlways, LIME);
+      tl.set(always, { backgroundColor: LIME, color: "#0e0b1f", borderColor: LIME }, at(tAlways + 0.14));
+      text(always, "allowed. always.", tAlways + 0.14);
+      glide(human, REST.x, REST.y, tAlways + 0.9, 0.5);
+
+      // ================= Drop: "yes!" (choir) and "wait… what did you approve?" =================
+      palette("free", free);
+      hide("#dlg", L(13).start);
+      chant(13, L(14).start);
+      text("#ui-right", "00:00", free);
+      glide(agent, 820, 640, L(13).start + 0.3, 0.3);
+      // Off screen the agent keeps saying yes, once per beat.
+      beats(L(13).start, L(14).start).forEach((b) => {
+        approvedLog.push(nextCmd()[0]);
+        approved += 1;
+        text("#counter", "approved by agent: " + approved, b);
+      });
+      palette("night", L(14).start);
+      showLog(L(14).start, L(15).start, "approved while you were away");
+      palette("free", L(15).start);
+      chant(15, L(16).start, (t) => {
+        approvedLog.push(nextCmd()[0]);
+        approved += 1;
+        text("#counter", "approved by agent: " + approved, t);
+      });
+      palette("night", L(16).start);
+      showLog(L(16).start, spam, "wait, what?");
+      riser(brk2, spam);
+
+      // ================= Drop: the agent clicks yes on every "yes" =================
+      palette("asks", spam);
+      show("#dlg", spam);
+      glide(agent, yesX(SIZES[3]), BTN_Y, W(17)[0].start, 0.5);
+      [17, 18, 19].forEach((line) => W(line).forEach((w) => autoYes(w.start)));
+      // Between the lines it keeps going, one per beat.
+      beats(spam, brk3)
+        .filter((b) => ![17, 18, 19].some((l) => b > L(l).start - 0.3 && b < L(l).end + 0.3))
+        .forEach((b) => autoYes(b));
+      palette("brk", brk3);
+      tl.set("#pulse", { opacity: 0 }, at(brk3));
+      hide("#dlg", brk3);
+      riser(brk3, duet);
+
+      // ================= Drop: human and agent, call and response =================
+      palette("free", duet);
+      show("#dlg", duet);
+      text("#dlg-head", "permission request · from: human", L(20).start);
+      dialog(L(20).start, "approve everything", "forever", SIZES[3]);
+      [21, 23].forEach((line) => W(line).forEach((w) => autoYes(w.start)));
+      text("#dlg-head", "permission request", L(21).start);
+      dialog(L(22).start, "bypass all permissions", "for everyone", SIZES[3]);
+      text(always, "Allow always", L(24).start);
+      tl.set(always, { backgroundColor: "transparent", color: "#ffffff", borderColor: "#ffffff" }, at(L(24).start));
+      click(agent, always, W(24)[1].start, LIME);
+      tl.set(always, { backgroundColor: LIME, color: "#0e0b1f", borderColor: LIME }, at(W(24)[1].start + 0.14));
+      text(always, "allowed. always.", W(24)[1].start + 0.14);
+
+      // ================= Break: the last chant =================
+      palette("night", brk4);
+      tl.set("#pulse", { opacity: 0 }, at(brk4));
+      hide("#dlg", L(25).start);
+      hide(agent, L(25).start);
+      chant(25, L(26).start, (t) => {
+        approved += 7;
+        text("#counter", "approved by agent: " + approved, t);
+      });
+      chant(27, L(28).start, (t) => {
+        approved += 31;
+        text("#counter", "approved by agent: " + approved, t);
+      });
+      riser(L(28).end, outro);
+
+      // ================= Outro: the agent dances, nobody asks anymore =================
+      palette("morning", outro);
+      hide(human, outro);
+      text("#ui-right", "09:00", outro);
+      text("#ui-left", "~/agent/everything", outro);
+      text("#label", "admin", outro);
+      tl.set("#label", { backgroundColor: LIME, color: "#0e0b1f" }, at(outro));
+      beats(outro, loop).forEach((b, i) => text("#counter", "prompts today: 0 · approved: " + (approved + (i + 1) * 97).toLocaleString("en-US"), b));
+      // Cut back to the opening frame so the clip loops.
+      palette("intro", loop);
+      tl.set(root, { "--char-body": "#4a4566", "--char-eye": "#2a2640" }, at(loop));
+      tl.set("#label", { backgroundColor: "var(--panel)", color: "#ffffff" }, at(loop));
+      hide("#label", loop);
+      text("#ui-left", "~/acme/web-app", loop);
+      text("#counter", "prompts today: 0", loop);
+
+      B.holdTo(tl, T);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

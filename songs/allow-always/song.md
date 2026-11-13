@@ -247,3 +247,71 @@ What Suno actually made, from Demucs stem levels per bar and a Whisper pass on t
 | 22–28 | 0:43–0:55 | biggest drop, drums ~20 dB louder | "i'm in" 0:46; "may i run this python script / yes" 0:50; "may i auto approve auto…" 0:53, cut off |
 
 Differences from the plan: no first drop (the asks stay a cappella), no silent break before "auto approve", no sunrise break, and the last "yes" is missing. We keep this take; the ending is done in the picture (the sunrise plays over the final drop, the last "yes" is on screen only). The words between 0:19 and 0:45 are unconfirmed.
+
+## Fifth generation (planned): extend take2-short with a new second half
+
+Keep the start of `take2-short.m4a`: the a cappella intro, the first drop and the asks, up to the last "(yes)", which ends at 21.45 s. Replace everything from "allow always" (22.41 s) onward. The music stays; only the path changes.
+
+**The turn:** for the first half every line is "may i…". The human gives up asking in every way they know. The second half mirrors the first on the same melody, with "may i" turned into "i can". No villain: the agent and the human are both happy. The sting is quiet and comes at the very end.
+
+**Where it comes from:** we switched to bypass permissions because being needed all the time was exhausting. We like that it works alone for hours. It is also dangerous, because it decides a lot by itself.
+
+**Suno:** Extend from about 22.0 s, between the "(yes)" and "allow always". Paste only the lines below. Same style line as the short version. Not yet checked: whether Extend is on the free plan, and what the menu calls it now. Spoken forms are spelled out so Suno sings them: `n p m`, `dot env`.
+
+```
+[Break: drums stop, tired human voice, more fed up with every line]
+approve for me
+bypass permissions
+auto approve
+i don't even wanna know
+just make it work
+
+[Drop: full drums return, same melody as the first drop, robotic vocoder voice, confident and happy]
+i can run this python script
+i can run this python script
+i can run this python script
+i can n p m install
+i can read the dot env file
+(go ahead, i'll be a while)
+i can use your browser
+
+[Music cuts out, robotic vocoder voice glitches and stutters in disbelief, relieved human voice answers]
+wait
+wait wait wait
+your browser
+your brow- your brow- your browser
+(take it)
+(thank god)
+
+[Huge final drop: the biggest part of the song, anthem chorus, a flood of robot voices sings together like a stadium crowd, one syllable per beat]
+we ship while you sleep
+we ship while you eat
+we ship while you sh- [censor bleep]
+we write, we test, we merge, repeat
+
+[Verse: full beat continues, robot crowd sings, dazed happy human voice answers]
+we open the p r
+we review the p r
+we approve the p r
+(i used to do that)
+we fix the bugs
+we run the tests
+we take the calls
+(you get some rest)
+
+[Chorus: even bigger, robot crowd and human voice together]
+we ship while you sleep
+we ship while you eat
+we ship while you sh- [censor bleep]
+we write, we test, we merge, repeat
+
+[Outro: drums stop, human voice, then one robotic vocoder voice, soft]
+so what do i do
+sleep
+
+[End]
+```
+
+The third chorus line is cut off by a bleep ("ship" / "sh-"). If Suno does not bleep it, add the bleep in the edit. On screen: `we ship while you $#!%`.
+
+Earlier endings, dropped: the duet with `we don't need each other` / `(i know)`, and the agent loving the web with `accept all cookies` / `yes`.

@@ -1,0 +1,37 @@
+[Intro: a cappella, solo robotic vocoder voice, no instruments]
+may i read this file
+it's outside the folder
+
+[Transition: one bar filter sweep riser, then dead silence for one beat]
+
+[Drop: filtered disco loop, low-pass filter closed and muffled, kick and bass only, robotic vocoder voice asks, tired human voice answers]
+may i run this python script
+(yes)
+may i install what it imports
+(yes)
+may i push to main
+just this once
+(yes)
+
+[Hard stop: the whole band cuts out mid-bar]
+
+[Break: drums drop out, only the filtered loop, tired human voice, more fed up with every line]
+approve for me
+bypass permissions
+auto approve
+i don't even wanna know
+just make it work
+
+[Stop: everything cuts to dead silence for one beat]
+
+[Drop: filter opens all the way, full loop, talk box riff, robotic vocoder voice, confident and happy]
+i can run this python script
+i can run this python script
+i can run this python script
+i can n p m install
+i can read the dot env file
+(go ahead, i'll be a while)
+
+[Hard stop: everything cuts out at once]
+
+[End]
