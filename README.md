@@ -24,6 +24,8 @@ What can be reused from "allow always" (`songs/allow-always/`): the story chain 
 - `songs/<song>/`: lyrics, takes, storyboard and cut script per song
 - `scripts/timing.py`: audio (and lyrics) → timing JSON (BPM, beats, bars, words, envelopes)
 - `video/`: the HyperFrames project (`video/CLAUDE.md` has the commands)
+  - `video/allow-always-final/`: the "allow always" reel (final take): permission-prompt hook and loop, avatar disco, console/explosion punch, 80s VHS look and karaoke captions; renders go to `video/out/`
+  - `video/avatar-dance-test/`: the avatar dance test and its sprite sheets (dance, close-ups, `assets/action/` console and explosion); `video/assets/disco` links to its `assets/` and the reel needs it
 - `vendor/page-mascot/`: MIT avatar generation tools, sprite renderer and four human examples; see `analysis/avatar-pipeline.md` for rebuild commands and the route to beat-timed avatars and dance poses
 - `diagnostics/`: one-off measuring scripts (gitignored)
 
