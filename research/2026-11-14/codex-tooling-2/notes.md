@@ -1,26 +1,29 @@
 # Public README and demo anatomy audit
 
-Research by codex-tooling-2, 2026-11-14. Research and proposals only; no product implementation or public launch. Repository baseline: `26d9337f44ebfb7a221a107e6f957c3ed31eb9f2`.
+Research by codex-tooling-2, 2026-11-14. Research and proposals only; no product implementation or public launch. Current repository baseline: `6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc`. Updated after the owner supplied five new main commits. The earlier `26d9337` audit is superseded for current-state claims; see [baseline update](BASELINE-UPDATE.md).
 
 ## Main finding
 
-The strongest public promise is a narrow, visible result: **turn a song you already have into an editable, beat-synced lyric reel**. The README currently tells an existing collaborator where to resume unfinished work. It does not let a stranger judge the output, identify the product, or try a supported example. Fix that visitor journey after a convincing, reproducible reel exists; a rewritten headline alone cannot establish that the pipeline works.
+The strongest public promise is a narrow, visible result: **turn a song you already have into an editable, beat-synced lyric reel**. The new baseline already has a completed 2:24 reel composition and a full production guide. The opportunity is to make that existing work easy for strangers to see, understand and reproduce, then generalize it into a reusable workflow. It is no longer accurate to say that the repo has no guide or that no video was built.
 
-The distinguishing explanation is already in `analysis/playbook.md` section 3: beats drive visual pulses and sung-word times drive lyrics. Show those two clocks in a short annotated demo. This is a more concrete reason to care than another general claim about AI video generation.
+The distinguishing explanation is explicit in `GUIDE.md` sections 5 and 7: beats drive visual pulses and sung-word times drive lyrics. Show those two clocks in an annotated excerpt of the existing reel. The human chooses the take and gives creative feedback; an agent builds much of the composition. This is a more concrete promise than fully automatic creative direction.
 
 ## What is verifiable today
 
-| Observation | Evidence | Public-facing implication |
+| Observation | Evidence at current baseline | Public-facing implication |
 | --- | --- | --- |
-| The README opens with “Start here (next session)” and says no video was built for the current story. | [Baseline README](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/README.md) | Present the project as experimental until a successful output is demonstrated. Move session history into a maintainer document in a future implementation phase. |
-| Its content map links analysis, songs, timing scripts and a HyperFrames project. | Same README | This is currently a research/code workspace, not evidence of a packaged studio, skill or one-command application. |
-| The playbook separates measured observations, visual judgments and hypotheses. | [Baseline playbook](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/analysis/playbook.md) | Preserve that credibility: include limitations and label future features as proposals. |
-| No tracked PNG/JPG/WebP/GIF/MP4 demo assets were found by `git ls-files`; the README embeds no output demo. | Local tracked-file inventory at baseline | Produce an actual sample render before promising output quality. Existing HTML storyboards are drafts, not proof of a completed reel. |
-| No tracked LICENSE, CONTRIBUTING, SECURITY or GUIDE file was found. | Local tracked-file inventory at baseline | Owner should choose a code license and document sample-media permissions before describing the project as reusable open source. No legal conclusions are made here. |
-| GitHub metadata reports private visibility, null description/homepage/license, and empty topics. | `repository-metadata.json`, captured through `gh api` on 2026-11-14 | Prepare metadata copy; changing visibility or publishing remains outside this research mission. |
-| Render scripts exist under `video/`, pinned to HyperFrames 0.9.2. | [Baseline package.json](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/video/package.json) | Describe the dependency, but do not imply end-to-end setup has been verified. Reproducibility is covered by codex-tooling-1. |
+| The README leads with GUIDE.md and production runbooks. Its old unfinished-state paragraph is explicitly dated as earlier planning notes. | [Current README](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/README.md) | Keep the guide; move historical session notes below a concise public explanation and output preview. Do not read the old paragraph as current status. |
+| GUIDE documents a completed 2:24 reel, human/agent roles, commands, alignment fixes, sprite workflow and render review. | [GUIDE](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/GUIDE.md) | Reuse it as the user guide and production case study rather than propose writing it from scratch. |
+| Full composition source, final song MP3, timing JSON/JS, generated scene/sprite assets and prompt history are tracked. | `video/allow-always-final/`, `video/data/allow-always-final.*`, `songs/allow-always/take-final-yes.mp3`, `video/avatar-dance-test/assets/` | The existing work is a credible source-linked demo candidate. Asset presence alone is not visual or audio quality verification. |
+| The Instagram brief names a completed full-quality render and phone copy under ignored `video/out/`. No MP4 is tracked, and those outputs are absent in this checkout. README embeds no output video. | [Instagram brief](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/songs/allow-always/instagram-brief.md), tracked-file inventory | Distinguish documented completed render from a portable, visible demo artifact. Use the existing final reel for a poster/playable demo once an approved artifact is available. |
+| An 11.52-second prototype includes its chorus audio, local GSAP, sprites, timing and pinned render scripts. | `video/avatar-dance-test/README.md`, assets and package.json | Verify this existing short sample as a candidate no-new-generation onboarding path. Do not claim all compositions lack audio. A clean-clone render has not been run in this audit. |
+| No root project LICENSE, CONTRIBUTING or SECURITY file was found. The vendored page-mascot subtree has an MIT license and provenance. | Tracked-file inventory | Separate project licensing and sample-media terms from the existing vendor license. No legal conclusions are made here. |
+| GitHub metadata was private, with null description/homepage/license and empty topics at the initial capture. | `repository-metadata.json` | This timestamped metadata snapshot is distinct from the newly fetched source changes. Publishing/visibility changes remain outside this mission. |
+| Render scripts are pinned to HyperFrames 0.9.2; GUIDE now lists tested tool versions and two Python environment setup commands. | `video/package.json`, prototype package.json, GUIDE section 2 | Setup documentation exists. A locked dependency manifest and general-purpose workflow are separate improvements; reproducibility details are owned by codex-tooling-1. |
 
-Code graph tools were not available in this session. This audit primarily reads Markdown/configuration and tracked-file metadata; it does not inspect function internals or modify compositions. No build/render verification was performed.
+Code graph tools were not available in this session. This audit reads documentation/configuration, tracked-file metadata and local asset presence. No product source or composition was modified. No build/render or listening verification was performed here. Prior production-session checks in the guide/runbooks are attributed documentation, not new tests by this agent.
+
+The local presence/WAV metadata recheck is saved in `current-baseline-presence.json`. codex-tooling-1 additionally reports a newly passing prototype HyperFrames check; see [their refreshed audit PR #5](https://github.com/oronanschel/music-reels/pull/5) and the attributed details in `BASELINE-UPDATE.md`. A successful checker run does not establish a clean-clone encoded render or listening review.
 
 ## Primary-source comparison
 
@@ -53,20 +56,20 @@ Lesson for music-reels: show actual outputs and useful sample metadata, then giv
 ## Visitor questions the README must answer
 
 1. **What does it make?** One real vertical reel with a short explanation of editable outputs.
-2. **Is this for me?** Songwriters and developers wanting timing-driven lyric visuals; currently experimental and local.
+2. **Is this for me?** Songwriters and developers wanting timing-driven lyric visuals; currently a documented, local production workflow with project-specific helpers.
 3. **Why use this instead of manual captioning?** Explain beat timing versus word timing with a visible example. Do not claim automatic creative direction.
-4. **Can I try it without an account?** A rights-cleared bundled sample plus known-good timing data is the proposed route; it is not shipped today.
+4. **Can I try it without an account?** The existing short prototype bundles chorus audio and timing; verify its clean-clone render and sample-media reuse terms before promising a no-account route.
 5. **Can I use my own song?** Explain audio/lyrics inputs, alignment limits, dependencies, and where manual correction may be needed.
 6. **What does it cost and require?** Separate local render requirements from optional music generation and transcription. Do not imply a Suno subscription/API is required for importing existing audio.
 7. **Can I reuse the result and contribute?** Link code license, sample-asset terms, contribution instructions and a small list of useful tasks after these exist.
 
 ## Recommendations for the merged report
 
-**P0: demonstrate before promoting.** Produce one strong, reproducible original reel and link its exact source, timing data and render instructions. Existing README explicitly says the current story has no built video. Do not advertise a finished studio or claim a working packaged skill/CLI.
+**P0: promote the existing finished work accurately.** Use the completed 2:24 reel documented by GUIDE and its exact composition/timing as the hero case study. Make an approved output artifact easy to view and verify its reproduction path. Do not say the first reel still needs to be built, or advertise a generic studio or packaged end-to-end skill/CLI that does not exist.
 
-**P0: replace the public front door after the demo works.** Lead with a narrow song-to-reel promise, actual output poster/video, and a single verified sample path. Keep session history in maintainer docs. See `README-OUTLINE.md` for the proposed hierarchy and `DEMO-BRIEF.md` for a concrete asset brief.
+**P0: improve the public front door around the existing GUIDE.** Lead with a narrow song-to-reel promise, an actual output poster/video, and a single verified sample path. Keep the GUIDE prominent and session history in maintainer docs. See `README-OUTLINE.md` for the proposed hierarchy and `DEMO-BRIEF.md` for a concrete asset brief.
 
-**P0: make the sample independent of account setup.** Bundle rights-cleared media and precomputed timing; report exactly which dependencies and downloads still occur. Let users choose their own song later. This is a recommendation, not a claim that offline/no-key rendering currently works.
+**P0: verify the existing short sample before inventing another.** The avatar prototype already has tracked audio, visuals and timing. Establish clean-clone rendering and media reuse terms, report dependencies/downloads, and then offer it as an account-independent first run. This is not a claim that offline/no-key rendering was tested here.
 
 **P1: teach the differentiator visually.** Use a side-by-side or annotated segment showing beat-driven motion and word-driven lyric highlighting. Preserve editable source as a reason to fork, not just watch.
 

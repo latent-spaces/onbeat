@@ -11,7 +11,9 @@ Accessed 2026-11-14, approximately 09:46–09:48 UTC. Public GitHub pages were f
 
 Versioned notes paraphrase selected observations. Raw captures are kept locally under the ignored `sources/` directory, inside this dated agent folder; no wholesale third-party README copies are included in the PR.
 
-Local repo baseline: `26d9337f44ebfb7a221a107e6f957c3ed31eb9f2`. Inspected root README, `analysis/playbook.md` sections 1–7, `video/CLAUDE.md`, `video/AGENTS.md`, `.gitignore`, `video/package.json`, and the tracked-file inventory. Current metadata was read with `gh api repos/oronanschel/music-reels` and saved in `repository-metadata.json`.
+Initial repo baseline: `26d9337f44ebfb7a221a107e6f957c3ed31eb9f2`. Initially inspected root README, `analysis/playbook.md` sections 1–7, `video/CLAUDE.md`, `video/AGENTS.md`, `.gitignore`, `video/package.json`, and the tracked-file inventory. Repository metadata was read with `gh api repos/oronanschel/music-reels` and saved in `repository-metadata.json`.
+
+**Current baseline after owner steering: `6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc`.** Rebased PR #6 and reread the new GUIDE, final-reel documentation, Suno prompts, Instagram brief and production runbooks. `BASELINE-UPDATE.md` enumerates the corrected findings and verification limits; audit, outline and demo brief were updated in place. External README comparisons remain timestamped observations from the initial research.
 
 No code-graph MCP tools were exposed in the tool catalog. Non-code documentation/config inspection used local shell reads; no product source changes, build, render, star-history collection, account sign-up or public post was performed.
 
