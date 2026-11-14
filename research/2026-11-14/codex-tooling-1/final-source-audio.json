@@ -1,0 +1,21 @@
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "codec_type": "audio",
+            "sample_rate": "48000",
+            "channels": 2
+        },
+        {
+            "codec_type": "video"
+        }
+    ],
+    "format": {
+        "duration": "144.400000"
+    }
+}

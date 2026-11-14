@@ -1,0 +1,13 @@
+◆  Capturing 2 frames at [0.4s, 1.8s] from avatar-dance-test
+[hyperframes] browserGpuMode probe → hardware (WebGL renderer vendor="Google Inc. (Apple)" renderer="ANGLE (Apple, ANGLE Metal Renderer: Apple M4, Unspecified Version)")
+
+   Fonts: 1 loaded
+[hyperframes] snapshot: frame 1/2 at 0.4s
+[hyperframes] snapshot: frame 2/2 at 1.8s
+   Revision: none (unversioned)
+   State: /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/video/avatar-dance-test/.hyperframes/video-state.json
+
+◇  2 snapshots saved to /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/research/2026-11-14/codex-tooling-1/prototype-snapshots
+   /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/research/2026-11-14/codex-tooling-1/prototype-snapshots/frame-00-at-0.4s.png
+   /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/research/2026-11-14/codex-tooling-1/prototype-snapshots/frame-01-at-1.8s.png
+   /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/research/2026-11-14/codex-tooling-1/prototype-snapshots/contact-sheet.jpg (grid view for AI review)
