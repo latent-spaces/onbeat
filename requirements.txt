@@ -1,0 +1,5 @@
+# .venv: beat timing and sprite packing (versions tested in GUIDE.md section 2)
+librosa==1.0.*
+numpy==2.5.*
+scipy==1.18.*
+pillow==13.*
