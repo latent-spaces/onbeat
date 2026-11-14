@@ -1,0 +1,110 @@
+{
+  "checked_at": "2026-11-14",
+  "baseline": "6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc",
+  "verification": "tracked/local presence and WAV metadata only; no render or listening",
+  "files": [
+    {
+      "path": "GUIDE.md",
+      "tracked": true,
+      "exists": true,
+      "bytes": 22723
+    },
+    {
+      "path": "songs/allow-always/suno-prompts.md",
+      "tracked": true,
+      "exists": true,
+      "bytes": 8171
+    },
+    {
+      "path": "songs/allow-always/instagram-brief.md",
+      "tracked": true,
+      "exists": true,
+      "bytes": 6039
+    },
+    {
+      "path": "songs/allow-always/take-final-yes.mp3",
+      "tracked": true,
+      "exists": true,
+      "bytes": 3509829
+    },
+    {
+      "path": "songs/allow-always/align_final.py",
+      "tracked": true,
+      "exists": true,
+      "bytes": 3392
+    },
+    {
+      "path": "songs/allow-always/cut_final.py",
+      "tracked": true,
+      "exists": true,
+      "bytes": 1134
+    },
+    {
+      "path": "video/allow-always-final/index.html",
+      "tracked": true,
+      "exists": true,
+      "bytes": 51063
+    },
+    {
+      "path": "video/data/allow-always-final.json",
+      "tracked": true,
+      "exists": true,
+      "bytes": 151014
+    },
+    {
+      "path": "video/data/allow-always-final.js",
+      "tracked": true,
+      "exists": true,
+      "bytes": 151032
+    },
+    {
+      "path": "video/avatar-dance-test/assets/chorus.wav",
+      "tracked": true,
+      "exists": true,
+      "bytes": 2211906
+    },
+    {
+      "path": "video/avatar-dance-test/assets/gsap.min.js",
+      "tracked": true,
+      "exists": true,
+      "bytes": 72927
+    },
+    {
+      "path": "video/out/allow-always-final-80s-boom2.mp4",
+      "tracked": false,
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "video/out/allow-always-final-80s-boom2-phone.mp4",
+      "tracked": false,
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "out/dev",
+      "tracked": false,
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "LICENSE",
+      "tracked": false,
+      "exists": false,
+      "bytes": null
+    },
+    {
+      "path": "vendor/page-mascot/LICENSE",
+      "tracked": true,
+      "exists": true,
+      "bytes": 1090
+    }
+  ],
+  "prototype_audio": {
+    "file": "video/avatar-dance-test/assets/chorus.wav",
+    "sample_rate": 48000,
+    "channels": 2,
+    "duration_seconds": 11.519208333333333
+  },
+  "tracked_mp4_count": 0
+}

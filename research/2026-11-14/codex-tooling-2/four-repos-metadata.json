@@ -1,0 +1,88 @@
+{
+  "observed_at_utc": "2026-11-14T10:28:30Z",
+  "source": "GitHub REST repository metadata",
+  "repositories": [
+    {
+      "created_at": "2025-11-07T06:34:27Z",
+      "description": "\ud83d\ude80 AI \u5168\u81ea\u52a8\u77ed\u89c6\u9891\u5f15\u64ce | AI Fully Automated Short Video Engine",
+      "forks_count": 4366,
+      "full_name": "ATH-MaaS/Pixelle-Video",
+      "homepage": "https://aidc-ai.github.io/Pixelle-Video/zh",
+      "html_url": "https://github.com/ATH-MaaS/Pixelle-Video",
+      "license": "Apache-2.0",
+      "pushed_at": "2026-06-14T12:40:58Z",
+      "stargazers_count": 30079,
+      "topics": [
+        "aigc",
+        "comfyui",
+        "image-generation",
+        "tts",
+        "video-generation"
+      ]
+    },
+    {
+      "created_at": "2026-09-14T06:55:59Z",
+      "description": "A mascot that watches the cursor and blinks when you poke it",
+      "forks_count": 148,
+      "full_name": "nilbuild/page-mascot",
+      "homepage": "https://koboyo.com/page-mascot",
+      "html_url": "https://github.com/nilbuild/page-mascot",
+      "license": "MIT",
+      "pushed_at": "2026-09-15T10:07:44Z",
+      "stargazers_count": 1376,
+      "topics": []
+    },
+    {
+      "created_at": "2024-03-11T02:57:34Z",
+      "description": "\u5229\u7528 AI \u5927\u6a21\u578b\u548c\u81ea\u52a8\u5316\u5de5\u4f5c\u6d41\uff0c\u6839\u636e\u4e3b\u9898\u6216\u5173\u952e\u8bcd\u4e00\u952e\u751f\u6210\u9ad8\u6e05\u77ed\u89c6\u9891\u3002Generate HD short videos from a topic or keyword with an automated AI workflow.",
+      "forks_count": 22968,
+      "full_name": "harry0703/MoneyPrinterTurbo",
+      "homepage": "",
+      "html_url": "https://github.com/harry0703/MoneyPrinterTurbo",
+      "license": "MIT",
+      "pushed_at": "2026-11-13T15:14:28Z",
+      "stargazers_count": 143414,
+      "topics": [
+        "ai-video-generator",
+        "content-creation",
+        "ffmpeg",
+        "instagram-reels",
+        "llm",
+        "python",
+        "short-video",
+        "subtitles",
+        "text-to-speech",
+        "tiktok",
+        "video-automation",
+        "video-workflow",
+        "workflow-automation",
+        "youtube-shorts"
+      ]
+    },
+    {
+      "created_at": "2022-05-29T06:46:18Z",
+      "description": "text and image to video generation: CogVideoX (2024) and CogVideo (ICLR 2023)",
+      "forks_count": 1393,
+      "full_name": "zai-org/CogVideo",
+      "homepage": "",
+      "html_url": "https://github.com/zai-org/CogVideo",
+      "license": "Apache-2.0",
+      "pushed_at": "2025-11-04T11:19:04Z",
+      "stargazers_count": 13201,
+      "topics": [
+        "cogvideox",
+        "image-to-video",
+        "llm",
+        "sora",
+        "text-to-video",
+        "video-generation"
+      ]
+    }
+  ],
+  "star_timestamp_probe": {
+    "endpoint_template": "repos/{owner}/{repo}/stargazers?per_page=1&page=1",
+    "accept": "application/vnd.github.star+json",
+    "result": "HTTP 404 for all four repositories",
+    "interpretation": "timestamps unavailable in this session; no growth curves or launch speed inferred"
+  }
+}
