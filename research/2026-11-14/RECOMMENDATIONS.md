@@ -19,7 +19,7 @@ latent-spaces/brag, sampled stargazer timestamps (opus-strategist-2, `opus-strat
 
 **Launch-channel traces found** (codex-tooling-2, `codex-tooling-2/LAUNCH-EVIDENCE.md`; exposure, not proof of causality). brag's initial commit already shipped its launch site and examples:
 - `/brag` author post on r/ClaudeCode ([link](https://www.reddit.com/r/ClaudeCode/comments/1ubrc1y/i_built_a_claude_code_skill_called_brag_that/)): demo + repo + install line, a token-budget warning, and a request for feedback. Shown as "4mo ago", so the exact date isn't verified.
-- Motion Canvas Show HN, 2023-02-22 ([link](https://news.ycombinator.com/item?id=34897707), about 180 points). A top reader reply asks for a GIF or visual, and others point to the author's YouTube explainer. This directly supports putting the demo first.
+- Motion Canvas Hacker News discussion, 2023-02-22 ([link](https://news.ycombinator.com/item?id=34897707), about 180 points). A top reader reply asks for a GIF or visual, and others point to the author's YouTube explainer. This directly supports putting the demo first.
 
 ## Positioning
 
