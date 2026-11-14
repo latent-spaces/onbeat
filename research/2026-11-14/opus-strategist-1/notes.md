@@ -54,7 +54,7 @@ Adjacent music repos with real pull: m-bain/whisperX 25k (word timestamps), rzru
 
 1. **Position:** "The first HyperFrames skill for music: Suno song in, beat-synced lyric reel out." Type: a Claude Code/Codex **skill + CLI**, not a studio. Studios are a crowded 80k-star fight; a skill is how brag (21k in ~5 months) won.
 2. **Name it as a verb:** e.g. `/reel` or `/lyric-reel`. One line: "Your song deserves a video."
-3. **Lead with the reel we now have** (`allow-always-final`). Cut a 30–45 s loop for the README. Ideally the hero is made by the skill about the skill, so the reel's song is about making reels with an agent (the "allow always" concept fits). Embed it as playable MP4 at the top of the README.
+3. **Lead with the reel we now have** (`allow-always-final`). Show the full reel with a poster frame; a short excerpt is optional (the reel already loops). Ideally the hero is made by the skill about the skill, so the reel's song is about making reels with an agent (the "allow always" concept fits). Embed it as playable MP4 at the top of the README.
 4. **Demo input that needs no Suno account:** a bundled CC0/own short song + its timing JSON, so `npx …` → render works offline in under 5 minutes.
 5. **Lead with the playbook as the hook:** "We measured 10 viral reels. Here's what the top one did in its first 0.27 s." Publish our own measurements and leave out their media, mascot and lyrics.
 6. **Topics:** claude-code, agent-skills, claude-skills, hyperframes, codex, suno, lyric-video, music-video. Submit to awesome-claude-video-skills once it's public (needs owner approval: outside action).
