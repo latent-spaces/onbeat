@@ -12,8 +12,8 @@
 - Needs only the main Python environment (librosa, NumPy, SciPy) and ffmpeg. No `.venv-align`, no WhisperX, no lyrics.
 - Gives the beat grid, bars, downbeat, sections (kick or no kick) and the kick and loudness envelopes. That is
   everything sprites, bounces, cuts and camera moves need.
-- Words and lines are empty, and the JSON says `"mode": "beats-only"`. A template should show lyric captions only
-  when `words` is not empty.
+- Words and lines are empty, and the JSON says `"mode": "beats-only"`. Word-by-word highlighting needs a non-empty
+  `words`; timed or per-line captions from the reel config still work.
 - `--no-words` is the same flag under its old name.
 - Without `--beats-only`, a missing `.venv-align` stops with a message that says so, instead of a traceback.
 
