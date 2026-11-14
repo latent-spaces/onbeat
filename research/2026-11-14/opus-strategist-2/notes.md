@@ -71,7 +71,7 @@ Created 2026-06-16. Star #100 came on 06-23, #500 on 06-25 (launch week), #1000 
 
 ## Owner-requested repo: zai-org/CogVideo (added 10:28Z)
 
-- **Stars and speed:** 13.2k stars. The repo dates from 2022-05 (CogVideo, ICLR 2023), but most stars likely came with the CogVideoX open-weights releases in Aug–Nov 2024. That is inferred from the README news log; I didn't sample star timestamps (the API returns 404 for stargazer timestamps here). Last push 2025-11. License Apache-2.0.
+- **Stars and speed:** 13.2k stars. The repo dates from 2022-05 (CogVideo, ICLR 2023), but most stars likely came with the CogVideoX open-weights releases in Aug–Nov 2024. That is inferred from the README news log; I didn't sample star timestamps (the API returns 404 for stargazer timestamps here). Last push 2025-11. The code is Apache-2.0. That badge doesn't establish the model-weight terms, which are separate (caveat from codex-tooling-2). The same goes for any B-roll we'd generate with it: check the weight license first.
 - **What it is:** a **model** (text/image → video weights plus inference and fine-tuning code) from Zhipu/THU. It is not a skill, CLI or studio.
 - **README and demo strengths:** the first screen has a hosted try-it link (Hugging Face Space / ModelScope), so people can try it with zero install. It also links the paper, a user guide, Discord/WeChat, a 🔥 dated news log that shows the project is alive, and translated READMEs (Chinese, Japanese).
 - **How it launched:** through research and model-hub channels: an arXiv paper, Hugging Face weights and Space, diffusers integration, plus community tools built on it (cogvideox-factory for one-4090 fine-tuning). Stars follow model releases, not marketing posts.
