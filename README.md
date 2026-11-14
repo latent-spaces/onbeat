@@ -2,6 +2,14 @@
 
 ## Start here (next session)
 
+The avatar/sprite workflow and full-video integration now exist. For this kind of
+illustrated music reel, start with the [production runbook](analysis/runbooks/animated-music-reels.md),
+its [image prompt patterns](analysis/runbooks/image-prompts.md), and the append-only
+[learning log](analysis/runbooks/learning-log.md). The full-video session is still
+making changes; inspect its current files before extending it.
+
+### Earlier planning notes (2026-11-11)
+
 State on 2026-11-11: the first reel, "allow always", is paused. The story and storyboard exist, four Suno generations exist, and no video was built for the current story. The result so far is not good enough, for two reasons written up in `analysis/playbook.md`:
 
 - **Section 9:** we wrote a long story and asked Suno to perform it bar by bar. It never followed the structure.
@@ -20,6 +28,7 @@ What can be reused from "allow always" (`songs/allow-always/`): the story chain 
 ## Contents
 
 - `analysis/playbook.md`: how the reference reels work and what we learned; the main document
+- `analysis/runbooks/`: repeatable sprite-reel production workflow, provider-neutral image prompts and cross-session learning log
 - `analysis/breakdown/<id>.md`: per-reel breakdowns of the ten studied reels
 - `songs/<song>/`: lyrics, takes, storyboard and cut script per song
 - `scripts/timing.py`: audio (and lyrics) → timing JSON (BPM, beats, bars, words, envelopes)
@@ -27,6 +36,7 @@ What can be reused from "allow always" (`songs/allow-always/`): the story chain 
   - `video/allow-always-final/`: the "allow always" reel (final take): permission-prompt hook and loop, avatar disco, console/explosion punch, 80s VHS look and karaoke captions; renders go to `video/out/`
   - `video/avatar-dance-test/`: the avatar dance test and its sprite sheets (dance, close-ups, `assets/action/` console and explosion); `video/assets/disco` links to its `assets/` and the reel needs it
 - `vendor/page-mascot/`: MIT avatar generation tools, sprite renderer and four human examples; see `analysis/avatar-pipeline.md` for rebuild commands and the route to beat-timed avatars and dance poses
+- `branding/`: robot profile portrait and its generation prompt
 - `diagnostics/`: one-off measuring scripts (gitignored)
 
 ## Reference research

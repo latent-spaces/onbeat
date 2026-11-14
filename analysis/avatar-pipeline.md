@@ -1,5 +1,10 @@
 # Avatar sprites for reels
 
+For the implemented workflow, including dance/action sheets, scene layers,
+karaoke and other-generator interchange, see the
+[production runbook](runbooks/animated-music-reels.md). This document records the
+original upstream import and its adaptation constraints.
+
 The reusable parts of [nilbuild/page-mascot](https://github.com/nilbuild/page-mascot)
 are vendored in `vendor/page-mascot/`. The upstream code and assets are unchanged;
 `UPSTREAM.json` records the exact commit, selected files and SHA-256 checksums.
@@ -18,7 +23,8 @@ Keep its MIT `LICENSE` with copies of the code and assets.
 - `public/mascots/`: ready-to-use WebP atlases for those same examples.
 
 The upstream demo site, deployment setup and other characters were omitted.
-No npm dependency or global skill was installed. No new images were generated.
+No npm dependency or global skill was installed during the import. New images
+were generated later in `video/avatar-dance-test/`, outside the vendored originals.
 
 ## Rebuild an existing example locally
 
@@ -60,8 +66,8 @@ when processing sheets that already exist.
 
 The React component is an interactive web mascot. For our rendered reels, select
 sprite cells from composition time instead of pointer events or wall-clock timers.
-The integration below is a design for the next composition, not an implemented
-video adapter.
+The integration below describes the original mapping. The implemented dance and
+portrait examples now live in `video/avatar-dance-test/compositions/orbital.html`.
 
 Both atlases are 3×3. Use a square crop with background size `300% 300%`.
 For cell index `i`, the background position is `(i % 3) * 50%` horizontally and

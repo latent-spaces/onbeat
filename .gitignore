@@ -10,3 +10,5 @@ node_modules/
 out/
 .venv-align/
 .hyperframes/
+.thumbnails/
+.waveform-cache/
