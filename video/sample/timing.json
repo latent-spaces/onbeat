@@ -40,8 +40,109 @@
     9.5993
   ],
   "fps": 30,
-  "words": [],
-  "lines": [],
+  "words": [
+    {
+      "text": "bypass",
+      "start": 0,
+      "end": 0.6722,
+      "line": 0
+    },
+    {
+      "text": "my",
+      "start": 0.7532,
+      "end": 1.1962,
+      "line": 0
+    },
+    {
+      "text": "permissions",
+      "start": 1.2762,
+      "end": 2.3632,
+      "line": 0
+    },
+    {
+      "text": "i",
+      "start": 3.5282,
+      "end": 3.6082,
+      "line": 1
+    },
+    {
+      "text": "don't",
+      "start": 3.6682,
+      "end": 3.9302,
+      "line": 1
+    },
+    {
+      "text": "wanna",
+      "start": 4.1302,
+      "end": 4.5732,
+      "line": 1
+    },
+    {
+      "text": "click",
+      "start": 4.6132,
+      "end": 4.8342,
+      "line": 1
+    },
+    {
+      "text": "no",
+      "start": 4.8942,
+      "end": 5.1752,
+      "line": 1
+    },
+    {
+      "text": "more",
+      "start": 5.3562,
+      "end": 6.6822,
+      "line": 1
+    },
+    {
+      "text": "approve",
+      "start": 7.4262,
+      "end": 8.2912,
+      "line": 2
+    },
+    {
+      "text": "it",
+      "start": 8.3122,
+      "end": 8.4122,
+      "line": 2
+    },
+    {
+      "text": "for",
+      "start": 8.5132,
+      "end": 8.9952,
+      "line": 2
+    },
+    {
+      "text": "me,",
+      "start": 9.0562,
+      "end": 9.3982,
+      "line": 2
+    },
+    {
+      "text": "please",
+      "start": 9.4182,
+      "end": 10.3032,
+      "line": 2
+    }
+  ],
+  "lines": [
+    {
+      "text": "bypass my permissions",
+      "start": 0,
+      "end": 2.3632
+    },
+    {
+      "text": "i don't wanna click no more",
+      "start": 3.5282,
+      "end": 6.6822
+    },
+    {
+      "text": "approve it for me, please",
+      "start": 7.4262,
+      "end": 10.3032
+    }
+  ],
   "sections": [],
   "beatsPerBar": 4
 }

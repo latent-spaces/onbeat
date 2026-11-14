@@ -24,7 +24,7 @@
         });
       });
     }
-    if (config.syncCheck) {
+    if (config.syncCheck || (window.SyncCheck && window.SyncCheck.wanted())) {
       if (!window.SyncCheck || !window.SyncCheck.overlay) throw new Error("SyncCheck is missing; update the package before using the overlay.");
       window.SyncCheck.overlay(tl, timing, { parent: root });
     }

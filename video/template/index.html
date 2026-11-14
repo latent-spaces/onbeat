@@ -27,6 +27,7 @@
     #eyebrow { position: absolute; left: 112px; top: 177px; color: var(--ink); font: 700 28px/1 "Inter", sans-serif; letter-spacing: .16em }
     .lyric { position: absolute; left: 108px; width: 760px; text-align: left; opacity: 0; color: var(--ink);
       font: 900 82px/1.06 "Inter", sans-serif; letter-spacing: -.045em; text-transform: uppercase; overflow-wrap: anywhere }
+    #lyrics .lyric span { display: inline-block; margin-right: .16em }
     #cast { position: absolute; left: 0; top: 610px; width: 1080px; height: 710px }
   </style>
 </head>
@@ -60,6 +61,7 @@
     var firstKick = (T.sections || []).filter(function (s) { return s.kick; })[0];
     var captionStart = C.captionStartBar != null ? C.captionStartBar : (firstKick ? firstKick.startBar : 0);
     var titleOut = T.lines && T.lines.length ? T.lines[0].start : (T.bars[captionStart] || 0);
+    document.getElementById("eyebrow").textContent = (C.title || "MUSIC REELS").toUpperCase();
     document.getElementById("title").textContent = C.title || "";
     document.getElementById("subtitle").textContent = C.subtitle || "";
     tl.set(["#title", "#subtitle"], { opacity: 1 }, 0);
