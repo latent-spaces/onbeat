@@ -1,125 +1,125 @@
-# Tooling readiness: make the first remix work
+# Tooling readiness after the completed reel
 
-Research date: 2026-11-14. Agent: codex-tooling-1. Scope: local reproducibility and packaging audit, research only. Base commit: `26d9337f44ebfb7a221a107e6f957c3ed31eb9f2`.
+Research date: 2026-11-14. Agent: codex-tooling-1. **Current source revision: `6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc`.** This replaces the audit narrative based on `26d9337`; that earlier static result is retained as `audit-results-26d9337.json` for provenance, not as current project status.
 
 ## Recommendation for the merged report
 
-Launch a **remixable HyperFrames template with a thin CLI and an optional agent skill**. The distinctive reusable core is the music timing contract and its deterministic animation helpers. A full studio is premature: a fresh clone currently has no playable sample audio and no general path from the timing command to a rendered composition. Prioritize a rights-cleared, no-key sample that can be rendered without running any ML models. Then support bring-your-own audio and lyrics, with alignment as an optional heavyweight installation. Keep Suno generation manual and optional; do not make a Suno account, free-download allowance or paid credits prerequisites for trying the repository.
+Promote the **existing completed-reel source and end-to-end guide**, with the **existing self-contained 11.52-second avatar test** as the first no-key try path. Then package the timing/render contract as a thin CLI and optional agent skill. A full studio is premature. The repo now contains a finished 2:24 composition, its selected song, corrected sung-word timing, source artwork, prompt history and production runbooks. Claims that there is no GUIDE, no completed reel, or no sample audio anywhere in the clone are obsolete.
 
-These are proposed launch requirements, not features delivered by this research. Reproducibility can improve adoption; this audit provides no causal evidence that it will create stars or virality.
+The remaining gap is turning a documented, human-directed production into a portable remix workflow. Distinguish three routes: render a committed short example; rebuild the final composition using committed timing; analyze and align a new song. Only the third requires the heavyweight ML stack. Do not make Suno access or regeneration a prerequisite for inspecting the existing work.
 
-## What exists and why it is appealing
+These are proposed packaging changes, not a CLI or skill delivered by this research. No causal claim about stars follows from this audit.
 
-| Piece | Present implementation | Reuse value |
+## What changed on main
+
+| Area | Verified current state | Public-project implication |
 |---|---|---|
-| Beat/section extraction | `scripts/timing.py`: ffmpeg decode, librosa onset envelope, fixed-tempo comb search, waveform phase correction, downbeat heuristic, kick/no-kick sections | Turns audio into an inspectable editing plan rather than hiding synchronization in a prompt |
-| Word alignment | `scripts/align_words.py`: Demucs vocal isolation, faster-whisper short-clip transcription, WhisperX forced alignment, lyric-line matching and onset correction | Addresses sung vocals, a harder case than ordinary speech subtitles |
-| Shared timing contract | `analysis/playbook.md` section 7: beats, bars, words, lines, sections, per-frame kick/RMS envelopes | Supports templates and future alternative aligners without tying visuals to one model |
-| Seekable visual helpers | `video/src/beatsync.js`: beat steps/pulses/tickers, lyric drops/karaoke/syllable stacks, palette cuts, character states, progress | Composable primitives for music-driven scenes, with explicit frame-boundary behavior |
-| Renderer integration | HyperFrames CLI pinned to `0.9.2`; GSAP `3.15.0` script URL; paused root timelines | Existing preview/check/render commands and a deterministic animation structure |
-| Demonstration fixtures | Short/long stub timings plus real `allow-always` timing data | Can support fast, model-free checks once paired with distributable media |
+| Guide | `GUIDE.md` covers concept, Suno, beat/word timing, sprites, code, review, rendering, dead ends and posting | A substantial making-of/tutorial already exists; improve its front door rather than write it from scratch |
+| Completed example | `video/allow-always-final/index.html`, 144.4 s, 1080×1920, 60 fps | Use this existing production as hero evidence once an actual render is available for approved embedding |
+| Selected take | Tracked `songs/allow-always/take-final-yes.mp3`; ffprobe reports 144.4 s, stereo 48 kHz audio | Full-song WAV can be regenerated locally; the song is not missing |
+| Corrected timing | Final JSON/JS pair, 126 words, 29 sung lines, 76 bars; `align_final.py` records line windows | Do not rerun naive forced alignment and overwrite the curated result just to try the example |
+| Artwork | Tracked sprite/scene assets; `video/assets/disco` links to the prototype assets | The art pipeline and output are present, not a speculative future feature |
+| Short example | `video/avatar-dance-test/` includes WAV, local GSAP, font, scene assets and caption markup | An existing no-key example is ready for a documented, supported quickstart candidate |
+| Setup | GUIDE section 2 names versions used on macOS and two Python-environment install commands | Dependencies are documented; portable, pinned installation still needs work |
+| Renders | GUIDE and Instagram brief name `video/out/allow-always-final-80s-boom2.mp4` | The output is documented, but `video/out/` is ignored and absent in this checkout; I did not inspect the final encoded file |
 
-The project is currently a research/creative workspace plus a template and Python scripts. It is **not yet** a packaged CLI, installable skill, generalized song importer or studio. The root README explicitly says the current story has no finished video and the existing results are not good enough. Respect that status in public-facing claims.
+The README now leads with GUIDE and runbooks. Its “no video was built” statement is explicitly under **Earlier planning notes (2026-11-11)**. It is historical, not the current state. The Instagram brief is a draft distribution plan requiring owner approval, not proof of publication or public availability; this run posts nothing externally.
 
-## Fresh-clone findings
+## Validation performed on the new code
 
-### 1. No included composition can play its intended audio
+### Static inputs and timing
 
-All three HTML compositions resolve their local source/timing scripts but reference absent WAV files:
+Run `python3 research/2026-11-14/codex-tooling-1/audit.py` from the repository root. Saved output: `audit-results.json`. It reads local files only, including literal HTML/CSS references. Subcomposition assets resolve from the HyperFrames project root. Dynamic JavaScript paths are not exhaustively analyzed.
 
-| Composition | Missing media |
-|---|---|
-| `video/index.html` | `assets/dev/dev8bars.wav` |
-| `video/scale/index.html` | `assets/dev/dev24bars.wav` |
-| `video/allow-always/index.html` | `assets/dev/allow-always.wav` |
+- The three legacy compositions still lack their intended WAVs under the ignored `out/dev` symlink.
+- The final composition's literal art/script/timing references exist; its `assets/dev/allow-always-final.wav` does not yet exist in the clone.
+- The avatar test's entrypoint, subcompositions, literal assets, local GSAP, font and `assets/chorus.wav` all exist. It has no remote script reference.
+- All **four** `video/data` JSON/JS pairs decode identically. All checked word intervals lie within duration and reference valid lines; none are zero-length. Envelope counts match `ceil(duration * fps)`.
+- Final data: 144.4 s, 126 words, 8,664 kick samples and 8,664 RMS samples. This is structural validity, not independent confirmation of every sung word.
+- Stub envelope hop remains `0.017` instead of `1/60`. This could accumulate drift in a future hop-based consumer; no current visual bug is established.
 
-`video/assets/dev` is a tracked symlink to `../../out/dev`; `out/` is gitignored. The nested compositions share `assets`, `src` and `data` through relative symlinks. A clone preserves the link but cannot recover its ignored target. `video/tools/stub-timing.mjs` writes timing JSON and a JavaScript twin, **not audio**. `songs/allow-always/cut.py` requires both an ignored analysis output and an absent `.m4a` take. Merely documenting `npm run render` cannot make this sample reproducible.
+### Actual prototype check
 
-Proposed fix: ship one redistributable sample with a provenance/license note, lyrics, timing and a complete composition using ordinary repository-relative assets. A synthetic beat fixture is enough for checks, but a compelling sung sample is necessary to demonstrate sung-word alignment. Treat those as separate fixtures if necessary.
+From `video/avatar-dance-test`, ran **`npm run check`**, which invokes pinned HyperFrames 0.9.2. Exit status **0**. Saved terminal output: `prototype-check.log`.
 
-### 2. Installation requirements are split and unmanifested
+- Lint: 0 errors, 2 `timeline_track_too_dense` warnings (caption and close-up groups).
+- Runtime: 0 errors/warnings. Layout: 0 issues across 9 samples.
+- Motion, craft and audio: 0 errors/warnings. Contrast: 20/20 text checks pass.
+- Snapshots were disabled by check. I separately captured and inspected frames at 0.4 and 1.8 seconds, then rendered the unchanged prototype; see below. The automated check alone does not establish smooth animation or accurate sung words.
 
-`timing.py` imports librosa, numpy and scipy before argument parsing and shells out to ffmpeg. Word extraction invokes **exactly** `.venv-align/bin/python`; that helper imports Demucs, torch, torchaudio, WhisperX and faster-whisper. Its docstring names Python 3.12. No tracked requirements file, pyproject, environment lock, Python runtime pin, setup script or root package entrypoint exists in this commit.
+`ffprobe` results are saved in `final-source-audio.json` and `prototype-audio.json`. Prototype WAV duration is 11.519208 s. The source MP3 duration matches the final timing's 144.4 s. Audio was measured, not listened to. No production HTML, timing, art or script was modified by this audit.
 
-Observed machine state, not a universal compatibility finding: system `python3` is 3.15.2; numpy/scipy/librosa/torch/whisperx/demucs are unavailable there; Node is 26.13.0, npm 11.20.0 and ffmpeg is installed. The declared environment directories are absent. Therefore no honest fresh-clone command can be documented as tested end to end in this audit.
+### Fresh encoded prototype render
 
-Proposed install tiers:
+After inspecting the two snapshots, ran from `video/avatar-dance-test`:
 
-1. **Demo**: Node + supported HyperFrames/browser prerequisites + bundled media/timing. No Suno, API key or model download.
-2. **Analyze beats**: pinned, tested Python environment + ffmpeg; `--no-words` already skips the alignment subprocess.
-3. **Align lyrics**: separately installed compatible ML dependencies and model downloads; disclose disk/download/runtime expectations after measurement.
-
-Do not invent exact installation versions or performance figures. Establish them on a clean tested environment first. CPU inference is used for transcription/alignment; Demucs chooses MPS when available, otherwise CPU. There is no explicit CUDA selection in this helper.
-
-### 3. The JSON-to-render handoff is still custom per song
-
-`timing.py` writes JSON containing an audio **basename**. HTML instead loads a classic script assigning `window.TIMING`; audio source and composition duration are hardcoded in the HTML. The stub generator and song-specific `cut.py` write the JS twin. There is no general importer that copies audio, emits the twin, updates duration, selects a visual template and renders it.
-
-`cut.py` also prepends a missing downbeat and hand-corrects word timings for two lyric lines. This is useful production evidence that an explicit review/correction step matters; it is not proof of fully automatic alignment.
-
-Proposed interface, illustrative and **not implemented**:
-
-```text
-music-reels demo
-music-reels analyze ./song.wav --lyrics ./lyrics.txt --out ./work
-music-reels inspect ./work/timing.json
-music-reels render ./work --template one-place --out ./reel.mp4
+```bash
+npx --yes hyperframes@0.9.2 render --output ../../research/2026-11-14/codex-tooling-1/prototype-repro-check.mp4 --fps 30 --workers 2
 ```
 
-The CLI should own files, dependency checks and validation. The skill should orchestrate the same commands, explain the song-first creative process and require a five-second visual review before a full render. Avoid two separate implementations for humans and agents.
+Exit status 0. CLI reported 14.4 seconds rendering on this Apple M4 machine with hardware GPU and cached CLI/browser dependencies. This is **not** a timed clean machine install. `prototype-render.log` records the run; `prototype-render-probe.json` confirms H.264 1080×1920, 30 fps, 346 frames, AAC audio, 11.533333 s and 7,059,219 bytes. The tiny duration difference from 11.5192 s is frame rounding. The MP4 is retained locally in this dated folder (gitignored by the repository rule); logs, metadata and extracted evidence are committed.
 
-### 4. Timing assumptions should become a clear contract
+Inspected the encoded frame at 1.8 s (`prototype-encoded-1.8s.jpg`): the dancers, separate planet/window background and caption appear, with the final word partially highlighted. This is a spot check, not an all-frame visual review or listening-based word-timing verification. The final 2:24 composition has not been rendered by this audit.
 
-The beat finder searches one tempo octave, roughly 85–170 BPM, and assumes a fixed tempo. Downbeat inference uses low-band changes and falls back to the first beat when evidence is weak. This fits the current four-on-the-floor creative direction but does not establish accuracy on tempo changes, rubato, sparse acoustic music or every meter. `--beats-per-bar` is configurable; that alone is not validation of arbitrary musical structure.
+## Reproducibility routes and remaining gaps
 
-The alignment helper defaults to English, and lyric matching normalizes to ASCII letters, numbers and apostrophes. The top-level timing command has no language flag. Do not advertise multilingual lyric support without separate evaluation.
+### 1. Try the existing short example first
 
-Missing word timings are interpolated and may become zero-duration events. The current checked-in files have none, but public tooling should expose warnings/confidence or an inspectable correction file. Recommend checks for finite/bounded times, sorted grids, valid line references, zero-duration/overlapping words and alignment coverage. `analysis/playbook.md` section 9 already warns that an aligner can place words that were never sung.
+The included WAV and prebuilt art mean users should not need Python, Suno, paid keys, stem separation, image generation or repacking to try it. Start the quickstart from `video/avatar-dance-test` and document the pinned check/render commands. I tested check and encoded a fresh MP4 from the committed inputs; see the render evidence below. The prototype begins/ends during lyric words and is a limited-animation test, as the runbook explains; do not market it as the final full-song loop.
 
-### 5. Determinism is a useful differentiator with practical limits
+The example includes a local font. Its presence is not an audit of redistribution rights. The owner should resolve the code, song, font and artwork distribution terms before publication. Vendored page-mascot has its own MIT notice/provenance; that is not a root project license.
 
-`BeatSync.at()` snaps events to the first eligible video frame, with a small epsilon to avoid floating point boundaries; helpers add animation to the shared paused timeline. This is a strong, explainable feature: seek to the same frame and get the same visual state. It does not guarantee a musically correct beat grid or reproducibility across changing model/tool/font environments.
+### 2. Rebuild the completed composition with committed timing
 
-HyperFrames scripts use an exact CLI pin, but invoke it through npx; GSAP loads from a CDN. No npm lockfile/dependency tree is committed. Recommend pinning the supported environment and bundling or explicitly documenting network-dependent runtime assets. A clean render check should catch missing media before a lengthy render.
+The final composition loads its corrected timing pair and tracked art; it needs an intermediate 48 kHz WAV at `out/dev/allow-always-final.wav`. Its audio source MP3 is committed. A minimal proposed preparation route from the root is:
 
-## Validation performed
+```bash
+mkdir -p out/dev
+ffmpeg -i songs/allow-always/take-final-yes.mp3 -vn -ar 48000 out/dev/allow-always-final.wav
+cd video/allow-always-final
+npx --yes hyperframes@0.9.2 check
+# After checking and reviewing, render a uniquely named output.
+```
 
-Run `python3 research/2026-11-14/codex-tooling-1/audit.py` from the repository root. The script only reads local files and prints JSON; it does not fetch anything, run ML or render. Saved output is in `audit-results.json`.
+**This exact final-preparation/render sequence was not run in this audit.** The `-vn` explicitly drops the MP3's attached picture stream. Keep the committed curated timing untouched. `cut_final.py` documents the audio conversion and JSON/JS export, but requires ignored `out/timing/allow-always-final.json`; it is not the shortest fresh-clone route when the final timing is already committed.
 
-Observed checks:
+The final composition still loads GSAP 3.15.0 from a CDN, unlike the fully local prototype. Its assets and data are shared through symlinks. Document network/runtime requirements and test portability on supported systems before promising offline or cross-platform operation.
 
-- Three compositions: all local source and timing script references exist; all three intended audio files are missing.
-- All three JSON/JS timing pairs decode to identical objects.
-- 22 stub-short, 120 stub-long and 85 allow-always word intervals are bounded, ordered within each word and have valid line indices; no zero-duration words in these fixtures.
-- Kick/RMS envelope counts equal `ceil(duration * fps)` for all three fixtures.
-- Stub envelope hop is `0.017`, whereas 60 fps means `1/60` (~0.016667). That discrepancy would accumulate if a future consumer used hop as its clock; this audit does **not** show a current visual bug, and the stub envelopes are all zero.
+### 3. Analyze a new song
 
-Not validated: actual audio/word accuracy, model installation, HyperFrames check, browser appearance, rendering, Windows symlink behavior or performance. No HTML/production source was modified. Missing assets and dependency setup were sufficient to establish that an end-to-end demo is unavailable in this checkout; installing ML stacks or downloading songs would not be appropriate proof of the committed sample.
+GUIDE now provides versions that worked on macOS (general Python 3.14 environment; alignment Python 3.12 with specific reported libraries) and installation commands. Those pip commands are **unpinned**, and there is still no root lockfile/requirements/pyproject or setup entrypoint for this pipeline. Do not claim the dependencies are undocumented, but do not mistake a version table for a reproducible environment lock.
 
-## Proposed go-public gates
+The two-environment split is intentional. `timing.py` imports librosa/numpy/scipy, decodes with ffmpeg, and invokes the hardcoded `.venv-align/bin/python`. Demucs isolates vocals; transcription and alignment use CPU, with Demucs selecting MPS when available. My system Python is 3.15.2 with the relevant ML/audio packages absent; I did not install/retest that stack.
 
-| Priority | Gate | Evidence required before claiming it |
-|---|---|---|
-| P0 | First successful sample render | A clean clone can render the bundled song; a maintainer records exact commands/environment and checks audio+video |
-| P0 | Generic timing-to-template handoff | A second, user-supplied song renders without editing source paths or song-specific Python |
-| P0 | Clear distribution terms | Repository license plus separately clear sample/audio/model/source provenance, reviewed by the owner |
-| P1 | Inspectable timing quality | Human review workflow plus representative beat/word fixtures and surfaced weak alignments |
-| P1 | One CLI, optional skill | Both use the same contract and command paths; neither requires paid generation to try the demo |
-| P2 | Template gallery | Two or three visually strong, audibly distinct examples with remix instructions and complete inputs |
-| Later | Studio/UI | Only after observing where users struggle with a working template/CLI |
+Important newly documented limit: GUIDE section 11 says `align_words.py` **without `--lyrics` crashes with an IndexError**. Do not advertise a tested transcription-only route. `--no-words` skips alignment, but a new-song beat-only run was not tested here.
 
-## Source map
+The fixed-tempo assumption, roughly 85–170 BPM search, low-band downbeat heuristic and English lyric normalization remain. General support for tempo changes, multilingual vocals and arbitrary music is not established.
 
-All findings above derive from the checked-out commit; links below are pinned primary sources rather than claims about current main:
+## Human correction is a feature of the real workflow
 
-- [README and current creative status](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/README.md)
-- [Timing extraction](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/scripts/timing.py)
-- [Word alignment](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/scripts/align_words.py)
-- [Animation helpers](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/video/src/beatsync.js)
-- [Renderer scripts](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/video/package.json)
-- [Stub generator](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/video/tools/stub-timing.mjs)
-- [Song-specific integration and corrections](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/songs/allow-always/cut.py)
-- [Timing contract and known creative/alignment limitations](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/analysis/playbook.md)
-- [Ignored local outputs](https://github.com/oronanschel/music-reels/blob/26d9337f44ebfb7a221a107e6f957c3ed31eb9f2/.gitignore)
+GUIDE explains that Suno changed the sung words/order and the initial alignment lost its place after 41 s. `align_final.py` now follows the sung text in manually selected line windows and marks uncertain interpretations. This is stronger process evidence than an automatic-only claim: the public project can expose those editable windows as a quality-control step.
 
-No graph MCP tools were available in this session, so discovery fell back to the tracked file inventory and direct file reads. This slice deliberately leaves competitor/star-history research to teammates; it does not repeat or endorse unverified star counts.
+`cut_final.py` adds a second concrete JSON-to-`window.TIMING` exporter. The handoff is **documented and implemented for this song**. The remaining gap is a general importer that handles arbitrary audio, durations, timing export, visual template selection and output paths. Sprite packing and karaoke generation also have deliberate project-specific constants. Describe them as worked examples until generalized.
+
+`BeatSync.at()` and the paused timeline remain useful differentiators: deterministic frame seeking makes inspection/review possible. A pinned renderer alone does not guarantee musically correct alignments or identical future font/model environments.
+
+## Proposed packaging order
+
+1. Promote GUIDE and the existing finished-reel source; arrange an owner-approved viewable demo from the existing render.
+2. Document the now-verified bundled avatar-test render as the no-key quickstart. Test an uncached clean-machine installation before promising an end-to-end duration; the observed 14.4 s render excludes setup.
+3. Add a final-example preparation command using the tracked MP3 plus committed timing, avoiding unnecessary ML recomputation.
+4. Lock/document the supported analysis environments and add actionable dependency/media preflight checks.
+5. Generalize song import, alignment review and template configuration; expose one CLI used by humans and the optional skill.
+6. Validate a second song before claiming a reusable tool. Add studio UI only after observing user friction.
+
+## Sources
+
+Pinned primary sources at `6daad3d`:
+
+- [Pipeline guide](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/GUIDE.md), especially sections 2, 5, 8 and 11.
+- [Current README](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/README.md).
+- [Final composition](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/video/allow-always-final/index.html), [final exporter](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/songs/allow-always/cut_final.py), [sung-line alignment](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/songs/allow-always/align_final.py).
+- [Prototype README](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/video/avatar-dance-test/README.md), [production runbook](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/analysis/runbooks/animated-music-reels.md), [learning log](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/analysis/runbooks/learning-log.md).
+- [Suno prompt history](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/songs/allow-always/suno-prompts.md), [Instagram draft brief](https://github.com/oronanschel/music-reels/blob/6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc/songs/allow-always/instagram-brief.md).
+
+No graph MCP tools were available; discovery fell back to tracked files/direct reads. Competitor counts and launch-history evidence are handled in teammates' slices, not independently endorsed here.

@@ -8,13 +8,15 @@ import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[3]
-result = {"base_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()}
+result = {"method": "Static literal src/href/CSS url references; HyperFrames subcomposition assets resolve from project root. Dynamic paths are not exhaustively evaluated.", "base_commit": subprocess.check_output(["git", "rev-parse", "origin/main"], cwd=ROOT, text=True).strip()}
 result["compositions"] = []
-for rel in ["video/index.html", "video/scale/index.html", "video/allow-always/index.html"]:
+for rel in ["video/index.html", "video/scale/index.html", "video/allow-always/index.html", "video/allow-always-final/index.html", "video/avatar-dance-test/index.html", "video/avatar-dance-test/compositions/orbital.html", "video/avatar-dance-test/compositions/karaoke.html"]:
     page = ROOT / rel
     refs = re.findall(r'(?:src|href)="([^"]+)"', page.read_text())
-    local = [r for r in refs if not re.match(r"https?://|#|data:", r)]
-    result["compositions"].append({"page": rel, "local_references": [{"path": r, "exists": (page.parent / r).exists()} for r in local], "external_references": [r for r in refs if r.startswith("https://")]})
+    refs += re.findall(r'''url\(["']?([^\)"']+)["']?\)''', page.read_text())
+    local = [r for r in refs if " + " not in r and not re.match(r"https?://|#|data:", r)]
+    asset_root = ROOT / "video/avatar-dance-test" if "/compositions/" in rel else page.parent
+    result["compositions"].append({"page": rel, "local_references": [{"path": r, "exists": (asset_root / r).exists()} for r in local], "external_references": [r for r in refs if r.startswith("https://")]})
 result["timing_data"] = []
 for path in sorted((ROOT / "video/data").glob("*.json")):
     data = json.loads(path.read_text())

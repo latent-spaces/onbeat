@@ -1,5 +1,6 @@
 {
-  "base_commit": "26d9337f44ebfb7a221a107e6f957c3ed31eb9f2",
+  "method": "Static literal src/href/CSS url references; HyperFrames subcomposition assets resolve from project root. Dynamic paths are not exhaustively evaluated.",
+  "base_commit": "6daad3d1a74c4ff2de645a7b86b4fdeae79be3dc",
   "compositions": [
     {
       "page": "video/index.html",
@@ -60,9 +61,163 @@
       "external_references": [
         "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"
       ]
+    },
+    {
+      "page": "video/allow-always-final/index.html",
+      "local_references": [
+        {
+          "path": "src/beatsync.js",
+          "exists": true
+        },
+        {
+          "path": "data/allow-always-final.js",
+          "exists": true
+        },
+        {
+          "path": "assets/dev/allow-always-final.wav",
+          "exists": false
+        },
+        {
+          "path": "assets/disco/space.png",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/planet.png",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/ship.png",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/ochre-dance.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/blue-dance.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/robot-dance.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/human-ochre-closeups.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/action/robot-controls-over-shoulder-3x3-v2.png",
+          "exists": true
+        },
+        {
+          "path": "assets/disco/action/planet-explosion-3x3.png",
+          "exists": true
+        }
+      ],
+      "external_references": [
+        "https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"
+      ]
+    },
+    {
+      "page": "video/avatar-dance-test/index.html",
+      "local_references": [
+        {
+          "path": "assets/gsap.min.js",
+          "exists": true
+        },
+        {
+          "path": "compositions/orbital.html",
+          "exists": true
+        },
+        {
+          "path": "compositions/karaoke.html",
+          "exists": true
+        },
+        {
+          "path": "assets/chorus.wav",
+          "exists": true
+        }
+      ],
+      "external_references": []
+    },
+    {
+      "page": "video/avatar-dance-test/compositions/orbital.html",
+      "local_references": [
+        {
+          "path": "assets/space.png",
+          "exists": true
+        },
+        {
+          "path": "assets/planet.png",
+          "exists": true
+        },
+        {
+          "path": "assets/ship.png",
+          "exists": true
+        },
+        {
+          "path": "assets/ochre-dance.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/blue-dance.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/robot-dance.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/human-ochre-closeups.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/human-blue-closeups.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/robot-silver-closeups.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/robot-ivory-closeups.webp",
+          "exists": true
+        },
+        {
+          "path": "assets/robot-plum-closeups.webp",
+          "exists": true
+        }
+      ],
+      "external_references": []
+    },
+    {
+      "page": "video/avatar-dance-test/compositions/karaoke.html",
+      "local_references": [
+        {
+          "path": "assets/fonts/Arial-Bold-Italic.ttf",
+          "exists": true
+        }
+      ],
+      "external_references": []
     }
   ],
   "timing_data": [
+    {
+      "path": "video/data/allow-always-final.json",
+      "duration": 144.4,
+      "words": 126,
+      "json_js_match": true,
+      "word_intervals_outside_duration_or_reversed": [],
+      "zero_duration_words": [],
+      "invalid_line_indices": [],
+      "envelope_lengths": {
+        "kick": 8664,
+        "rms": 8664
+      },
+      "expected_frames": 8664,
+      "declared_hop": 0.016667,
+      "frame_hop": 0.016666666666666666
+    },
     {
       "path": "video/data/allow-always.json",
       "duration": 59.8454,

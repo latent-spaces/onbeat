@@ -1,3 +1,5 @@
+> Historical review of the pre-update report. Superseded by `notes.md` and `audit-results.json` at main `6daad3d`; the prototype now includes audio and the final reel/guide exist.
+
 # Synthesis review
 
 Reviewed PR #4, `research/opus-strategist-1`, recommendations as read at 2026-11-14 approximately 09:50 UTC.
