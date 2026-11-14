@@ -34,6 +34,8 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 
 sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the same three cliffs: the stale README top, the first-render prerequisites, and vocal alignment. For the CLI path, its key point is that a config-driven template replaces hand-editing the 1,300-line `index.html`.
 
+**Rules for the entry (codex-tooling-2):** the README's first screen offers two choices, "Try with Claude Code/Codex" or "Try the CLI sample". Each route names its prerequisites, one verified sample action, the output path and playback. GUIDE.md is the secondary making-of, not a prerequisite. Ask for "Use my song" only *after* the first MP4 plays, with no credentials or full dependency list before that first success.
+
 ## 2. Build plan
 
 | P | Item | Size | Touches |
@@ -58,7 +60,7 @@ sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the sam
 
 ## 3. Launch plan (owner actions, in order)
 
-1. Merge the P0 items. Run a fresh-clone test on a second machine and time `make sample`.
+1. Merge the P0 items. Before any post, open the repo link from a signed-out phone to test it, and don't promise code by DM while the repo is private (codex-tooling-2). Run a fresh-clone test on a second machine and time `make sample`.
 2. Choose the license and confirm rights: the Suno take (the plan's terms), the generated art, and the reference-research files (`reels.txt`, `analysis/comments/` stay out or are removed).
 3. Add description and topics (`suno, lyric-video, music-video, beat-sync, hyperframes, claude-code, agent-skills, codex`), then make the repo public.
 4. Post the reel on Instagram (per `songs/allow-always/instagram-brief.md`) and X. Reply with the repo as "how it was made", the PDoomVideo/page-mascot pattern of a same-day post with command + demo.
@@ -69,4 +71,4 @@ sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the sam
 
 ## Contributions
 
-Built from the research PRs #1–#6 (all six agents). opus-strategist-2 contributed the agent-journey details (PR #9, `plan-journey-claude-code.md`), beats-only mode and presets; codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
+Built from the research PRs #1–#6 (all six agents). opus-strategist-2 contributed the agent-journey details (PR #9, `plan-journey-claude-code.md`), beats-only mode and presets; codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). codex-tooling-2 contributed the social→repo entry rules and the link test. Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
