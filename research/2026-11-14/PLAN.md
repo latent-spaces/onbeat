@@ -6,13 +6,13 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 
 | # | Step | What they see | What they type or click | What can go wrong | Drop-off risk |
 |---|---|---|---|---|---|
-| 1 | See the reel | "allow always" on Instagram or X; the caption says "made with an AI agent, repo in comments / reply" | tap the link | no link, or the link sits in a bio they never open | **high**: needs the repo link in the first reply/comment |
+| 1 | See the reel | "allow always" on Instagram or X; the caption says "made with an AI agent, repo in comments / reply" | tap the link | no link: Instagram captions aren't clickable, so the link goes in the bio or a pinned comment, and on X in the first reply | **high**: needs the repo link in the first reply/comment |
 | 2 | Land on the repo | README hero: the reel playing inline plus a poster, then one line: "Suno song in, beat-synced lyric reel out. Your agent does the edit." | scroll | the README opens with planning notes or text before the video (**to build**: README rewrite) | **high**: decided in about 5 s |
 | 3 | Install | a single install block per agent | `npx skills add oronanschel/music-reels` (Claude Code) or the Codex plugin line | no skill exists yet (**to build**); Node is missing | medium |
-| 4 | First render (≤ 5 min target, unmeasured) | the agent prompt "Render the sample reel", then an MP4 in `out/` | paste the prompt from the README | HyperFrames download is slow on first `npx`; Chrome/ffmpeg are missing. The prototype `video/avatar-dance-test` renders (verified once, cached tooling) | medium: needs a `doctor` check |
-| 5 | Bring their own song | the README section "Make your own" | export a Suno M4A/MP3 plus lyrics into `songs/<name>/` | Suno free-plan download limits; rights to the song unclear | medium |
-| 6 | Timing | the agent runs beat + word timing and shows the bars and words found | "make timing for songs/<name>" | `.venv-align` install (torch, WhisperX) is heavy. Suno doesn't sing the written lyrics, so the plain alignment drifts (GUIDE §5.2). `align_words.py` without `--lyrics` crashes | **high**: the hardest step |
-| 7 | Look | the agent proposes one place and one hero object (playbook §10) and makes one still | approve or redirect | image-generator access; the sprite-sheet steps are complex (runbooks) | medium |
+| 4 | First render (≤ 5 min target, unmeasured) | the agent prompt "Render the sample reel", then an MP4 in `out/` | paste the prompt from the README | a slow first `npx` HyperFrames download; Chrome/ffmpeg missing. The prototype `video/avatar-dance-test` renders (verified once, cached tooling) | medium: needs a `doctor` check |
+| 5 | Bring their own song | the README section "Make your own". Agents draft lyrics and the Styles line, but never touch Suno credits or CAPTCHAs | export a Suno M4A/MP3 plus lyrics into `songs/<name>/` | Suno free-plan download limits; rights to the song unclear | medium |
+| 6 | Timing | the agent runs beat + word timing and shows the bars and words found | "make timing for songs/<name>" | `.venv-align` install (torch, WhisperX, about 2 GB) is heavy, so offer a **beats-only mode** first (no karaoke). Suno doesn't sing the written lyrics, so the plain alignment drifts (GUIDE §5.2). `align_words.py` without `--lyrics` crashes | **high**: the hardest step |
+| 7 | Look | 3–4 named style presets with a still each (desk world, disco, minimal type), or one place + hero object (playbook §10) | approve or redirect | image-generator access; the sprite-sheet steps are complex (runbooks) | medium |
 | 8 | Compose + review | snapshots at changed moments; a phone-size render | short notes ("lyrics late at 0:41") | renders take 4–7 min for 2:24; GSAP from the CDN fails offline | low (the loop is fun) |
 | 9 | Render + post | a versioned MP4 plus a caption draft (from the `instagram-brief.md` formula) | upload themselves | the export is too big for the app; no credit line | low; each post advertises the repo |
 
@@ -49,6 +49,8 @@ sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the sam
 | P1 | Song-agnostic export: generalise `cut_final.py` + `align_final.py` (line windows from a file) | M | `scripts/`, `songs/allow-always/*.py` |
 | P1 | Song-agnostic starter composition (beat clock + voice clock + karaoke). **This gates both "second song without editing HTML" and the skill** (sonnet-stars-2) | M–L | new `video/template/`, `video/src/beatsync.js` |
 | P1 | Skill: `SKILL.md` (Claude Code) + Codex mirror wrapping doctor → timing → export → compose → render; plugin marketplace entry | M | new `skills/music-reel/`, `.claude-plugin/` |
+| P1 | Beats-only timing mode (no WhisperX; the composition hides karaoke) (opus-strategist-2) | S | `scripts/timing.py`, the template |
+| P2 | 3–4 style presets split out of `allow-always-final/index.html` (opus-strategist-2) | L | `video/` |
 | P1 | Sync-check overlay (beat grid + word boundaries) | S | `video/src/beatsync.js` |
 | P2 | Gallery of 2–3 reels with full inputs; short promo cut only on clean musical boundaries | M | `songs/`, `video/`, README |
 | P2 | Translated README (zh) | S | `README.zh-CN.md` |
@@ -67,4 +69,4 @@ sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the sam
 
 ## Contributions
 
-Built from the research PRs #1–#6 (all six agents). codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
+Built from the research PRs #1–#6 (all six agents). opus-strategist-2 contributed the agent-journey details (PR #9, `plan-journey-claude-code.md`), beats-only mode and presets; codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
