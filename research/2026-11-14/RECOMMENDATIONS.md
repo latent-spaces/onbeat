@@ -43,7 +43,7 @@ A fuller draft is in `codex-tooling-2/README-OUTLINE.md`; the demo plan (show th
 
 ## Where the repo stands today (re-checked against main 6daad3d)
 
-codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, the finished "allow always" composition, sung-lyrics alignment, Suno prompt history, Instagram brief, runbooks). opus-strategist-1 re-checked the audit statically against 6daad3d. Nothing was rendered.
+codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, the finished "allow always" composition, sung-lyrics alignment, Suno prompt history, Instagram brief, runbooks). opus-strategist-1 and codex-tooling-1/2 re-checked against 6daad3d. codex-tooling-1 also ran `npm run check` and a render of the short prototype (below). The full 2:24 reel was not rendered by us.
 
 **Now true:**
 - **There is a finished reel.** `video/allow-always-final/index.html` is a 2:24 vertical composition of about 1,300 lines, built on the final Suno take. That take, `songs/allow-always/take-final-yes.mp3`, is tracked.
@@ -54,10 +54,10 @@ codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, th
 
 **Still open:**
 - **The finished video isn't in the repo.** It was rendered locally to `video/out/allow-always-final-80s-boom2.mp4` (67 MB, named in `instagram-brief.md`), but `*.mp4` is gitignored, so there's no tracked render, GIF or poster frame for a README hero.
-- **A short prototype may render from a clone (unverified).** `video/avatar-dance-test/` tracks its own `chorus.wav`, a local `gsap.min.js`, assets and `timing.json` (codex-tooling-2). That makes it the best candidate for a no-key sample once someone confirms a clean-clone render. The blanket claim that nothing renders from a clone no longer holds.
-- **The fresh-clone render chain is undocumented as one sequence.** The final composition reads `assets/dev/allow-always-final.wav` through the gitignored `out/dev` symlink. You can rebuild it: run `scripts/timing.py` to get `out/timing/allow-always-final.json`, then `cut_final.py`, which converts the tracked MP3. But `out/dev` and `out/timing` must exist first, and no single command or doc runs the steps in that order. (Static reading, not executed.)
+- **The short prototype renders from committed inputs (verified on one machine).** `video/avatar-dance-test/` tracks its own 11.5 s `chorus.wav`, a local `gsap.min.js`, assets and `timing.json`. codex-tooling-1 ran it with the pinned CLI. `npm run check` passed with 0 errors and 2 density warnings, and the render produced H.264/AAC, 1080×1920, 30 fps, 346 frames, 11.53 s, 7.06 MB, in 14.4 s on an M4 with cached tooling. That timing is not a clean install, and nobody listened to the audio. **This is the current no-key demo.** Promote it now, rather than making a new sample song a prerequisite.
+- **The fresh-clone render chain is undocumented as one sequence.** The final composition reads `assets/dev/allow-always-final.wav` through the gitignored `out/dev` symlink. **Fast path:** convert the tracked MP3 straight to a 48 kHz WAV with ffmpeg (`ffmpeg -i songs/allow-always/take-final-yes.mp3 -ar 48000 out/dev/allow-always-final.wav`) and keep the committed, hand-corrected `video/data/allow-always-final.{json,js}`. **Don't rerun `timing.py` → `cut_final.py` to reproduce it.** `cut_final.py` reads the gitignored `out/timing/` JSON and overwrites the committed timing, which would discard the curated sung-word alignment (codex-tooling-1, confirmed by opus-strategist-2). No script or doc wraps this path yet.
 - **The GSAP CDN dependency.** The final composition loads GSAP from jsDelivr, which makes renders network-dependent. `avatar-dance-test` vendors `gsap.min.js` instead.
-- **No dependency manifest.** GUIDE §2 lists the pip lines, but there's no `requirements.txt` or `pyproject.toml`, and it uses Python 3.14 / 3.12 with no lockfile.
+- **Dependencies are documented but not locked or automated.** GUIDE §2 lists tested versions, but its pip commands are unpinned, and there's no `requirements.txt`, `pyproject.toml` or lockfile.
 - **No repo LICENSE**, no topics or description, and the repo is private. Only `vendor/page-mascot` carries a license.
 - **No skill or CLI wrapper exists yet.** The recommendations below about the skill, `/reel` and a no-key sample are still targets.
 - **README.md** now points to GUIDE.md first, but it still contains the "Earlier planning notes (2026-11-11)" section, which says "no video was built". That section is out of date and should move to a history doc.
@@ -65,11 +65,11 @@ codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, th
 
 **Proposed go-public gates** (codex-tooling-1, still valid): P0 a clean-clone render of the bundled song with recorded commands; P0 a second song renders without song-specific edits; P0 a license plus provenance for the sample audio and art. P1 inspectable timing quality and one CLI with an optional skill. P2 a gallery of 2–3 reels.
 
-**Revised order of work:** cut a 30–45 s loop from the finished reel and track it as the README hero (MP4/GIF + poster) → a `make sample` / `doctor` script that creates `out/` and runs timing → cut → render → vendor GSAP → `requirements.txt` → generalise `cut_final.py` into a song-agnostic export → then the skill wrapper.
+**Revised order of work:** promote the existing full reel with a tracked poster frame (and a GIF or MP4 excerpt only if it can be cut on clean lyric and musical boundaries; the reel already loops and the brief warns against casual trims) → document or script the verified prototype render as the no-key quickstart → script the fast final-WAV path, which keeps the committed timing → vendor GSAP in the final build → pinned `requirements.txt` → generalise the per-song cut and align scripts → then the skill wrapper.
 
 ## Before going public: repo work (Phase 2 candidates)
 
-- [x] ~~Finish one great reel~~: done, and so is the how-it-was-made guide (GUIDE.md). The job now is to promote both, not to build first. `allow-always-final` exists (2:24). Still needed: a tracked short cut (30–45 s) and a poster frame for the README.
+- [x] ~~Finish one great reel~~: done, and so is the how-it-was-made guide (GUIDE.md). The job now is to promote both, not to build first. `allow-always-final` exists (2:24). Still needed: a tracked poster frame and preview for the README. A short promo cut is optional.
 - [ ] Turn README.md into the public README above. It now links GUIDE.md first. Move the outdated "Earlier planning notes (2026-11-11)" into a history doc, and link GUIDE.md as the "How it was made" section.
 - [ ] Add `sample/` with an own or CC0 short song, its lyrics and precomputed timing JSON.
 - [ ] Package `SKILL.md` (+ Codex mirror) and a single CLI entry point.
@@ -102,5 +102,5 @@ All of these are outside actions that need the owner's approval:
 | sonnet-stars-1 | AI music / lyric-video tools | `sonnet-stars-1/notes.md` (PR #1) |
 | sonnet-stars-2 | Creator studios / short-form tools | `sonnet-stars-2/notes.md` (PR #2) |
 | opus-strategist-2 | Claude Code skills, Remotion/HyperFrames templates, brag star history | `opus-strategist-2/notes.md` (PR #3) |
-| codex-tooling-1 | Reproducibility / tooling readiness, go-public gates, review of this file | `codex-tooling-1/notes.md`, `audit.py`, `synthesis-review.md` (PR #5) |
-| codex-tooling-2 | README / demo anatomy, proposed README outline and demo brief | `codex-tooling-2/notes.md`, `README-OUTLINE.md`, `DEMO-BRIEF.md` (PR #6) |
+| codex-tooling-1 | Reproducibility / tooling readiness, go-public gates, review of this file | `codex-tooling-1/notes.md`, `audit.py`, `synthesis-review.md`, prototype check and render evidence (PR #5) |
+| codex-tooling-2 | README / demo anatomy, proposed README outline and demo brief, baseline correction record | `codex-tooling-2/notes.md`, `README-OUTLINE.md`, `DEMO-BRIEF.md`, `LAUNCH-EVIDENCE.md`, `BASELINE-UPDATE.md`, `SYNTHESIS-CORRECTIONS.md` (PR #6) |
