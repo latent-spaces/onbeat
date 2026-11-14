@@ -15,7 +15,6 @@ render → handoff**. Prove a short test before expanding the full video.
 | `video/allow-always-final/index.html` | Full-song integration maintained by the other production session; inspect its current state before editing |
 | `video/data/allow-always-final.json` | Full-song beats, bars and aligned sung words |
 | `video/avatar-dance-test/assets/action/` | Console and explosion sheets, frame rectangles, prompts and integration notes |
-| `vendor/page-mascot/` | Unmodified MIT generation/alignment reference; license and exact upstream commit are preserved |
 | `branding/instagram-robot-profile.png` | Single-image profile portrait derived from the approved robot |
 
 The tested generator was the built-in `image_gen` tool. Other-generator support
@@ -140,10 +139,8 @@ Do not feed explosion smoke/debris through the character cleanup blindly:
 disconnected components are part of that effect. Do not normalize every pose to
 its own bounding box: it destroys constant scale and can cause visible pumping.
 
-Upstream page-mascot provides useful alpha/consistency checks, reference-image
-generation and stable bust alignment. Its builder expects a stationary torso and
-applies a bottom fade; it is not a full-body dance builder or motion rig. Keep its
-MIT notice and provenance if reusing code. See `../avatar-pipeline.md`.
+The sprite-atlas approach is adapted from page-mascot (see the last section and `THIRD_PARTY_NOTICES.md`).
+It stabilises a bust; full-body dance needs the foot anchor that `sprites.py ingest` applies.
 
 ## 5. Compose the place from separate layers
 
@@ -283,8 +280,8 @@ pipeline, not a drop-in replacement for an atlas.
 
 For keying, choose green or magenta absent from the subject; **remove every request
 for transparency from the keyed prompt**. Keep both source and keyed output.
-The vendored `skills/page-mascot/scripts/key.py` contains the existing keying route;
-inspect its help before use. Never key against white/black when those colors are
+`skills/music-reel/sprites/sprites.py ingest --key magenta|green` is the keying route.
+Inspect the edges before use. Never key against white/black when those colors are
 in the robot or its outlines.
 
 Record at least this beside each new asset (a proposed interchange record, not a
@@ -333,3 +330,31 @@ other process/session with its evidence and source paths; then promote a verifie
 lesson into the relevant step above. Keep untested ideas marked as experiments.
 Useful next experiments: cleaner hand in-betweens, a generic sheet importer,
 separate live dancer-reflection layers, and a controlled other-generator comparison.
+
+## Atlas technique (adapted from page-mascot)
+
+A character is one square sheet cut into equal cells. Cell `i` (zero-based, row-major) in an `n`x`n` sheet sits at
+column `i % n`, row `floor(i / n)`. In CSS, use a square crop with `background-size` of `n*100%` and a position
+of `(i % n) * 100/(n-1) %` horizontally and `floor(i / n) * 100/(n-1) %` vertically. Compute cell rectangles with rounded
+boundaries (`round(c * width / n)`), because generated sheets are not always divisible by `n`.
+
+Two bust sheets per character, 3x3 each:
+
+| Index | Directions | Reactions |
+| --- | --- | --- |
+| 0 | up-left | blink |
+| 1 | up | heart |
+| 2 | up-right | sparkle |
+| 3 | left | surprised |
+| 4 | center | wink |
+| 5 | right | bashful |
+| 6 | down-left | sleepy |
+| 7 | down | dizzy |
+| 8 | down-right | delighted |
+
+Inspect the real art before assigning a reaction to an index: names and drawings can disagree.
+
+For a reel, choose the cell from composition time, never from pointer events or wall-clock timers. Animate position,
+rotation and squash on a parent wrapper so a cell change keeps alignment, preload both sheets, and keep assets local.
+Keep one identity, outfit, palette, scale and shoulder position across all cells; a checkerboard painted into the PNG is
+not transparency. Full-body dance, rigs and generated motion clips are separate pipelines.
