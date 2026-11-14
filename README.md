@@ -57,7 +57,7 @@ make timing SONG=my-song       # beats only: BPM, beats, bars, sections, kick
 make render SONG=my-song       # template reel -> out/my-song.mp4
 ```
 
-Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment environment, see [GUIDE.md §2](GUIDE.md#2-setup)). Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
+Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment environment, see [GUIDE.md §2](docs/GUIDE.md#2-setup)). Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
 
 ## What you get
 
@@ -66,7 +66,7 @@ Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment env
 - **Beat-synced character motion**: a pose per beat, a bounce on the kick, an accent on the bar downbeat, and a phase offset per character ([docs/beat-motion.md](docs/beat-motion.md)).
 - **Sprite generation with one asset contract**: Codex built-in image generation, or Higgsfield (an adapter that only prints its commands; untested). Both write `sprites.json`, with keying plus alpha and drift checks ([docs/sprites.md](docs/sprites.md)).
 - **A sync-check overlay**: beat ticks and word marks in preview, so you can check timing before a long render.
-- **The full story of a finished reel**: [GUIDE.md](GUIDE.md) shows how the 2:24 "allow always" video was made, with prompts, commands, dead ends and the human–agent feedback loop.
+- **The full story of a finished reel**: [GUIDE.md](docs/GUIDE.md) shows how the 2:24 "allow always" video was made, with prompts, commands, dead ends and the human–agent feedback loop.
 
 ## How it works
 
@@ -86,15 +86,17 @@ There are two clocks. The **beat clock** drives pulses, cuts and dance poses. Th
 
 | Path | What |
 |---|---|
-| `skills/music-reel/` | the agent skill (Claude Code plugin, Codex plugin, `.agents/skills`) |
-| `Makefile`, `scripts/` | doctor, sample, timing, render |
-| `video/template/` | the song-agnostic reel |
-| `video/src/` | shared timing and motion helpers (`beatsync.js`, sprite dance) |
-| `video/avatar-dance-test/` | the bundled no-key sample |
-| `video/allow-always-final/` | the hero reel from GUIDE.md |
-| `songs/` | one folder per song |
-| `analysis/` | the playbook (what makes these reels work) and production runbooks |
-| `docs/` | try-it script, beat motion, sprites, project history |
+| `skills/music-reel/` | the agent skill and the sprite tool (installed by the Claude Code and Codex plugins) |
+| `Makefile`, `scripts/` | `make doctor`, `sample`, `timing`, `render` and the scripts behind them |
+| `video/src/` | shared helpers: beat timing, sprite dance, sync-check overlay |
+| `video/template/` | the reel that works for any song |
+| `video/sample/` | the bundled no-key sample (`make sample`) |
+| `video/assets/disco/` | shared sprite sheets used by the sample and the hero |
+| `video/allow-always-final/`, `songs/allow-always/` | the hero reel and what it needs to rebuild |
+| `docs/` | GUIDE (how the hero was made), TRY-IT, beat motion, sprites, timing, history |
+| `analysis/`, `branding/`, `reels.txt` | the owner's reference-reel research (playbook, runbooks, breakdowns) |
+
+Team research notes and early prototypes are on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).
 
 ## Credits and licence
 

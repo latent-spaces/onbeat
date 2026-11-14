@@ -9,7 +9,7 @@ Song in, beat-synced lyric reel out. Everything on screen follows one of two clo
 
 ## 0. Find or get the repo
 
-All commands run from the root of the `music-reels` repository (the folder with `Makefile`, `GUIDE.md`, `video/`).
+All commands run from the root of the `music-reels` repository (the folder with `Makefile`, `skills/`, `video/`).
 
 - If the current folder is not that repo, ask the person where they want it and clone it:
   `git clone https://github.com/oronanschel/music-reels && cd music-reels`
@@ -45,12 +45,12 @@ songs/<name>/reel.json     # template config (title, palette, captions, cast); s
 ```bash
 make setup                       # once: .venv with pinned requirements.txt
 make timing SONG=<name>          # beats only (easy start): BPM, beats, bars, sections, kick envelope
-make timing SONG=<name> WORDS=1  # also sung-word times (needs .venv-align, GUIDE.md section 2)
+make timing SONG=<name> WORDS=1  # also sung-word times (needs .venv-align, docs/GUIDE.md section 2)
 ```
 
 Output: `songs/<name>/timing.json`. Read back the BPM and bar count to the person.
 
-Start with **beats-only**. The template then shows lyrics per line or per bar instead of word-by-word karaoke. Add word alignment only if the person wants karaoke. Watch for these known problems (GUIDE.md section 5.2): Suno doesn't sing the lyrics as written, and Whisper mishears vocoder words. Align each line inside its own time window and mark guesses as guesses.
+Start with **beats-only**. The template then shows lyrics per line or per bar instead of word-by-word karaoke. Add word alignment only if the person wants karaoke. Watch for these known problems (docs/GUIDE.md section 5.2): Suno doesn't sing the lyrics as written, and Whisper mishears vocoder words. Align each line inside its own time window and mark guesses as guesses.
 
 ### 2b. Look
 
@@ -84,5 +84,5 @@ make render SONG=<name>          # -> out/<name>.mp4
 ## 4. Where to read more
 
 - `docs/TRY-IT.md`: the step-by-step first run, with the expected output at each step.
-- `GUIDE.md`: how "allow always" was made, including prompts, dead ends and the feedback loop.
+- `docs/GUIDE.md`: how "allow always" was made, including prompts, dead ends and the feedback loop.
 - `analysis/runbooks/animated-music-reels.md`: sprite and avatar production details.
