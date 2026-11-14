@@ -93,8 +93,7 @@ There are two clocks. The **beat clock** drives pulses, cuts and dance poses. Th
 | `video/avatar-dance-test/` | the bundled no-key sample |
 | `video/allow-always-final/` | the hero reel from GUIDE.md |
 | `songs/` | one folder per song |
-| `analysis/` | the playbook (what makes these reels work) and production runbooks |
-| `docs/` | try-it script, beat motion, sprites, project history |
+| `docs/` | try-it script, beat motion, sprites, project history; `research/` holds the playbook (what makes these reels work), `runbooks/` the production notes |
 
 ## Credits and licence
 

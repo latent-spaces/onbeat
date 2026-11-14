@@ -13,9 +13,9 @@ The guide covers the whole pipeline, the commands that worked, the prompts we us
 
 | Document | What it covers |
 |---|---|
-| [`analysis/playbook.md`](analysis/playbook.md) | Why the reference reels work: concept, song structure, the two timing clocks, visual grammar. Measured from ten reels. |
-| [`analysis/runbooks/animated-music-reels.md`](analysis/runbooks/animated-music-reels.md) | The sprite and avatar workflow in detail: asset contracts, alpha checks, layering, karaoke. |
-| [`analysis/runbooks/image-prompts.md`](analysis/runbooks/image-prompts.md) | Reusable image-generation prompt shapes. |
+| [`docs/research/playbook.md`](docs/research/playbook.md) | Why the reference reels work: concept, song structure, the two timing clocks, visual grammar. Measured from ten reels. |
+| [`docs/runbooks/animated-music-reels.md`](docs/runbooks/animated-music-reels.md) | The sprite and avatar workflow in detail: asset contracts, alpha checks, layering, karaoke. |
+| [`docs/runbooks/image-prompts.md`](docs/runbooks/image-prompts.md) | Reusable image-generation prompt shapes. |
 | [`songs/allow-always/suno-prompts.md`](songs/allow-always/suno-prompts.md) | Every Suno Styles line, lyric file and setting we tried, including the final one. |
 | [`video/allow-always-final/index.html`](video/allow-always-final/index.html) | The finished composition, about 1,300 lines, commented by section. |
 
@@ -68,7 +68,7 @@ Pin the HyperFrames version in every command (`npx --yes hyperframes@0.9.2 …`)
 
 ## 3. Concept
 
-The full checklist is in [playbook section 1](analysis/playbook.md). In short:
+The full checklist is in [playbook section 1](docs/research/playbook.md). In short:
 
 - **One sentence a stranger could disagree with.** Insider jokes (context windows, prompts) did worse than universal, arguable claims.
 - **The picture contradicts or dramatises the claim.** A cute or polite character saying something cold.
@@ -110,7 +110,7 @@ The full prompt history, including the final Styles line and lyrics, is in [`son
 
 ## 5. Timing: beats and sung words
 
-Everything downstream reads one JSON file per song. The contract is in [playbook section 7](analysis/playbook.md): `bpm`, `beats`, `bars` (downbeats), `words`, `lines`, `sections`, per-frame `envelopes`.
+Everything downstream reads one JSON file per song. The contract is in [playbook section 7](docs/research/playbook.md): `bpm`, `beats`, `bars` (downbeats), `words`, `lines`, `sections`, per-frame `envelopes`.
 
 ### 5.1 Beat grid
 
@@ -159,14 +159,14 @@ What went wrong and how we fixed it:
 
 ### 6.1 The frame is a place
 
-[Playbook section 10](analysis/playbook.md) is the most useful part of the playbook. The reference reels draw **one place from one viewpoint**, with **one big hero object** in the centre carrying the lyric. Small things tick on the beat around it. Our first cut was a dashboard of small UI parts, and it didn't work. The final reel has two places:
+[Playbook section 10](docs/research/playbook.md) is the most useful part of the playbook. The reference reels draw **one place from one viewpoint**, with **one big hero object** in the centre carrying the lyric. Small things tick on the beat around it. Our first cut was a dashboard of small UI parts, and it didn't work. The final reel has two places:
 
 - **The desk world:** a big permission dialog as the hero object, a cursor, a log of approved commands and an LED row on the beat.
 - **The disco:** a retro orbital discotheque with a window onto space and the Earth. The avatars take over the screen there.
 
 ### 6.2 Sprite sheets from an image generator
 
-The full workflow, with contracts, alpha checks and packing, is in the [runbook](analysis/runbooks/animated-music-reels.md). The lessons that mattered most:
+The full workflow, with contracts, alpha checks and packing, is in the [runbook](docs/runbooks/animated-music-reels.md). The lessons that mattered most:
 
 - **Audition styles on one grid.** Generate a numbered 4×4 board of styles and let the person pick by number.
 - **Show reference images instead of describing a style.** "80s anime" in words came out glossy and exaggerated. Three reference frames fixed it at once.
@@ -212,7 +212,7 @@ The dancers step one pose every quarter beat, so 16 poses fill one bar. Each dan
 
 ### 7.2 Two clocks
 
-This is the core idea, measured in the reference reels ([playbook section 3](analysis/playbook.md)).
+This is the core idea, measured in the reference reels ([playbook section 3](docs/research/playbook.md)).
 
 | Clock | Drives |
 |---|---|
@@ -385,6 +385,6 @@ Open questions to settle before you post your own:
 | `video/data/` | Timing JSON and JS per song. |
 | `video/allow-always-final/` | The finished reel. |
 | `video/avatar-dance-test/` | Avatar prototype, sprite sheets, prompts, packer, karaoke builder. |
-| `THIRD_PARTY_NOTICES.md` | Credit and MIT notice for the sprite-atlas approach adapted from page-mascot ([notes](analysis/avatar-pipeline.md)). |
-| `analysis/` | Playbook, runbooks, per-reel breakdowns. |
+| `THIRD_PARTY_NOTICES.md` | Credit and MIT notice for the sprite-atlas approach adapted from page-mascot ([notes](docs/research/avatar-pipeline.md)). |
+| `docs/research/`, `docs/runbooks/` | Playbook, per-reel breakdowns, research notes; production runbooks. |
 | `video/out/`, `out/`, `diagnostics/` | Renders, intermediate audio, one-off scripts (all gitignored). |

@@ -54,7 +54,7 @@ Start with **beats-only**. The template then shows lyrics per line or per bar in
 
 ### 2b. Look
 
-Make one place and one hero object (`analysis/playbook.md` section 10), not a dashboard of small parts. Start from the template's default look. Change the palette, title and captions in `reel.json` before you touch any HTML.
+Make one place and one hero object (`docs/research/playbook.md` section 10), not a dashboard of small parts. Start from the template's default look. Change the palette, title and captions in `reel.json` before you touch any HTML.
 
 Characters are optional. To add dancing sprites, follow `docs/sprites.md`:
 - **Codex built-in image generation** is the tested route.
@@ -85,4 +85,4 @@ make render SONG=<name>          # -> out/<name>.mp4
 
 - `docs/TRY-IT.md`: the step-by-step first run, with the expected output at each step.
 - `GUIDE.md`: how "allow always" was made, including prompts, dead ends and the feedback loop.
-- `analysis/runbooks/animated-music-reels.md`: sprite and avatar production details.
+- `docs/runbooks/animated-music-reels.md`: sprite and avatar production details.
