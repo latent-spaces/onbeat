@@ -122,6 +122,7 @@ def doctor():
     if mode not in {"sample", "timing", "align"}:
         raise UserError("MODE must be sample, timing or align.")
     say(f"music-reels doctor — {mode} mode")
+    say(f"[OK] Python wrapper: {sys.version.split()[0]} (stdlib; no venv needed for sample)")
     good = render_tools()
     if good:
         good = required_renderer_checks(renderer_report()) and good
