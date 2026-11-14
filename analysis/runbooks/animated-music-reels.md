@@ -15,7 +15,7 @@ render → handoff**. Prove a short test before expanding the full video.
 | `video/allow-always-final/index.html` | Full-song integration maintained by the other production session; inspect its current state before editing |
 | `video/data/allow-always-final.json` | Full-song beats, bars and aligned sung words |
 | `video/avatar-dance-test/assets/action/` | Console and explosion sheets, frame rectangles, prompts and integration notes |
-| `vendor/page-mascot/` | Unmodified MIT generation/alignment reference; license and exact upstream commit are preserved |
+| `THIRD_PARTY_NOTICES.md` | MIT notice and credit for the sprite-atlas approach adapted from page-mascot (the vendored copy was removed) |
 | `branding/instagram-robot-profile.png` | Single-image profile portrait derived from the approved robot |
 
 The tested generator was the built-in `image_gen` tool. Other-generator support
@@ -140,10 +140,11 @@ Do not feed explosion smoke/debris through the character cleanup blindly:
 disconnected components are part of that effect. Do not normalize every pose to
 its own bounding box: it destroys constant scale and can cause visible pumping.
 
-Upstream page-mascot provides useful alpha/consistency checks, reference-image
-generation and stable bust alignment. Its builder expects a stationary torso and
-applies a bottom fade; it is not a full-body dance builder or motion rig. Keep its
-MIT notice and provenance if reusing code. See `../avatar-pipeline.md`.
+The sprite-atlas approach comes from page-mascot (nilbuild, MIT): square grids,
+equal cells, fixed anchors and alpha checks per cell. Its bust builder expects a
+stationary torso, so it does not suit full-body dance; our packer and
+`skills/music-reel/sprites/sprites.py` do that part. Credit and notice are in
+`../../THIRD_PARTY_NOTICES.md`; the lessons we kept are in `../avatar-pipeline.md`.
 
 ## 5. Compose the place from separate layers
 
@@ -283,8 +284,8 @@ pipeline, not a drop-in replacement for an atlas.
 
 For keying, choose green or magenta absent from the subject; **remove every request
 for transparency from the keyed prompt**. Keep both source and keyed output.
-The vendored `skills/page-mascot/scripts/key.py` contains the existing keying route;
-inspect its help before use. Never key against white/black when those colors are
+`skills/music-reel/sprites/sprites.py ingest --key magenta` is the keying route
+(see `docs/sprites.md`). Never key against white/black when those colors are
 in the robot or its outlines.
 
 Record at least this beside each new asset (a proposed interchange record, not a

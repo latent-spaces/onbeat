@@ -43,7 +43,7 @@ sonnet-stars-1's draft agrees on the same three cliffs: the stale README top, th
 | P0 | Tracked poster frame + 10 s preview of allow-always-final (cut on a lyric boundary), with a `.gitignore` exception for it | S | new `assets/readme/`, `.gitignore` |
 | P0 | Owner decision on the reference-research files (`reels.txt`, `analysis/comments/`) before going public | S (owner) | `analysis/`, `reels.txt` |
 | P0 | README rewrite: hero reel (poster + MP4 via GitHub attachment), one line, "Try it", GUIDE link, credits, experimental status; move the 2026-11-11 notes to `docs/history.md` | S | `README.md`, new `docs/history.md` |
-| P0 | Root LICENSE (owner picks) + third-party credit for page-mascot ("Sprite-atlas tooling and reference workflow adapted from page-mascot by Kamran Ahmed (MIT)…") + sample media rights note | S | `LICENSE`, `README.md`, `GUIDE.md` |
+| P0 | Root LICENSE (owner picks) + third-party credit for page-mascot ("Sprite-atlas tooling and reference workflow adapted from page-mascot by nilbuild (Kamran Ahmed), MIT…") + sample media rights note | S | `LICENSE`, `README.md`, `GUIDE.md` |
 | P0 | `make doctor` + `make sample` (renders the prototype, no keys) | S | new `Makefile`, `video/avatar-dance-test/package.json` |
 | P0 | Final-reel audio fast path: ffmpeg MP3 → WAV, keeping the committed timing; never rerun `cut_final.py` to reproduce | S | new `scripts/prepare_audio.sh`, `songs/allow-always/cut_final.py` (guard against overwrite) |
 | P0 | Vendor GSAP in the final composition | S | `video/allow-always-final/index.html`, `video/assets/` |

@@ -1,3 +1,21 @@
+# Third-party notices
+
+## page-mascot
+
+The sprite-atlas approach in this repo was adapted from
+[page-mascot](https://github.com/nilbuild/page-mascot) by nilbuild: square sprite
+sheets cut into equal cells, one frame index chosen per moment, fixed anchors,
+alpha and consistency checks, and the reference-image prompt workflow. We
+re-implemented it for song time and full-body dance sheets
+(`video/avatar-dance-test/prepare_assets.py`, `skills/music-reel/sprites/`).
+The upstream code and character images were vendored once (commit
+`76a44ed9180063bf4852b9dd724b656f4a828ac7`, imported 2026-11-13) and then removed;
+no upstream character images are used in our reels.
+
+The upstream license is reproduced here because the approach and some of the
+wording of the lessons in `analysis/avatar-pipeline.md` derive from it.
+
+```
 MIT License
 
 Copyright (c) 2026 Kamran Ahmed <https://kamran.fyi>
@@ -19,3 +37,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+```

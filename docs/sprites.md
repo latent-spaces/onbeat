@@ -64,4 +64,4 @@ tested only on synthetic sheets, so inspect the edges.
 - A checkerboard painted into the PNG is not alpha. Ask for a flat key colour instead.
 - Record frame numbers with each file; they change between revisions.
 - Longer notes: `analysis/runbooks/animated-music-reels.md` section 9 and `analysis/runbooks/image-prompts.md`.
-- The vendored `vendor/page-mascot` has its own keying and consistency checks (MIT, Kamran Ahmed).
+- The keying and consistency-check ideas follow page-mascot (MIT); see `THIRD_PARTY_NOTICES.md`.
