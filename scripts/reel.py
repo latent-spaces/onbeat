@@ -111,7 +111,7 @@ def required_renderer_checks(report):
         ready = item.get("ok") is True
         say(f"[{'OK' if ready else 'MISSING'}] HyperFrames {name}: {item.get('detail', 'not reported')}")
         if not ready:
-            say("  Fix: " + ("make browser" if name == "Chrome" else item.get("hint", "install Node 22+ and FFmpeg, then retry make doctor")))
+            say("  Fix: " + ("make browser; if an agent sandbox blocks Chrome, run make doctor in a normal terminal" if name == "Chrome" else item.get("hint", "install Node 22+ and FFmpeg, then retry make doctor")))
         good = good and ready
     say("[INFO] HyperFrames is pinned to 0.9.2; optional voice/music tools and upgrade notices are not required.")
     return good
