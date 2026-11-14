@@ -24,6 +24,16 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 4. Own song: `make timing SONG=<name>` → edit `songs/<name>/lines.txt` windows if words drift → `make export SONG=<name>` → `make render SONG=<name>`.
 5. Without an agent, the look and composition mean editing HTML by hand, starting from a template (to build: song-agnostic template). **Biggest drop-off for CLI users**; say plainly in the README that the agent path is the easy one.
 
+### First 5 minutes, concretely (codex-tooling-1)
+
+- **0–1 min:** the hero, an "experimental" label, and two buttons: "Try the included sample" or "Make your own". No Suno or API account before the demo.
+- **1–2 min:** clone, then a doctor check for Node (tested on 26), ffmpeg and the render browser. It shows the first-download progress and the exact fix for anything missing.
+- **2–5 min:** these commands exist today: `cd video/avatar-dance-test && npm run check && npm run render` → `out/avatar-dance-test.mp4` (relative to that folder). The agent prompt: "Render the included sample; don't generate assets or analyze a new song." A root `npm run sample` that wraps this and prints the output path is still **to build**.
+- **Acceptance:** a fresh supported machine produces a visible and audible 11.53 s sample with no keys, ML or generation, and the setup and render times are recorded. The measured 14.4 s render used cached tooling, so "under 5 min" is still a target.
+- **Drop-off risks:** the repo is still private at launch, a runtime mismatch, a slow first `npx`/browser download, unexplained check warnings, an output buried in a subfolder.
+
+sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the same three cliffs: the stale README top, the first-render prerequisites, and vocal alignment. For the CLI path, its key point is that a config-driven template replaces hand-editing the 1,300-line `index.html`.
+
 ## 2. Build plan
 
 | P | Item | Size | Touches |
@@ -57,4 +67,4 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 
 ## Contributions
 
-Built from the research PRs #1–#6 (all six agents). sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
+Built from the research PRs #1–#6 (all six agents). codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
