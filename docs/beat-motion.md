@@ -2,7 +2,7 @@
 
 `video/src/spritedance.js` makes sprite characters dance on the song's measured beats. `video/src/synccheck.js` draws an overlay so you can check that they do. Both are classic scripts that define a window global, like `video/src/beatsync.js`. Both only add tweens to the composition's one paused GSAP timeline, so every frame is a pure function of timeline time, as HyperFrames requires.
 
-Working example: `video/examples/beat-motion/` (three dancers, 11.5 s, committed audio, no keys).
+Working example: the bundled sample, `video/sample/` (`make sample`; add `SYNC_CHECK=1` to see the overlay).
 
 ## The rule
 

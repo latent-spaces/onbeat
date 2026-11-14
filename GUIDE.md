@@ -180,8 +180,8 @@ The full workflow, with contracts, alpha checks and packing, is in the [runbook]
   - Record the key frame numbers with each file. They changed between revisions.
 - **Separate layers:** a starfield, a planet cutout, and a ship interior with a transparent window. This let us drift the planet and put explosions between the planet and the window frame.
 - **Check alpha for real.** Look at the sheet over light and dark backgrounds, and check the gutters. A painted checkerboard is not transparency.
-- **Pack the sheets.** `video/avatar-dance-test/prepare_assets.py` packs equal cells, removes stray alpha specks, and anchors dancers' feet to one floor line.
-- **Prove it small first.** We built an 11.5 s dance test (`video/avatar-dance-test/`) before putting the avatars in the full reel.
+- **Pack the sheets.** `skills/music-reel/sprites/sprites.py` packs equal cells, removes stray alpha specks, and anchors dancers' feet to one floor line.
+- **Prove it small first.** We built an 11.5 s dance test before putting the avatars in the full reel. The packaged no-key sample now lives in `video/sample/` and uses the shared template.
 
 Playing a sheet from composition time, for an N×N grid:
 
@@ -384,7 +384,7 @@ Open questions to settle before you post your own:
 | `video/src/beatsync.js` | Shared timing helpers. |
 | `video/data/` | Timing JSON and JS per song. |
 | `video/allow-always-final/` | The finished reel. |
-| `video/avatar-dance-test/` | Avatar prototype, sprite sheets, prompts, packer, karaoke builder. |
+| `video/sample/`, `video/assets/disco/` | Bundled sample inputs and shared original sprite sheets/prompts. |
 | `THIRD_PARTY_NOTICES.md` | Credit and MIT notice for the sprite-atlas approach adapted from page-mascot ([notes](analysis/avatar-pipeline.md)). |
 | `analysis/` | Playbook, runbooks, per-reel breakdowns. |
 | `video/out/`, `out/`, `diagnostics/` | Renders, intermediate audio, one-off scripts (all gitignored). |

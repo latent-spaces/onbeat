@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>music-reel</title>
+  <script src="assets/gsap.min.js"></script>
+  <script src="data/timing.js"></script>
+  <script src="data/config.js"></script>
+{{SRC_SCRIPTS}}
+  <script src="reel-extras.js"></script>
+  <style>
+    * { box-sizing: border-box }
+    html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #f6f0df }
+    #root { position: relative; width: 100%; height: 100%; overflow: hidden;
+      --bg1: #f6f0df; --bg2: #f6f0df; --accent: #ed553b; --ink: #182e33; --sung: #182e33 }
+    .layer { position: absolute; inset: 0 }
+    #bg { background: linear-gradient(180deg, var(--bg1), var(--bg2)) }
+    #sun { position: absolute; left: 190px; top: 620px; width: 700px; height: 700px; border-radius: 50%;
+      background: var(--accent); transform-origin: 50% 50% }
+    #sunglow { position: absolute; left: 145px; top: 575px; width: 790px; height: 790px; border: 3px solid var(--accent); border-radius: 50%; opacity: 0 }
+    #floor { position: absolute; left: 108px; top: 1330px; width: 760px; height: 4px; background: var(--ink); transform-origin: 0 50% }
+    #title { position: absolute; left: 108px; width: 760px; top: 235px; color: var(--ink);
+      font: 900 116px/.94 "Inter", sans-serif; letter-spacing: -.065em; text-transform: uppercase; overflow-wrap: anywhere }
+    #subtitle { position: absolute; left: 112px; width: 756px; top: 495px; color: var(--ink);
+      font: 400 36px/1.25 "Inter", sans-serif }
+    #eyebrow { position: absolute; left: 112px; top: 177px; color: var(--ink); font: 700 28px/1 "Inter", sans-serif; letter-spacing: .16em }
+    .lyric { position: absolute; left: 108px; width: 760px; text-align: left; opacity: 0; color: var(--ink);
+      font: 900 82px/1.06 "Inter", sans-serif; letter-spacing: -.045em; text-transform: uppercase; overflow-wrap: anywhere }
+    #lyrics .lyric span { display: inline-block; margin-right: .16em }
+    #cast { position: absolute; left: 0; top: 610px; width: 1080px; height: 710px }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="music-reel" data-width="1080" data-height="1920"
+       data-duration="{{DURATION}}" data-fps="{{FPS}}">
+    <div id="bg" class="layer"></div>
+    <div id="sunglow"></div>
+    <div id="sun"></div>
+    <div id="floor"></div>
+    <div id="cast"></div>
+
+    <div id="lyrics" class="layer"></div>
+    <div id="eyebrow">MUSIC REELS / 001</div>
+    <div id="title"></div>
+    <div id="subtitle"></div>
+    <audio class="clip" id="song" src="assets/song.wav" data-start="0" data-duration="{{DURATION}}" data-track-index="0"></audio>
+  </div>
+  <script>
+  (function () {
+    var T = window.TIMING, C = window.REEL || {}, B = window.BeatSync, fps = T.fps;
+    var root = document.getElementById("root");
+    var pal = C.palette || {};
+    Object.keys(pal).forEach(function (k) { root.style.setProperty("--" + k, pal[k]); });
+
+    var tl = gsap.timeline({ paused: true });
+    var at = function (t) { return B.at(t, fps); };
+    var end = T.duration;
+
+    // Title card: on screen until the first lyric (or the first kick section), then out on a bar line.
+    var firstKick = (T.sections || []).filter(function (s) { return s.kick; })[0];
+    var captionStart = C.captionStartBar != null ? C.captionStartBar : (firstKick ? firstKick.startBar : 0);
+    var titleOut = T.lines && T.lines.length ? T.lines[0].start : (T.bars[captionStart] || 0);
+    document.getElementById("eyebrow").textContent = (C.title || "MUSIC REELS").toUpperCase();
+    document.getElementById("title").textContent = C.title || "";
+    document.getElementById("subtitle").textContent = C.subtitle || "";
+    tl.set(["#title", "#subtitle"], { opacity: 1 }, 0);
+    if ((T.lines && T.lines.length) || (C.captions && C.captions.length)) {
+      tl.set(["#title", "#subtitle"], { opacity: 0 }, at(Math.max(0, titleOut - 0.01)));
+    }
+
+    // Beat clock: the sun pulses on every beat, harder on bar downbeats and only where the kick plays.
+    var kickAt = function (t) {
+      var s = (T.sections || []).filter(function (x) { return t >= x.start - 1e-6 && t < x.end - 1e-6; })[0];
+      return s ? s.kick : true;
+    };
+    var bars = T.bars.map(function (b) { return Math.round(b * 1000); });
+    T.beats.forEach(function (b) {
+      var down = bars.indexOf(Math.round(b * 1000)) >= 0, kick = kickAt(b);
+      var amp = kick ? (down ? 1.12 : 1.05) : 1.015;
+      tl.fromTo("#sun", { scale: amp }, { scale: 1, duration: T.beatPeriod * 0.85, ease: "expo.out", immediateRender: false }, at(b));
+      if (kick) tl.fromTo("#sunglow", { opacity: down ? 0.9 : 0.5 }, { opacity: 0, duration: T.beatPeriod * 0.9, ease: "expo.out", immediateRender: false }, at(b));
+    });
+    // One clean progress rule; no autonomous clocks or repeating CSS animation.
+    tl.fromTo("#floor", { scaleX: 0 }, { scaleX: 1, duration: end, ease: "none", immediateRender: false }, 0);
+
+    // Voice clock: karaoke when words exist, whole lines when only lines exist,
+    // otherwise captions from reel.json placed on bars (beats-only mode).
+    var lyrics = document.getElementById("lyrics"), y = C.lyricsY || 290;
+    var hasWords = T.words && T.words.length, hasLines = T.lines && T.lines.length;
+    if (hasLines) {
+      T.lines.forEach(function (ln, i) {
+        var until = i + 1 < T.lines.length ? Math.min(T.lines[i + 1].start, ln.end + 1.5) : Math.min(end, ln.end + 1.5);
+        if (hasWords) B.KaraokeLine(tl, T, { line: i, parent: lyrics, y: y, unsung: pal.ink || "#182e33", current: pal.accent || "#ed553b", sung: pal.ink || "#182e33", until: until });
+        else B.DropLine(tl, T, { line: i, parent: lyrics, y: y, until: until });
+      });
+    } else if (C.captions && C.captions.length) {
+      var every = C.captionBars || 2, start = captionStart;
+      C.captions.forEach(function (text, i) {
+        var bar = start + i * every;
+        if (bar >= T.bars.length) return;
+        var t0 = T.bars[bar], t1 = bar + every < T.bars.length ? T.bars[bar + every] : end;
+        var node = B.el("div", "lyric", lyrics, text);
+        node.style.top = y + "px";
+        tl.set(node, { opacity: 1 }, at(t0));
+        tl.fromTo(node, { y: -80 }, { y: 0, duration: 6 / fps, ease: "power3.out", immediateRender: false }, at(t0));
+        tl.set(node, { opacity: 0 }, at(t1));
+      });
+    }
+
+    // Optional extras (sprite cast, sync-check overlay) from src/reel-extras.js.
+    if (window.ReelExtras) window.ReelExtras.apply(tl, T, C, root);
+
+    B.holdTo(tl, T);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["music-reel"] = tl;
+  })();
+  </script>
+</body>
+</html>
