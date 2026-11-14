@@ -385,6 +385,6 @@ Open questions to settle before you post your own:
 | `video/data/` | Timing JSON and JS per song. |
 | `video/allow-always-final/` | The finished reel. |
 | `video/avatar-dance-test/` | Avatar prototype, sprite sheets, prompts, packer, karaoke builder. |
-| `vendor/page-mascot/` | MIT avatar tools we adapted ([notes](analysis/avatar-pipeline.md)). |
+| `THIRD_PARTY_NOTICES.md` | Credit and MIT notice for the sprite-atlas approach adapted from page-mascot ([notes](analysis/avatar-pipeline.md)). |
 | `analysis/` | Playbook, runbooks, per-reel breakdowns. |
 | `video/out/`, `out/`, `diagnostics/` | Renders, intermediate audio, one-off scripts (all gitignored). |

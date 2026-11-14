@@ -99,7 +99,7 @@ There are two clocks. The **beat clock** drives pulses, cuts and dance poses. Th
 ## Credits and licence
 
 - **Licence: not chosen yet.** See [LICENSE](LICENSE). Until the owner picks one, no reuse rights are granted.
-- Sprite-atlas approach adapted from [page-mascot](https://github.com/nilbuild/page-mascot) by Kamran Ahmed (@nilbuild), MIT licence. The reel's dance and action art was generated separately.
+- Sprite-atlas approach adapted from [page-mascot](https://github.com/nilbuild/page-mascot) by Kamran Ahmed (@nilbuild), MIT licence; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The reel's dance and action art was generated separately.
 - **HyperFrames** by HeyGen renders the video. **GSAP** drives the timeline. Word alignment uses **WhisperX**, **faster-whisper** and **Demucs**.
 - The song "allow always" was made with Suno by the repo owner.
 

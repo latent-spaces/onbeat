@@ -20,7 +20,7 @@ cel-animation references. `prepare_assets.py` packs equal sprite cells, removes
 disconnected alpha specks and aligns dance feet to a shared floor. Its dependencies
 are Pillow, NumPy and SciPy, available in the repository's `.venv`.
 
-This adapts the page-mascot sprite-atlas technique to song time: 16 full-body
+This adapts the page-mascot sprite-atlas technique (nilbuild, MIT; see `THIRD_PARTY_NOTICES.md`) to song time: 16 full-body
 poses per four-beat bar, with offset phases for the three dancers. Close-ups use
 separate 3×3 angle/expression atlases. There are no cursor events or wall-clock
 timers. The planet moves independently behind the room's transparent window.
