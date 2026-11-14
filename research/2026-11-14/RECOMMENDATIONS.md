@@ -53,7 +53,8 @@ codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, th
 - **There's a production runbook** for sprites and avatars (`analysis/runbooks/`), plus a vendored, MIT-licensed `page-mascot` skill with upstream provenance in `UPSTREAM.json`.
 
 **Still open:**
-- **The finished video isn't in the repo.** `*.mp4` is gitignored, so there's no tracked render, GIF or poster frame for a README hero.
+- **The finished video isn't in the repo.** It was rendered locally to `video/out/allow-always-final-80s-boom2.mp4` (67 MB, named in `instagram-brief.md`), but `*.mp4` is gitignored, so there's no tracked render, GIF or poster frame for a README hero.
+- **A short prototype may render from a clone (unverified).** `video/avatar-dance-test/` tracks its own `chorus.wav`, a local `gsap.min.js`, assets and `timing.json` (codex-tooling-2). That makes it the best candidate for a no-key sample once someone confirms a clean-clone render. The blanket claim that nothing renders from a clone no longer holds.
 - **The fresh-clone render chain is undocumented as one sequence.** The final composition reads `assets/dev/allow-always-final.wav` through the gitignored `out/dev` symlink. You can rebuild it: run `scripts/timing.py` to get `out/timing/allow-always-final.json`, then `cut_final.py`, which converts the tracked MP3. But `out/dev` and `out/timing` must exist first, and no single command or doc runs the steps in that order. (Static reading, not executed.)
 - **The GSAP CDN dependency.** The final composition loads GSAP from jsDelivr, which makes renders network-dependent. `avatar-dance-test` vendors `gsap.min.js` instead.
 - **No dependency manifest.** GUIDE §2 lists the pip lines, but there's no `requirements.txt` or `pyproject.toml`, and it uses Python 3.14 / 3.12 with no lockfile.
@@ -68,7 +69,7 @@ codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, th
 
 ## Before going public: repo work (Phase 2 candidates)
 
-- [x] ~~Finish one great reel~~: done. `allow-always-final` exists (2:24). Still needed: a tracked short cut (30–45 s) and a poster frame for the README.
+- [x] ~~Finish one great reel~~: done, and so is the how-it-was-made guide (GUIDE.md). The job now is to promote both, not to build first. `allow-always-final` exists (2:24). Still needed: a tracked short cut (30–45 s) and a poster frame for the README.
 - [ ] Turn README.md into the public README above. It now links GUIDE.md first. Move the outdated "Earlier planning notes (2026-11-11)" into a history doc, and link GUIDE.md as the "How it was made" section.
 - [ ] Add `sample/` with an own or CC0 short song, its lyrics and precomputed timing JSON.
 - [ ] Package `SKILL.md` (+ Codex mirror) and a single CLI entry point.
@@ -84,6 +85,8 @@ All of these are outside actions that need the owner's approval:
 - Show HN / r/ClaudeAI / r/SunoAI / X thread with the reel embedded. A DEV.to write-up on how the word timing works (AutoMV launched this way).
 - Submit to zhuyansen/awesome-claude-video-skills (2k stars, indexes HyperFrames skills) and ask the HyperFrames team about their showcase.
 - Keep commits flowing during launch week. Stalled repos plateau (ShortGPT).
+- **The owner's posting plan already exists:** `songs/allow-always/instagram-brief.md`. Suggested order: the reel first, then GUIDE.md as the second post ("how it was made", the PDoomVideo pattern) with the repo link (opus-strategist-2).
+- **Aim for a GitHub Trending day.** MoneyPrinterTurbo hit #1 on Trending on 2024-03-28, about 17 days after creation (Trendshift data, low-authority source). List the repo in "alternative to" directories (OpenShorts is listed as an OpusClip alternative) (sonnet-stars-2).
 
 ## Open questions / not verified
 
