@@ -17,11 +17,11 @@ All commands run from the root of the `music-reels` repository (the folder with 
 
 ## 1. First success: the bundled sample (no keys, no accounts)
 
-Do this first, every time, before anything else. Do not generate assets or analyse a new song yet.
+In a new checkout, do this first, before anything else. Don't generate assets or analyse a new song yet.
 
 ```bash
 make doctor     # checks node >= 22, npx, ffmpeg; python is only needed later
-make sample     # renders video/avatar-dance-test -> out/sample.mp4 (11.5 s)
+make sample     # renders the bundled no-key sample -> out/sample.mp4
 ```
 
 - The first `make sample` downloads `hyperframes@0.9.2` and a headless browser, which takes a few minutes once. Later renders take about 15-30 s.
@@ -57,10 +57,10 @@ Start with **beats-only**. The template then shows lyrics per line or per bar in
 Make one place and one hero object (`analysis/playbook.md` section 10), not a dashboard of small parts. Start from the template's default look. Change the palette, title and captions in `reel.json` before you touch any HTML.
 
 Characters are optional. To add dancing sprites, follow `docs/sprites.md`:
-- **Codex built-in image generation** is the tested route and costs nothing extra under a Codex subscription.
+- **Codex built-in image generation** is the tested route.
 - **Higgsfield** is untested. The adapter prints the commands, and the owner must run any paid generation themselves.
 
-Both routes write sheets plus `sprites.json` (frame rects), so the animation code is the same for either provider. Beat-synced motion (pose per beat, a kick bounce, a bar accent, per-character phase) is described in `docs/beat-motion.md`.
+Both routes write sheets plus `sprites.json` (frame rects), so the animation code is the same for either provider. Put them in `songs/<name>/sprites/` and list the dancers in `reel.json` (`"cast": [{"sprite": "robot"}]`). Cast members dance automatically through `SpriteDance`: 16 poses per bar, a hop on every beat, a bigger hop on downbeats and a phase offset per character (`docs/beat-motion.md`).
 
 ### 2c. Render and review
 
@@ -68,9 +68,9 @@ Both routes write sheets plus `sprites.json` (frame rects), so the animation cod
 make render SONG=<name>          # -> out/<name>.mp4
 ```
 
-- Turn on the sync-check overlay (beat ticks + word marks) in preview to verify timing before a long render. See `docs/beat-motion.md`.
+- **Sync check before a long render:** set `"syncCheck": true` in `reel.json`, or build with `python3 scripts/build_reel.py --song songs/<name> --out out/projects/<name> --sync-check`, or open the preview with `?synccheck`. It draws beat ticks, bar labels and word marks under a playhead. Turn it off for the final render.
 - Change one thing per render, and tell the person exactly which seconds changed.
-- Never overwrite a render. Version the file names instead.
+- `make render` writes `out/<name>.mp4`. Copy a render you want to keep to a versioned name before you render again.
 - Inspect the encoded MP4 itself, not only the preview.
 
 ## 3. Rules
@@ -79,7 +79,7 @@ make render SONG=<name>          # -> out/<name>.mp4
 - All times come from `timing.json`. Never hard-code seconds.
 - Don't add `console.log` to committed code.
 - Don't run paid generation (Suno, Higgsfield) yourself, and don't publish or post anything. The person does that.
-- Credit page-mascot (MIT) when its sprite tooling is used. See the README credits.
+- Credit page-mascot (MIT) for the sprite-atlas approach. See the README credits.
 
 ## 4. Where to read more
 

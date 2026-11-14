@@ -18,7 +18,7 @@ Time: about 10 minutes to the first render (most of it is the one-time HyperFram
 /plugin install music-reel@music-reels
 ```
 
-Expected: Claude Code confirms that the `music-reel` plugin is installed. Restart the session if it asks.
+Expected: Claude Code confirms that the `music-reel` plugin is installed. Restart the session if it asks. *(The command syntax was checked, but a fresh install hasn't been tested. This step is part of what you're testing.)*
 
 **Codex:**
 
@@ -42,7 +42,7 @@ git clone https://github.com/oronanschel/music-reels && cd music-reels
 make doctor
 ```
 
-`make doctor` should print something like:
+`make doctor` should print something like this (illustrative; the exact lines depend on the final Makefile):
 
 ```
 Needed for 'make sample' and 'make render':
@@ -68,9 +68,9 @@ The agent runs `make sample`.
 Expected:
 - A progress bar, then `Render complete` and `Sample written to out/sample.mp4`.
 - The first run downloads HyperFrames 0.9.2 and a browser, which takes a few minutes. Later runs took about 15–17 s on an Apple M4 laptop.
-- `out/sample.mp4`: 1080×1920, about 11.5 s, about 7 MB, with sound.
+- `out/sample.mp4`: a 1080×1920 vertical video with sound.
 
-Open it. You should see the robot dancing in a spaceship lounge, karaoke-style captions ("I DON'T WANNA CLICK NO MORE…"), and cuts and poses landing on the beat.
+Open it. You should see illustrated dancers, big captions, and poses and pulses landing on the beat.
 
 ## Step 4: check the skill knows the rules
 

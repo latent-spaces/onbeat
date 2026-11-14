@@ -10,7 +10,7 @@
   A Claude Code + Codex skill and a small CLI that measure a song's beats and sung words and drive a <a href="https://hyperframes.heygen.com">HyperFrames</a> reel from them. The output is a vertical 1080×1920 MP4, ready for Reels, Shorts and TikTok.
 </p>
 
-<p align="center"><sub>Above: the bundled sample, rendered with <code>make sample</code> (11.5 s, from the chorus of "allow always"). <a href="assets/readme/preview.mp4">Watch with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
+<p align="center"><sub>Above: 6 s of an 11.5 s render from the chorus of "allow always". <a href="assets/readme/preview.mp4">Watch it with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
 
 ---
 
@@ -22,9 +22,11 @@ make doctor   # checks node, npx, ffmpeg and prints a fix for anything missing
 make sample   # renders the bundled sample -> out/sample.mp4 (no keys, no accounts)
 ```
 
-The first render downloads HyperFrames and a headless browser once, which takes a few minutes. After that, the sample renders in about 15–30 s. Step-by-step, with the expected output for each step: **[docs/TRY-IT.md](docs/TRY-IT.md)**.
+The first render downloads HyperFrames and a headless browser once. After that, the sample rendered in about 15–17 s on an Apple M4 laptop. Step-by-step, with the expected output for each step: **[docs/TRY-IT.md](docs/TRY-IT.md)**.
 
 ### Use it from your agent
+
+<sub>The install commands follow the Claude Code and Codex plugin formats, and their syntax was checked. A fresh install has not been tested yet.</sub>
 
 **Claude Code**
 
@@ -62,7 +64,7 @@ Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment env
 - **Beat and word timing**: a fixed-tempo beat grid, downbeats, kick/no-kick sections and envelopes. Sung-word alignment is optional (`scripts/timing.py`, `scripts/align_words.py`).
 - **A song-agnostic template** (`video/template/`): a reel driven by `timing.json` plus a small `reel.json`.
 - **Beat-synced character motion**: a pose per beat, a bounce on the kick, an accent on the bar downbeat, and a phase offset per character ([docs/beat-motion.md](docs/beat-motion.md)).
-- **Sprite generation with one asset contract**: Codex built-in image generation (tested), or Higgsfield (an adapter that only prints its commands; untested). Both write `sprites.json`, with keying plus alpha and drift checks ([docs/sprites.md](docs/sprites.md)).
+- **Sprite generation with one asset contract**: Codex built-in image generation, or Higgsfield (an adapter that only prints its commands; untested). Both write `sprites.json`, with keying plus alpha and drift checks ([docs/sprites.md](docs/sprites.md)).
 - **A sync-check overlay**: beat ticks and word marks in preview, so you can check timing before a long render.
 - **The full story of a finished reel**: [GUIDE.md](GUIDE.md) shows how the 2:24 "allow always" video was made, with prompts, commands, dead ends and the human–agent feedback loop.
 
@@ -97,7 +99,7 @@ There are two clocks. The **beat clock** drives pulses, cuts and dance poses. Th
 ## Credits and licence
 
 - **Licence: not chosen yet.** See [LICENSE](LICENSE). Until the owner picks one, no reuse rights are granted.
-- **page-mascot** by Kamran Ahmed (MIT): we adapted its sprite-atlas tooling and reference workflow (`vendor/page-mascot/`, pinned in `UPSTREAM.json`). The reel's dance and action art was generated separately.
+- Sprite-atlas approach adapted from [page-mascot](https://github.com/nilbuild/page-mascot) by Kamran Ahmed (@nilbuild), MIT licence. The reel's dance and action art was generated separately.
 - **HyperFrames** by HeyGen renders the video. **GSAP** drives the timeline. Word alignment uses **WhisperX**, **faster-whisper** and **Demucs**.
 - The song "allow always" was made with Suno by the repo owner.
 
