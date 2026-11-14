@@ -51,7 +51,7 @@ make timing SONG=<name> WORDS=1  # also sung-word times (once: make setup-align;
 
 Output: `songs/<name>/timing.json`. Read back the BPM and bar count to the person.
 
-Start with **beats-only**. The template then shows lyrics per line or per bar instead of word-by-word karaoke. Add word alignment only if the person wants karaoke. Watch for these known problems (docs/GUIDE.md section 5.2): Suno doesn't sing the lyrics as written, and Whisper mishears vocoder words. Align each line inside its own time window and mark guesses as guesses.
+Start with **beats-only**. Beats-only timing has no words, so no lyrics appear unless you put short `captions` in `reel.json` (one per `captionBars` bars, under five words each). Write them from `lyrics.txt` with the person. Add word alignment only if the person wants karaoke. Watch for these known problems (docs/GUIDE.md section 5.2): Suno doesn't sing the lyrics as written, and Whisper mishears vocoder words. Align each line inside its own time window and mark guesses as guesses.
 
 ### 2b. Look
 

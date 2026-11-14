@@ -105,7 +105,7 @@ The agent should report back the **BPM** and the **number of bars**. Check the B
 make render SONG=my-song     # -> out/my-song.mp4
 ```
 
-Expected: a vertical MP4 the length of the song, with visuals pulsing on the beat and the title from `songs/my-song/reel.json`. The agent creates that file with defaults if it's missing. **No HTML editing should be needed.**
+Expected: a vertical MP4 the length of the song, with the dancer and visuals moving on the beat. Without a `songs/my-song/reel.json`, the defaults apply and the title is the folder name ("MY SONG"). Beats-only shows no lyrics until the agent adds short `captions` to `reel.json`. **No HTML editing should be needed.** (Verified here: a 25 s second song rendered this way, 1080×1920 with sound.)
 
 ## Step 6 (optional): karaoke words
 
