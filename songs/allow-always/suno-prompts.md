@@ -1,5 +1,7 @@
 # Suno prompts for "allow always"
 
+> Earlier lyric drafts (`lyrics-short.txt`, `lyrics-v4`–`v8`) are on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive/songs/allow-always). The final lyrics are `lyrics-final.txt`.
+
 Every generation we ran, in order, with its Styles line, its lyrics file and its settings. The last one is the take the reel uses.
 
 Some lines below are marked as uncertain. Unmarked lines were copied from Suno, from the MP3 tags or from our session notes.

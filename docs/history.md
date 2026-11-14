@@ -1,6 +1,6 @@
 # Project history
 
-> Some files named below (the early prototype compositions, team research notes) were removed from `main` at launch; they are on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).
+> The files named below were removed from `main` at launch; they are on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).
 
 Notes moved out of the README when the repo was packaged (2026-11-14). They describe how the project got here; the current way to use it is in the [README](../README.md) and the story of the first reel is in [GUIDE.md](GUIDE.md).
 

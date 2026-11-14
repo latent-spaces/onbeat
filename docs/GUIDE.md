@@ -13,9 +13,9 @@ The guide covers the whole pipeline, the commands that worked, the prompts we us
 
 | Document | What it covers |
 |---|---|
-| [`analysis/playbook.md`](../analysis/playbook.md) | Why the reference reels work: concept, song structure, the two timing clocks, visual grammar. Measured from ten reels. |
-| [`analysis/runbooks/animated-music-reels.md`](../analysis/runbooks/animated-music-reels.md) | The sprite and avatar workflow in detail: asset contracts, alpha checks, layering, karaoke. |
-| [`analysis/runbooks/image-prompts.md`](../analysis/runbooks/image-prompts.md) | Reusable image-generation prompt shapes. |
+| [`analysis/playbook.md`](https://github.com/oronanschel/music-reels/blob/archive/analysis/playbook.md) | Why the reference reels work: concept, song structure, the two timing clocks, visual grammar. Measured from ten reels. |
+| [`analysis/runbooks/animated-music-reels.md`](https://github.com/oronanschel/music-reels/blob/archive/analysis/runbooks/animated-music-reels.md) | The sprite and avatar workflow in detail: asset contracts, alpha checks, layering, karaoke. |
+| [`analysis/runbooks/image-prompts.md`](https://github.com/oronanschel/music-reels/blob/archive/analysis/runbooks/image-prompts.md) | Reusable image-generation prompt shapes. |
 | [`songs/allow-always/suno-prompts.md`](../songs/allow-always/suno-prompts.md) | Every Suno Styles line, lyric file and setting we tried, including the final one. |
 | [`video/allow-always-final/index.html`](../video/allow-always-final/index.html) | The finished composition, about 1,300 lines, commented by section. |
 
@@ -68,7 +68,7 @@ Pin the HyperFrames version in every command (`npx --yes hyperframes@0.9.2 …`)
 
 ## 3. Concept
 
-The full checklist is in [playbook section 1](../analysis/playbook.md). In short:
+The full checklist is in [playbook section 1](https://github.com/oronanschel/music-reels/blob/archive/analysis/playbook.md). In short:
 
 - **One sentence a stranger could disagree with.** Insider jokes (context windows, prompts) did worse than universal, arguable claims.
 - **The picture contradicts or dramatises the claim.** A cute or polite character saying something cold.
@@ -110,7 +110,7 @@ The full prompt history, including the final Styles line and lyrics, is in [`son
 
 ## 5. Timing: beats and sung words
 
-Everything downstream reads one JSON file per song. The contract is in [playbook section 7](../analysis/playbook.md): `bpm`, `beats`, `bars` (downbeats), `words`, `lines`, `sections`, per-frame `envelopes`.
+Everything downstream reads one JSON file per song. The contract is in [playbook section 7](https://github.com/oronanschel/music-reels/blob/archive/analysis/playbook.md): `bpm`, `beats`, `bars` (downbeats), `words`, `lines`, `sections`, per-frame `envelopes`.
 
 ### 5.1 Beat grid
 
@@ -159,14 +159,14 @@ What went wrong and how we fixed it:
 
 ### 6.1 The frame is a place
 
-[Playbook section 10](../analysis/playbook.md) is the most useful part of the playbook. The reference reels draw **one place from one viewpoint**, with **one big hero object** in the centre carrying the lyric. Small things tick on the beat around it. Our first cut was a dashboard of small UI parts, and it didn't work. The final reel has two places:
+[Playbook section 10](https://github.com/oronanschel/music-reels/blob/archive/analysis/playbook.md) is the most useful part of the playbook. The reference reels draw **one place from one viewpoint**, with **one big hero object** in the centre carrying the lyric. Small things tick on the beat around it. Our first cut was a dashboard of small UI parts, and it didn't work. The final reel has two places:
 
 - **The desk world:** a big permission dialog as the hero object, a cursor, a log of approved commands and an LED row on the beat.
 - **The disco:** a retro orbital discotheque with a window onto space and the Earth. The avatars take over the screen there.
 
 ### 6.2 Sprite sheets from an image generator
 
-The full workflow, with contracts, alpha checks and packing, is in the [runbook](../analysis/runbooks/animated-music-reels.md). The lessons that mattered most:
+The full workflow, with contracts, alpha checks and packing, is in the [runbook](https://github.com/oronanschel/music-reels/blob/archive/analysis/runbooks/animated-music-reels.md). The lessons that mattered most:
 
 - **Audition styles on one grid.** Generate a numbered 4×4 board of styles and let the person pick by number.
 - **Show reference images instead of describing a style.** "80s anime" in words came out glossy and exaggerated. Three reference frames fixed it at once.
@@ -212,7 +212,7 @@ The dancers step one pose every quarter beat, so 16 poses fill one bar. Each dan
 
 ### 7.2 Two clocks
 
-This is the core idea, measured in the reference reels ([playbook section 3](../analysis/playbook.md)).
+This is the core idea, measured in the reference reels ([playbook section 3](https://github.com/oronanschel/music-reels/blob/archive/analysis/playbook.md)).
 
 | Clock | Drives |
 |---|---|
@@ -334,7 +334,7 @@ Habits that made this work:
 
 ## 10. Posting
 
-[`songs/allow-always/instagram-brief.md`](../songs/allow-always/instagram-brief.md) is a ready-made brief for an agent that runs the Instagram account. The essentials:
+[`songs/allow-always/instagram-brief.md`](https://github.com/oronanschel/music-reels/blob/archive/songs/allow-always/instagram-brief.md) is a ready-made brief for an agent that runs the Instagram account. The essentials:
 
 - **Upload the full-quality file** as a Reel, unchanged, with the original audio. Don't trim the ends, or the loop breaks.
 - **Cover:** a strong frame from inside the video.
@@ -383,6 +383,5 @@ The current layout is in the README's repository map. The files behind this stor
 |---|---|
 | `songs/allow-always/` | Lyrics, Suno prompts, the final take, alignment and cut scripts. |
 | `video/allow-always-final/` | The finished composition (with `video/data/allow-always-final.*` and `video/assets/disco/`). |
-| `analysis/` | Playbook, runbooks, per-reel breakdowns. |
 
-The early prototype compositions and the team's research notes are on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).
+The playbook, runbooks, reel breakdowns, earlier lyric drafts, storyboard, prototypes and research notes are on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).

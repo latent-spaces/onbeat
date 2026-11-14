@@ -63,5 +63,5 @@ tested only on synthetic sheets, so inspect the edges.
 - Describe *successive actions*, not a collection of poses; the last pose must connect to the first.
 - A checkerboard painted into the PNG is not alpha. Ask for a flat key colour instead.
 - Record frame numbers with each file; they change between revisions.
-- Longer notes: `analysis/runbooks/animated-music-reels.md` section 9 and `analysis/runbooks/image-prompts.md`.
+- Longer notes (archive branch): [animated-music-reels runbook](https://github.com/oronanschel/music-reels/blob/archive/analysis/runbooks/animated-music-reels.md) section 9 and [image prompts](https://github.com/oronanschel/music-reels/blob/archive/analysis/runbooks/image-prompts.md).
 - The atlas approach is adapted from [page-mascot](https://github.com/nilbuild/page-mascot) by nilbuild (MIT); see `THIRD_PARTY_NOTICES.md`.
