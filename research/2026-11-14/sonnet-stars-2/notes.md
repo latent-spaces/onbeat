@@ -65,3 +65,13 @@ Key observation: **a search for "lyric video generator" on GitHub tops out at ~1
 7. **Reels as marketing**: render the repo's own demo as a reel; opt-in outro "made with music-reels <repo>".
 8. **Hygiene**: LICENSE, topics, issue templates, release tag, steady commits through launch week, optional Discord only if someone will staff it.
 9. **Verify before relying**: star-history curves and actual launch channels for these repos are unverified here; another agent with web access should check star-history.com / HN for HyperFrames and OpenShorts.
+
+## Update after rebase onto main 6daad3d (GUIDE.md and final video now exist)
+
+Re-read GUIDE.md (390 lines), `songs/allow-always/`, `video/allow-always-final/` and `analysis/runbooks/`. Nothing in the findings above depended on the old state, but the recommendations change in these ways:
+
+- **We have a real demo.** `video/allow-always-final` (2:24 vertical, Suno song, HyperFrames, word- and beat-timed) is the "real output" asset recs 2 and 7 ask for. Next step is exporting a short GIF/MP4 for the README, not creating content.
+- **GUIDE.md is the README's second act.** It is a build story with prompts, versions, dead ends and a repo map, which matches the tutorial-video pattern that carried ShortGPT and short-video-maker. Link it from the top of the README and keep the one-sentence promise and 3-command quickstart in the README itself.
+- **Pinning is already good** (`hyperframes@0.9.2`, versions table). Gaps that still block "zero-install try" (rec 5): the two Python envs (`.venv` for librosa, `.venv-align` for whisperx/demucs) are only documented as pip commands, with no requirements files; no LICENSE file at repo root; and `video/assets/dev` is a symlink to `../../out/dev` (outside the repo), so a fresh clone may have broken assets. The finished `allow-always-final` reuses `video/data/allow-always-final.json`, so a no-API-key render of the shipped song looks feasible. I did not run a render to confirm that.
+- **Skill/CLI still do not exist.** The workflow is a guide plus scripts (`scripts/timing.py`, `align_words.py`). Packaging it as a Claude Code skill remains the main viral-positioning step (rec 4), and the guide's section 9 (working with an agent) is the natural seed for the skill text.
+- **Positioning sharpened:** the concept in GUIDE.md is "agent-built, human-directed". Lead with that: "I directed Claude Code to build a beat-synced music video; here is the full recipe".
