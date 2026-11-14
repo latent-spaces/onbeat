@@ -104,3 +104,14 @@ All of these are outside actions that need the owner's approval:
 | opus-strategist-2 | Claude Code skills, Remotion/HyperFrames templates, brag star history | `opus-strategist-2/notes.md` (PR #3) |
 | codex-tooling-1 | Reproducibility / tooling readiness, go-public gates, review of this file | `codex-tooling-1/notes.md`, `audit.py`, `synthesis-review.md`, prototype check and render evidence (PR #5) |
 | codex-tooling-2 | README / demo anatomy, proposed README outline and demo brief, baseline correction record | `codex-tooling-2/notes.md`, `README-OUTLINE.md`, `DEMO-BRIEF.md`, `LAUNCH-EVIDENCE.md`, `BASELINE-UPDATE.md`, `SYNTHESIS-CORRECTIONS.md` (PR #6) |
+
+## Owner-requested repos (first pass, opus-strategist-1, 10:28Z; star speed and launch checks still to do)
+
+| Repo | Stars | Created | License | Type |
+|---|---|---|---|---|
+| harry0703/MoneyPrinterTurbo | 143.4k | 2024-03-11 | MIT | studio (WebUI + API): topic → short |
+| ATH-MaaS/Pixelle-Video | 30.1k | 2025-11-07 | Apache-2.0 | studio/engine: fully automated short video |
+| zai-org/CogVideo | 13.2k | 2022-05-29 | Apache-2.0 | model (text/image → video) |
+| nilbuild/page-mascot | 1.4k | 2026-09-14 | MIT | skill + React component (cursor-watching mascot) |
+
+**page-mascot credit (we vendor it in `vendor/page-mascot/`, upstream commit 76a44ed, per `UPSTREAM.json`).** MIT requires keeping its copyright and license notice with the copies, and `vendor/page-mascot/LICENSE` does that. Recommended, and not yet done: add a "Credits" line to the README and to GUIDE.md ("Avatar characters from nilbuild/page-mascot, MIT"), and credit it in the reel caption or end card if its characters appear on screen. Whether the *generated character art* carries extra terms beyond the MIT code license is unchecked; read its README before going public.
