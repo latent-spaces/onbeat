@@ -1,0 +1,6 @@
+[OK] .venv: imports ready
++ /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/.venv/bin/python /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/scripts/timing.py /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/songs/tooling-smoke/song.wav -o /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/songs/tooling-smoke/.timing-z3zgpfow.json --no-words
+/Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/songs/tooling-smoke/.timing-z3zgpfow.json: 123.780 BPM, downbeat 1.707s, bar 1.9389s, 6 bars (5.061 after downbeat), attacks 20/24 beats (median scatter 5.3 ms), sections groove@bar0 break@bar2 groove@bar3 break@bar4 groove@bar5, 0 words
+Timing written: /Users/oronans/mlswarm/projects/music-reels-go-public/codex-tooling-1-nb86kv/songs/tooling-smoke/timing.json
+Next: make render SONG=tooling-smoke
+Finished in 52.5s (includes this command only).

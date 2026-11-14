@@ -1,0 +1,13 @@
+test_audio_with_spaces_is_copied_and_timing_replaced_with_backup (test_reel.ToolingTests.test_audio_with_spaces_is_copied_and_timing_replaced_with_backup) ... ok
+test_conflicting_modes_are_actionable (test_reel.ToolingTests.test_conflicting_modes_are_actionable) ... ok
+test_curated_timing_requires_explicit_regeneration (test_reel.ToolingTests.test_curated_timing_requires_explicit_regeneration) ... ok
+test_explicit_existing_render_is_not_overwritten (test_reel.ToolingTests.test_explicit_existing_render_is_not_overwritten) ... ok
+test_failed_regeneration_keeps_curated_timing (test_reel.ToolingTests.test_failed_regeneration_keeps_curated_timing) ... ok
+test_optional_renderer_checks_do_not_block_local_render (test_reel.ToolingTests.test_optional_renderer_checks_do_not_block_local_render) ... ok
+test_song_names_cannot_traverse_or_become_shell_commands (test_reel.ToolingTests.test_song_names_cannot_traverse_or_become_shell_commands) ... ok
+test_song_symlink_outside_song_root_is_rejected (test_reel.ToolingTests.test_song_symlink_outside_song_root_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.009s
+
+OK
