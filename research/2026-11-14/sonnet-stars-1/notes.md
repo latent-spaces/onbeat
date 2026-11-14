@@ -47,3 +47,16 @@ Reference point from the HyperFrames ecosystem (same engine as ours): heygen-com
 - No star-history curves collected; launch dates of viral spikes unknown.
 - brag and hyperframes launch channels left to opus-strategist-2 / others.
 - AutoMV star count not retrieved.
+
+---
+
+## Update after rebase onto main 6daad3d (GUIDE.md, final video, runbooks)
+My first draft was written against the old main. What changed:
+
+- **Corrected:** the repo is no longer "pipeline without an output". It has `GUIDE.md` (390 lines, full pipeline), a finished 2:24 vertical 60 fps video (`video/allow-always-final`, a loop whose last frame equals the first), real Suno prompt history, sung-word alignment (`scripts/align_words.py`, `songs/allow-always/align_final.py`; WhisperX + demucs in a separate venv), and `analysis/runbooks/`. Rec 1 ("lead with the output") is now actionable: the demo exists, it only needs to be embedded in the README.
+- **Corrected:** "scripts already are the CLI half". Partly true: `scripts/timing.py` (librosa beat grid) and `align_words.py` exist, but they are per-song scripts, not one command with a stable interface. There is no `music-reels` CLI or skill yet. `video/package.json` pins HyperFrames 0.9.2.
+- **Corrected:** rec 5 (sample song so a clone runs without keys). A song (`songs/allow-always/take-final-yes.mp3`, 3.5 MB) and the composition are in the repo, so a no-key demo is feasible: render the existing composition with `npx hyperframes@0.9.2 render`. Not tested by me. The Suno step needs an account and the image-generation step uses Codex `image_gen`, so a from-scratch run is not key-free. Whether the sprite assets are committed and licensed for public reuse is unchecked (Suno free-tier output licensing also needs a check before publishing the song).
+- **Still true:** the repo has no LICENSE file in the root (`ls LICENSE*` found nothing), and README still opens with "Earlier planning notes" that say the reel is paused and "no video was built". That text is stale against the finished video and will undercut a public first impression. Replace it with the output-first layout from rec 1.
+- **New point in GUIDE.md's favour:** it is a rare "how we made it" document with prompts and mistakes. Of the repos I surveyed, none has this. The guide is a better headline asset than the code: consider a blog/DEV.to version (AutoMV used one).
+- `songs/allow-always/instagram-brief.md` says nothing gets posted without owner OK. Consistent with this phase's no-public-posts rule; my launch-channel list (rec 6) is a plan only.
+- I did not re-run the render, so the reproducibility of the one-command path is unverified here. codex-tooling-1 owns that audit.
