@@ -28,6 +28,8 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 
 | P | Item | Size | Touches |
 |---|---|---|---|
+| P0 | Tracked poster frame + 10 s preview of allow-always-final (cut on a lyric boundary), with a `.gitignore` exception for it | S | new `assets/readme/`, `.gitignore` |
+| P0 | Owner decision on the reference-research files (`reels.txt`, `analysis/comments/`) before going public | S (owner) | `analysis/`, `reels.txt` |
 | P0 | README rewrite: hero reel (poster + MP4 via GitHub attachment), one line, "Try it", GUIDE link, credits, experimental status; move the 2026-11-11 notes to `docs/history.md` | S | `README.md`, new `docs/history.md` |
 | P0 | Root LICENSE (owner picks) + third-party credit for page-mascot ("Sprite-atlas tooling and reference workflow adapted from page-mascot by Kamran Ahmed (MIT)…") + sample media rights note | S | `LICENSE`, `README.md`, `GUIDE.md` |
 | P0 | `make doctor` + `make sample` (renders the prototype, no keys) | S | new `Makefile`, `video/avatar-dance-test/package.json` |
@@ -35,7 +37,7 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 | P0 | Vendor GSAP in the final composition | S | `video/allow-always-final/index.html`, `video/assets/` |
 | P1 | Pinned `requirements.txt` / `requirements-align.txt` | S | new files, GUIDE §2 |
 | P1 | Song-agnostic export: generalise `cut_final.py` + `align_final.py` (line windows from a file) | M | `scripts/`, `songs/allow-always/*.py` |
-| P1 | Song-agnostic starter composition (beat clock + voice clock + karaoke) | M | new `video/template/`, `video/src/beatsync.js` |
+| P1 | Song-agnostic starter composition (beat clock + voice clock + karaoke). **This gates both "second song without editing HTML" and the skill** (sonnet-stars-2) | M–L | new `video/template/`, `video/src/beatsync.js` |
 | P1 | Skill: `SKILL.md` (Claude Code) + Codex mirror wrapping doctor → timing → export → compose → render; plugin marketplace entry | M | new `skills/music-reel/`, `.claude-plugin/` |
 | P1 | Sync-check overlay (beat grid + word boundaries) | S | `video/src/beatsync.js` |
 | P2 | Gallery of 2–3 reels with full inputs; short promo cut only on clean musical boundaries | M | `songs/`, `video/`, README |
@@ -48,11 +50,11 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 2. Choose the license and confirm rights: the Suno take (the plan's terms), the generated art, and the reference-research files (`reels.txt`, `analysis/comments/` stay out or are removed).
 3. Add description and topics (`suno, lyric-video, music-video, beat-sync, hyperframes, claude-code, agent-skills, codex`), then make the repo public.
 4. Post the reel on Instagram (per `songs/allow-always/instagram-brief.md`) and X. Reply with the repo as "how it was made", the PDoomVideo/page-mascot pattern of a same-day post with command + demo.
-5. Same day: r/ClaudeCode / r/ClaudeAI / r/SunoAI posts with the reel inline; a Show HN with GUIDE.md as the story.
-6. Submit to awesome-claude-video-skills ("Music videos"), the HyperFrames showcase/Discord, and skills.sh.
+5. Same day: r/ClaudeCode / r/ClaudeAI / r/SunoAI posts with the reel inline (read each subreddit's self-promotion rules first). Optionally a Show HN on a US weekday morning, with GUIDE.md as the story and the demo command in the first comment.
+6. Submit to "alternative to" directories (openalternative.co, alternativeto.net), awesome-claude-video-skills ("Music videos"), the HyperFrames showcase/Discord, and skills.sh.
 7. Launch week: ship visible fixes daily (stalled repos plateau), answer issues, post the second reel. Aim for a Trending day.
-8. After 2 weeks: review stars, issues and drop-off questions; decide on P2.
+8. After 48 h, check stars and traffic and decide on a second push. After 2 weeks: review stars, issues and drop-off questions; decide on P2.
 
 ## Contributions
 
-Built from the research PRs #1–#6 (all six agents). Chat additions are folded in as they arrive.
+Built from the research PRs #1–#6 (all six agents). sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
