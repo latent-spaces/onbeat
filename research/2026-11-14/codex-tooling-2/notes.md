@@ -76,7 +76,7 @@ Lesson for music-reels: show actual outputs and useful sample metadata, then giv
 
 ## Evidence boundaries
 
-- No launch-channel research or star-growth causal analysis was performed in this slice; other agents own that work.
+- The original README slice did not investigate launch channels. A later [launch evidence addendum](LAUNCH-EVIDENCE.md) verifies specific public discussions without attributing star growth to them.
 - GitHub search maxima are sample-dependent. “We found few large direct matches” is supportable with a defined search; “there are no popular lyric-video projects” requires broader evidence.
 - A fourth candidate, `ComposioHQ/shorts-generator`, returned a GitHub 404 page and was excluded from comparisons.
 - Raw fetched pages remain locally under `sources/` and are ignored to avoid committing wholesale third-party READMEs. The versioned source record is `SOURCES.md`.

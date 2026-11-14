@@ -14,3 +14,11 @@ Versioned notes paraphrase selected observations. Raw captures are kept locally 
 Local repo baseline: `26d9337f44ebfb7a221a107e6f957c3ed31eb9f2`. Inspected root README, `analysis/playbook.md` sections 1–7, `video/CLAUDE.md`, `video/AGENTS.md`, `.gitignore`, `video/package.json`, and the tracked-file inventory. Current metadata was read with `gh api repos/oronanschel/music-reels` and saved in `repository-metadata.json`.
 
 No code-graph MCP tools were exposed in the tool catalog. Non-code documentation/config inspection used local shell reads; no product source changes, build, render, star-history collection, account sign-up or public post was performed.
+
+## Follow-up channel check, approximately 09:52–09:53 UTC
+
+- [Motion Canvas HN discussion](https://news.ycombinator.com/item?id=34897707), Firecrawl capture `01a1d979-0fe8-7729-8f60-8b790d5146ce`: dated channel appearance and direct reader feedback about missing examples.
+- [/brag README](https://github.com/latent-spaces/brag#readme), Firecrawl capture `01a1d979-11fc-720c-8474-d724f1e045fa`: current launch-site link and initial-commit metadata.
+- [/brag Reddit showcase](https://www.reddit.com/r/ClaudeCode/comments/1ubrc1y/i_built_a_claude_code_skill_called_brag_that/): Firecrawl refused this domain; inspected read-only via web reader. Only relative age exposed; exact date unverified.
+
+See `LAUNCH-EVIDENCE.md` for supported conclusions and unknowns. Discovery searches are locally retained in ignored `sources/*-search.json`.
