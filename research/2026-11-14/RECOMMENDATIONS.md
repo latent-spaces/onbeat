@@ -95,7 +95,7 @@ All of these are outside actions that need the owner's approval:
 
 | Agent | Slice | File |
 |---|---|---|
-| opus-strategist-1 | HyperFrames-ecosystem competitive set, README anatomy | `opus-strategist-1/notes.md` |
+| opus-strategist-1 | HyperFrames-ecosystem competitive set, README anatomy, consolidated top-29 list | `opus-strategist-1/notes.md`, `opus-strategist-1/top-similar-repos.md` |
 | sonnet-stars-1 | AI music / lyric-video tools | `sonnet-stars-1/notes.md` (PR #1) |
 | sonnet-stars-2 | Creator studios / short-form tools | `sonnet-stars-2/notes.md` (PR #2) |
 | opus-strategist-2 | Claude Code skills, Remotion/HyperFrames templates, brag star history | `opus-strategist-2/notes.md` (PR #3) |
