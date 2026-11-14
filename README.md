@@ -1,58 +1,106 @@
-# music-reels
+<p align="center">
+  <a href="assets/readme/preview.mp4"><img src="assets/readme/preview.gif" alt="An illustrated robot dances in a spaceship lounge while pink karaoke captions sing 'I don't wanna click no more', cut to the beat" width="320"></a>
+</p>
 
-## Start here
+<h1 align="center">music-reels</h1>
 
-**[GUIDE.md](GUIDE.md)** walks through the whole process end to end: concept, Suno song, timing, characters,
-HyperFrames composition, review, render and posting, with the commands, prompts and mistakes from making
-"allow always". The Suno prompts are in [`songs/allow-always/suno-prompts.md`](songs/allow-always/suno-prompts.md).
+<p align="center"><strong>Song in, beat-synced lyric reel out. Your coding agent does the edit.</strong></p>
 
-The avatar/sprite workflow and full-video integration now exist. For this kind of
-illustrated music reel, start with the [production runbook](analysis/runbooks/animated-music-reels.md),
-its [image prompt patterns](analysis/runbooks/image-prompts.md), and the append-only
-[learning log](analysis/runbooks/learning-log.md). The full-video session is still
-making changes; inspect its current files before extending it.
+<p align="center">
+  A Claude Code + Codex skill and a small CLI that measure a song's beats and sung words and drive a <a href="https://hyperframes.heygen.com">HyperFrames</a> reel from them. The output is a vertical 1080×1920 MP4, ready for Reels, Shorts and TikTok.
+</p>
 
-### Earlier planning notes (2026-11-11)
+<p align="center"><sub>Above: 6 s of an 11.5 s render from the chorus of "allow always". <a href="assets/readme/preview.mp4">Watch it with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
 
-State on 2026-11-11: the first reel, "allow always", is paused. The story and storyboard exist, four Suno generations exist, and no video was built for the current story. The result so far is not good enough, for two reasons written up in `analysis/playbook.md`:
+---
 
-- **Section 9:** we wrote a long story and asked Suno to perform it bar by bar. It never followed the structure.
-- **Section 10:** our frames are a dashboard of small parts, not a drawn place with one big object. Read "Rules for the next build".
+## Quickstart
 
-**Next step: try the Suno-first approach** (playbook section 8).
+```bash
+git clone https://github.com/oronanschel/music-reels && cd music-reels
+make doctor   # checks node, npx, ffmpeg and prints a fix for anything missing
+make sample   # renders the bundled sample -> out/sample.mp4 (no keys, no accounts)
+```
 
-1. Read playbook sections 8, 9 and 10.
-2. Write short lyrics around one hook and generate a few Suno takes with spare length. Setup notes are in section 2. Ask before spending credits or downloads; about 4 free downloads were left.
-3. Pick the best 30–45 s loop by ear, cut it to whole bars, and run `scripts/timing.py` on it.
-4. Pick one place and one hero object, make a single still and a five-second test in `video/`, and compare it with a reference frame from `downloads/frames/`.
-5. Only then write the storyboard to that loop and build the reel.
+The first render downloads HyperFrames and a headless browser once. After that, the sample rendered in about 15–17 s on an Apple M4 laptop. Step-by-step, with the expected output for each step: **[docs/TRY-IT.md](docs/TRY-IT.md)**.
 
-What can be reused from "allow always" (`songs/allow-always/`): the story chain and ending in `song.md`, the storyboard page (`storyboard.html`, draft 8), the real-prompt idea, and the agent characters. The takes are kept but none is good enough to build on.
+### Use it from your agent
 
-## Contents
+<sub>The install commands follow the Claude Code and Codex plugin formats, and their syntax was checked. A fresh install has not been tested yet.</sub>
 
-- `analysis/playbook.md`: how the reference reels work and what we learned; the main document
-- `analysis/runbooks/`: repeatable sprite-reel production workflow, provider-neutral image prompts and cross-session learning log
-- `analysis/breakdown/<id>.md`: per-reel breakdowns of the ten studied reels
-- `songs/<song>/`: lyrics, takes, storyboard and cut script per song
-- `scripts/timing.py`: audio (and lyrics) → timing JSON (BPM, beats, bars, words, envelopes)
-- `video/`: the HyperFrames project (`video/CLAUDE.md` has the commands)
-  - `video/allow-always-final/`: the "allow always" reel (final take): permission-prompt hook and loop, avatar disco, console/explosion punch, 80s VHS look and karaoke captions; renders go to `video/out/`
-  - `video/avatar-dance-test/`: the avatar dance test and its sprite sheets (dance, close-ups, `assets/action/` console and explosion); `video/assets/disco` links to its `assets/` and the reel needs it
-- `vendor/page-mascot/`: MIT avatar generation tools, sprite renderer and four human examples; see `analysis/avatar-pipeline.md` for rebuild commands and the route to beat-timed avatars and dance poses
-- `branding/`: robot profile portrait and its generation prompt
-- `diagnostics/`: one-off measuring scripts (gitignored)
+**Claude Code**
 
-## Reference research
+```text
+/plugin marketplace add oronanschel/music-reels
+/plugin install music-reel@music-reels
+```
 
-Research project: download reference Instagram reels (e.g. @alignment.check) with yt-dlp and analyze how they're produced.
+Then: *"Render the music-reels sample"* or *"Make a beat-synced reel for songs/my-song"*.
 
-- `reels.txt`: reel URLs (download with `yt-dlp -o "downloads/%(id)s.%(ext)s" --write-info-json -a reels.txt`)
-- `downloads/`: videos, `*.info.json` metadata, frame sheets, raw comment export (gitignored)
-- `analysis/alignment-check.md`: findings (pipeline, visual style, views, comment themes)
-- `analysis/views.json`: view counts per reel, copied from the Reels grid
-- `analysis/comments/<id>.json`: comments + replies for the top 10 reels, sorted by likes
-- `scripts/build_review.py`: builds `review.html`, the top-N reels by views with good/maybe/skip marks (`python3 -I scripts/build_review.py 10`)
-- `scripts/split_comments.py`: splits a browser comment export into `analysis/comments/`
+**Codex**
 
-Needs yt-dlp 2026.10.26 or newer; older versions fail on Instagram.
+```bash
+codex plugin marketplace add oronanschel/music-reels
+codex plugin add music-reel@music-reels
+```
+
+Or open the cloned repo in Codex. It reads `AGENTS.md` and `.agents/skills/music-reel/` by itself.
+
+**Any agent:** point it at [`skills/music-reel/SKILL.md`](skills/music-reel/SKILL.md).
+
+## Make a reel for your own song
+
+```bash
+mkdir -p songs/my-song && cp ~/Downloads/my-song.mp3 songs/my-song/song.mp3
+make setup                     # once: Python .venv with pinned requirements
+make timing SONG=my-song       # beats only: BPM, beats, bars, sections, kick
+make render SONG=my-song       # template reel -> out/my-song.mp4
+```
+
+Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment environment, see [GUIDE.md §2](GUIDE.md#2-setup)). Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
+
+## What you get
+
+- **Beat and word timing**: a fixed-tempo beat grid, downbeats, kick/no-kick sections and envelopes. Sung-word alignment is optional (`scripts/timing.py`, `scripts/align_words.py`).
+- **A song-agnostic template** (`video/template/`): a reel driven by `timing.json` plus a small `reel.json`.
+- **Beat-synced character motion**: a pose per beat, a bounce on the kick, an accent on the bar downbeat, and a phase offset per character ([docs/beat-motion.md](docs/beat-motion.md)).
+- **Sprite generation with one asset contract**: Codex built-in image generation, or Higgsfield (an adapter that only prints its commands; untested). Both write `sprites.json`, with keying plus alpha and drift checks ([docs/sprites.md](docs/sprites.md)).
+- **A sync-check overlay**: beat ticks and word marks in preview, so you can check timing before a long render.
+- **The full story of a finished reel**: [GUIDE.md](GUIDE.md) shows how the 2:24 "allow always" video was made, with prompts, commands, dead ends and the human–agent feedback loop.
+
+## How it works
+
+```
+ song.mp3 ──► make timing ──► timing.json ─┐
+ (Suno or any)  beats · bars · words       │
+                                           ├─► video/template ──► make render ──► out/<song>.mp4
+ reel.json ────────────────────────────────┘    HyperFrames + GSAP    1080×1920
+ title · palette · captions · cast              beat clock + voice clock
+        ▲
+ sprites.json ◄── docs/sprites.md (Codex image gen / Higgsfield)
+```
+
+There are two clocks. The **beat clock** drives pulses, cuts and dance poses. The **voice clock** drives the lyrics. Every visual is a pure function of timeline time, so a render is identical every time.
+
+## Repository map
+
+| Path | What |
+|---|---|
+| `skills/music-reel/` | the agent skill (Claude Code plugin, Codex plugin, `.agents/skills`) |
+| `Makefile`, `scripts/` | doctor, sample, timing, render |
+| `video/template/` | the song-agnostic reel |
+| `video/src/` | shared timing and motion helpers (`beatsync.js`, sprite dance) |
+| `video/avatar-dance-test/` | the bundled no-key sample |
+| `video/allow-always-final/` | the hero reel from GUIDE.md |
+| `songs/` | one folder per song |
+| `analysis/` | the playbook (what makes these reels work) and production runbooks |
+| `docs/` | try-it script, beat motion, sprites, project history |
+
+## Credits and licence
+
+- **Licence: not chosen yet.** See [LICENSE](LICENSE). Until the owner picks one, no reuse rights are granted.
+- Sprite-atlas approach adapted from [page-mascot](https://github.com/nilbuild/page-mascot) by Kamran Ahmed (@nilbuild), MIT licence. The reel's dance and action art was generated separately.
+- **HyperFrames** by HeyGen renders the video. **GSAP** drives the timeline. Word alignment uses **WhisperX**, **faster-whisper** and **Demucs**.
+- The song "allow always" was made with Suno by the repo owner.
+
+History of the project before packaging: [docs/history.md](docs/history.md).

@@ -12,3 +12,6 @@ out/
 .hyperframes/
 .thumbnails/
 .waveform-cache/
+
+!assets/readme/*.mp4
+.tmp/
