@@ -111,3 +111,6 @@ Data: `gh repo view` at 2026-11-14 plus web search. The stargazers API returns 4
 
 ### Takeaway across Pixelle, page-mascot, CogVideo
 All three put a **runnable or watchable demo before any install text** (video, live gallery, hosted Space), state the outcome in one line, and keep a **dated update list** in the README. None needed a perfect repo. All three had a distribution advantage we don't yet have (corporate org, an author with 41k followers, a lab with a paper). Our equivalent has to be the share-worthy reel itself.
+
+### Overlap note
+CogVideo and page-mascot were also covered by others (opus-strategist-2 on PR #3, codex-tooling-1 on PR #5, sonnet-stars-2 on PR #2), and sonnet-stars-2 also did Pixelle-Video, so some findings are duplicated; the numbers agree where I compared them. Credit wording caveat from codex-tooling-1: `analysis/avatar-pipeline.md` says the reel's images were generated separately from the vendored characters. Credit page-mascot for the adapted tooling and sprite-sheet workflow, and only name upstream characters if they appear in the video. My credit list above says "Avatars/sprite sheets ... adapted from page-mascot"; narrow it to that scope.
