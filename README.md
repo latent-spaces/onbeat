@@ -12,6 +12,19 @@
 
 <p align="center"><sub>Above: 6 s of an 11.5 s render from the chorus of "allow always". <a href="assets/readme/preview.mp4">Watch it with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
 
+<!-- OWNER, before launch: GitHub plays inline video with sound only from a user-attachments upload,
+     not from a committed mp4. Drag each file below into the editor of a new issue or PR comment
+     (do not submit), copy the URL it inserts, and paste it on its own line to replace the placeholder.
+     Files are in out/readme/ (ignored by git). -->
+
+**The full-song hero** (24 s from the finale of "allow always", sound on): out/readme/hero.mp4
+
+HERO_VIDEO_URL_PLACEHOLDER
+
+**The bundled sample** (11.5 s, what `make sample` renders): out/readme/sample.mp4
+
+SAMPLE_VIDEO_URL_PLACEHOLDER
+
 ---
 
 ## Quickstart
