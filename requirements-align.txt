@@ -1,0 +1,7 @@
+# Optional sung-word alignment, separate Python 3.12 environment.
+# Dependency resolution checked on macOS arm64; installation/model run untested.
+whisperx==3.8.6
+demucs==4.1.0
+faster-whisper==1.2.1
+torch==2.8.0
+torchaudio==2.8.0
