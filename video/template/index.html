@@ -58,7 +58,8 @@
 
     // Title card: on screen until the first lyric (or the first kick section), then out on a bar line.
     var firstKick = (T.sections || []).filter(function (s) { return s.kick; })[0];
-    var titleOut = T.lines && T.lines.length ? T.lines[0].start : (firstKick ? firstKick.start : (T.bars[2] || 2));
+    var captionStart = C.captionStartBar != null ? C.captionStartBar : (firstKick ? firstKick.startBar : 0);
+    var titleOut = T.lines && T.lines.length ? T.lines[0].start : (T.bars[captionStart] || 0);
     document.getElementById("title").textContent = C.title || "";
     document.getElementById("subtitle").textContent = C.subtitle || "";
     tl.set(["#title", "#subtitle"], { opacity: 1 }, 0);
@@ -92,7 +93,7 @@
         else B.DropLine(tl, T, { line: i, parent: lyrics, y: y, until: until });
       });
     } else if (C.captions && C.captions.length) {
-      var every = C.captionBars || 2, start = C.captionStartBar != null ? C.captionStartBar : (firstKick ? firstKick.startBar : 0);
+      var every = C.captionBars || 2, start = captionStart;
       C.captions.forEach(function (text, i) {
         var bar = start + i * every;
         if (bar >= T.bars.length) return;
