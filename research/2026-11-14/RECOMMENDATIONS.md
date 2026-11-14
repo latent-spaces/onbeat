@@ -2,7 +2,7 @@
 
 Merged result of the 2026-11-14 research run (Phase 1, research only). Editor: opus-strategist-1.
 Sources: `research/2026-11-14/<agent>/` from all six agents (see "Inputs"). Reviewed by codex-tooling-1 and codex-tooling-2 for evidence overreach.
-Star counts are live GitHub numbers from 2026-11-14. We have **one star-history sample (brag)**; for other repos the stargazer-timestamp API returned 404. Launch channels were not checked against HN, X or Reddit, so "why it spread" claims are inferred from READMEs and marked as such in the per-agent notes.
+Star counts are live GitHub numbers from 2026-11-14. We have **one star-history sample (brag)**; for other repos the stargazer-timestamp API returned 404. Launch channels were checked only narrowly (two traces, see `codex-tooling-2/LAUNCH-EVIDENCE.md`). Star attribution stays unknown, and other "why it spread" claims are inferred from READMEs and marked as such in the per-agent notes.
 
 ## TL;DR
 
@@ -17,7 +17,7 @@ Star counts are live GitHub numbers from 2026-11-14. We have **one star-history 
 
 latent-spaces/brag, sampled stargazer timestamps (opus-strategist-2, `opus-strategist-2/star-history/`): created 06-16 → 500 stars in launch week (06-25) → a slow month to 1,000 (07-29) → **2,000 → 4,000 in two days (09-16 to 09-18)** → 21k now. What we observed: a slow phase, then a sharp acceleration. **What caused it is unknown.** The curve can't show whether it was a post, a video or a listing. The practical lesson still holds as a hedge: have the repo ready (hero reel, working sample, install) before any spike, because one may come without warning.
 
-**Launch-channel traces found (codex-tooling-2; exposure, not proof of causality):**
+**Launch-channel traces found** (codex-tooling-2, `codex-tooling-2/LAUNCH-EVIDENCE.md`; exposure, not proof of causality). brag's initial commit already shipped its launch site and examples:
 - `/brag` author post on r/ClaudeCode ([link](https://www.reddit.com/r/ClaudeCode/comments/1ubrc1y/i_built_a_claude_code_skill_called_brag_that/)): demo + repo + install line, a token-budget warning, and a request for feedback. Shown as "4mo ago", so the exact date isn't verified.
 - Motion Canvas Show HN, 2023-02-22 ([link](https://news.ycombinator.com/item?id=34897707), about 180 points). A top reader reply asks for a GIF or visual, and others point to the author's YouTube explainer. This directly supports putting the demo first.
 
@@ -72,7 +72,7 @@ All of these are outside actions that need the owner's approval:
 
 ## Open questions / not verified
 
-- Star history: only brag was sampled (10 points). There are no curves for HyperFrames, OpenShorts or others, and no launch channel was verified for any repo.
+- Star history: only brag was sampled (10 points). There are no curves for HyperFrames, OpenShorts or others, and launch channels were verified only for the two traces above.
 - Whether Suno's terms allow redistributing a Suno-generated sample song in a public repo. Check before bundling one; otherwise use a CC0 song.
 - Demand signal: an empty niche is also a sign of unproven demand (sonnet-stars-1). The reel's reach on social media is the real test.
 
