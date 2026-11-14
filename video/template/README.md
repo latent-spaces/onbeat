@@ -39,6 +39,7 @@ npx --yes hyperframes@0.9.2 render --output ../../<name>.mp4 --fps 30 --workers 
   2. whole lines on their start time, when it only has `lines`;
   3. otherwise `captions`, one per `captionBars` bars from `captionStartBar` (default: the first kick section). This is the **beats-only mode**.
 - **Beat clock:** the sun pulses on every beat, harder on bar downbeats, and softly where the kick is out. The floor scrolls one tile per beat. A flash marks each drop (a no-kick → kick section change).
-- `cast` and `syncCheck` use the helpers in `video/src/` when present (`SpriteDance`, `SyncCheck`). See `docs/beat-motion.md`. Turn `syncCheck` off for the final render.
+- **Cast:** `"cast": [{"sprite": "robot"}, {"sprite": "ochre", "x": 300, "y": 0, "size": 760}]`. Each `sprite` names an entry in `songs/<name>/sprites/sprites.json` (made with `docs/sprites.md`). Dancers start at the first kick section, step 16 poses per bar with phases 0/8/4/12, hop on every beat, and hop harder on downbeats (`SpriteDance`, see `docs/beat-motion.md`). `x`/`y` are relative to the stage under the sun.
+- **Sync check:** `"syncCheck": true`, or `build_reel.py --sync-check`, draws beat ticks, bar labels and word marks under a playhead (`SyncCheck`). Turn it off for the final render.
 
 All times come from `timing.json`, and every tween sits on one paused GSAP timeline, so a render is a pure function of time.
