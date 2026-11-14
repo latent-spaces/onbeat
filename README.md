@@ -17,26 +17,11 @@
      GitHub then renders a player with sound. Clips live in out/readme/ (ignored, not in git).
      Do not paste a repository file URL. -->
 
-<!-- VIDEO: out/readme/5-disco.mp4 → paste user-attachments URL here -->
+<!-- VIDEO: out/readme/disco.mp4 → paste user-attachments URL here -->
 
-<details>
-<summary><b>One song, five looks</b> — more styles from the same reel</summary>
+Same song, the terminal look:
 
-1. **Intro**: a dark terminal, an a cappella "may I read this file".
-<!-- VIDEO: out/readme/1-intro.mp4 → paste user-attachments URL here -->
-
-2. **The drop**: blue, "may I install".
-<!-- VIDEO: out/readme/2-drop.mp4 → paste user-attachments URL here -->
-
-3. **Chorus**: pink, "approve for me".
-<!-- VIDEO: out/readme/3-chorus.mp4 → paste user-attachments URL here -->
-
-4. **Yes!**: giant kinetic type.
-<!-- VIDEO: out/readme/4-yes.mp4 → paste user-attachments URL here -->
-
-The fifth look, the disco with the Earth exploding, is the clip above.
-
-</details>
+<!-- VIDEO: out/readme/terminal.mp4 → paste user-attachments URL here -->
 
 ---
 
