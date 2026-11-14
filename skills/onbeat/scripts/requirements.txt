@@ -1,0 +1,6 @@
+# Analysis + sprite tools. Tested on Python 3.14 / macOS arm64.
+# Rendering the example needs none of this.
+librosa==1.0.1
+numpy==2.5.4
+scipy==1.18.1
+Pillow==13.0.0

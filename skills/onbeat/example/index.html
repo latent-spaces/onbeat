@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>onbeat example</title>
+  <script src="assets/gsap.min.js"></script>
+  <script src="data/timing.js"></script>
+  <script src="src/beatsync.js"></script>
+  <script src="src/spritedance.js"></script>
+  <script src="src/synccheck.js"></script>
+  <style>
+    * { box-sizing: border-box }
+    html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #f6f0df }
+    #root { position: relative; width: 100%; height: 100%; overflow: hidden;
+      --bg: #f6f0df; --accent: #ed553b; --ink: #182e33; background: var(--bg) }
+    #sun { position: absolute; left: 190px; top: 620px; width: 700px; height: 700px; border-radius: 50%;
+      background: var(--accent); transform-origin: 50% 50% }
+    #sunglow { position: absolute; left: 145px; top: 575px; width: 790px; height: 790px;
+      border: 3px solid var(--accent); border-radius: 50%; opacity: 0 }
+    #floor { position: absolute; left: 108px; top: 1330px; width: 760px; height: 4px; background: var(--ink);
+      transform-origin: 0 50% }
+    #robot { position: absolute; left: 170px; top: 610px; width: 740px; height: 740px;
+      background: url("assets/robot-dance.webp") no-repeat; background-size: 400% 400%; transform-origin: 50% 94% }
+    #eyebrow { position: absolute; left: 112px; top: 177px; color: var(--ink);
+      font: 700 28px/1 "Inter", sans-serif; letter-spacing: .16em }
+    #lyrics { position: absolute; inset: 0 }
+    .lyric { position: absolute; left: 108px; width: 760px; opacity: 0; color: var(--ink);
+      font: 900 82px/1.06 "Inter", sans-serif; letter-spacing: -.045em; text-transform: uppercase;
+      overflow-wrap: anywhere }
+    #lyrics .lyric span { display: inline-block; margin-right: .16em }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="onbeat" data-width="1080" data-height="1920"
+       data-duration="11.5191" data-fps="30">
+    <div id="sunglow"></div>
+    <div id="sun"></div>
+    <div id="floor"></div>
+    <div id="robot"></div>
+    <div id="lyrics"></div>
+    <div id="eyebrow">ALLOW ALWAYS</div>
+    <audio class="clip" id="song" src="assets/song.mp3" data-start="0" data-duration="11.5191" data-track-index="0"></audio>
+  </div>
+  <script>
+  (function () {
+    // Every time below comes from TIMING (data/timing.js). Nothing is hard-coded in seconds.
+    var T = window.TIMING, B = window.BeatSync;
+    var fps = T.fps = Number(document.getElementById("root").dataset.fps);   // snap to the video's frame rate
+    var tl = gsap.timeline({ paused: true });
+    var at = function (t) { return B.at(t, fps); };   // snaps a song time to its video frame
+
+    // Beat clock: the disc pulses on every beat, harder on bar downbeats.
+    var downbeats = T.bars.map(function (b) { return Math.round(b * 1000); });
+    T.beats.forEach(function (b) {
+      var down = downbeats.indexOf(Math.round(b * 1000)) >= 0;
+      tl.fromTo("#sun", { scale: down ? 1.12 : 1.05 },
+        { scale: 1, duration: T.beatPeriod * 0.85, ease: "expo.out", immediateRender: false }, at(b));
+      tl.fromTo("#sunglow", { opacity: down ? 0.9 : 0.5 },
+        { opacity: 0, duration: T.beatPeriod * 0.9, ease: "expo.out", immediateRender: false }, at(b));
+    });
+    tl.fromTo("#floor", { scaleX: 0 }, { scaleX: 1, duration: T.duration, ease: "none", immediateRender: false }, 0);
+
+    // Beat clock: the robot steps through its 16 poses once per bar and hops on every beat.
+    window.SpriteDance.dance(tl, T, {
+      target: "#robot", from: 0, to: T.duration, cols: 4, rows: 4,
+      bounce: { px: 12, squash: 0.035, downbeat: 1.5 }
+    });
+
+    // Voice clock: each line appears on its first word, and each word lights up as it is sung.
+    var lyrics = document.getElementById("lyrics");
+    T.lines.forEach(function (line, i) {
+      var next = i + 1 < T.lines.length ? T.lines[i + 1].start : T.duration;
+      B.KaraokeLine(tl, T, { line: i, parent: lyrics, y: 290, until: Math.min(next, line.end + 1.5),
+        unsung: "#182e33", current: "#ed553b", sung: "#182e33" });
+    });
+
+    // Sync check: open the preview with ?synccheck to draw beat ticks and word marks.
+    if (window.SyncCheck.wanted()) window.SyncCheck.overlay(tl, T, { parent: document.getElementById("root") });
+
+    B.holdTo(tl, T);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["onbeat"] = tl;
+  })();
+  </script>
+</body>
+</html>
