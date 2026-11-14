@@ -1,6 +1,5 @@
 {
   "song": "Allow Always",
-  "source": "../../out/dev/allow-always-final.wav",
   "sourceStart": 27.2768,
   "sourceEnd": 38.7959,
   "duration": 11.519100000000002,
@@ -39,5 +38,10 @@
     5.7595,
     7.6794,
     9.5993
-  ]
+  ],
+  "fps": 30,
+  "words": [],
+  "lines": [],
+  "sections": [],
+  "beatsPerBar": 4
 }

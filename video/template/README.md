@@ -1,44 +1,33 @@
-# Song-agnostic reel template
+# One template, any song
 
-One HyperFrames reel that any song can drive. You never edit this HTML for a new song. `scripts/build_reel.py` copies the template into `out/projects/<song>/` and fills in the timing and config.
+The bundled sample and your own song use the same composition. Edit a small config; keep the HTML unchanged.
 
 ```bash
-python3 scripts/build_reel.py --song songs/<name> --out out/projects/<name>   # make render runs this
-cd out/projects/<name> && npx --yes hyperframes@0.9.2 check
-npx --yes hyperframes@0.9.2 render --output ../../<name>.mp4 --fps 30 --workers 2
+python3 scripts/build_reel.py --song video/sample --out out/projects/sample
+cd out/projects/sample
+npx --yes hyperframes@0.9.2 check
 ```
 
-## Inputs (in `songs/<name>/`)
+For your own song, put `song.mp3` (or `.m4a` / `.wav`) and `timing.json` in `songs/<name>/`, then use that folder with `--song`. `make render SONG=<name>` wraps the builder and renderer. Beats-only timing is enough.
 
-| File | Needed | What |
-|---|---|---|
-| `song.mp3` / `.m4a` / `.wav` | yes | the audio (converted to 48 kHz WAV in the project) |
-| `timing.json` | yes | from `make timing`. Beats only is enough: `duration`, `beats`, `bars`, `beatPeriod`, `sections` |
-| `reel.json` | no | the config below. Written with defaults on the first build |
-| `lyrics.txt` | no | used for default `captions` when there are no aligned lines |
-| `sprites/sprites.json` + sheets | no | the dancing cast (see `docs/sprites.md`) |
-
-## `reel.json`
+Optional `reel.json`:
 
 ```json
 {
-  "title": "allow always",
-  "subtitle": "a song about permission prompts",
-  "palette": { "bg1": "#1b1033", "bg2": "#3a1450", "accent": "#ff4fa3", "ink": "#fff2c4", "sung": "#ffd34d" },
-  "captions": ["may i read this file", "yes yes yes", "allow always"],
+  "title": "YOUR SONG",
+  "subtitle": "A line about the track.",
+  "palette": {"bg1": "#f6f0df", "bg2": "#f6f0df", "accent": "#ed553b", "ink": "#182e33"},
+  "captions": ["One phrase", "Then the next"],
   "captionBars": 2,
-  "captionStartBar": 6,
-  "lyricsY": 260,
-  "cast": [],
+  "cast": [{"name": "robot-dance", "phase": 0}],
   "syncCheck": false
 }
 ```
 
-- **Lyrics, in order of preference:**
-  1. word-by-word karaoke, when `timing.json` has `words` (`make timing WORDS=1`);
-  2. whole lines on their start time, when it only has `lines`;
-  3. otherwise `captions`, one per `captionBars` bars from `captionStartBar` (default: the first kick section). This is the **beats-only mode**.
-- **Beat clock:** the sun pulses on every beat, harder on bar downbeats, and softly where the kick is out. The floor scrolls one tile per beat. A flash marks each drop (a no-kick → kick section change).
-- `cast` and `syncCheck` use the helpers in `video/src/` when present (`SpriteDance`, `SyncCheck`). See `docs/beat-motion.md`. Turn `syncCheck` off for the final render.
+Keep titles short (roughly 2–4 words) and captions under five words per line. Text stays above the social UI. Aligned words use karaoke; timed lines use line reveals; otherwise optional captions change on bars. Unaligned captions are a design choice, not a claim of lyric alignment. Omit captions for a beat-only reel.
 
-All times come from `timing.json`, and every tween sits on one paused GSAP timeline, so a render is a pure function of time.
+The default robot uses local project artwork. Set `cast: []` for type only, or use up to three cast members from your song's `sprites/sprites.json` (see [sprites](../../docs/sprites.md)). Assets are copied from that manifest, independent of the image provider. Each member can set `phase` and `perBeat`; [SpriteDance](../../docs/beat-motion.md) supplies stepping, kick bounce, bar accents and silence holds.
+
+Add `--sync-check` to the builder for beat ticks and word marks; disable it for the final export. Every visible state comes from one paused timeline. No generation or model download occurs during the build.
+
+Output must be a new/empty directory or a previously generated project. Inside this repo it must live under `out/`. Input folders and unrelated non-empty output directories are refused. Existing unrelated files in a marked project are retained.

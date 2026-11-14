@@ -1,0 +1,19 @@
+{
+  "title": "ALLOW ALWAYS",
+  "subtitle": "A song about permission.",
+  "palette": {
+    "bg1": "#f6f0df",
+    "bg2": "#f6f0df",
+    "accent": "#ed553b",
+    "ink": "#182e33",
+    "sung": "#182e33"
+  },
+  "captions": [],
+  "cast": [
+    {
+      "name": "robot-dance",
+      "phase": 0
+    }
+  ],
+  "syncCheck": false
+}
