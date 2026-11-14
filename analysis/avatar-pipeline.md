@@ -1,79 +1,28 @@
 # Avatar sprites for reels
 
-For the implemented workflow, including dance/action sheets, scene layers,
-karaoke and other-generator interchange, see the
-[production runbook](runbooks/animated-music-reels.md). This document records the
-original upstream import and its adaptation constraints.
+For the implemented workflow, including dance/action sheets, scene layers, karaoke and
+other-generator interchange, see the [production runbook](runbooks/animated-music-reels.md).
+This document keeps the sprite-atlas technique and the lessons we took from
+[page-mascot](https://github.com/nilbuild/page-mascot) by nilbuild (MIT). We adapted the
+approach and removed the vendored copy; credit and the MIT notice are in
+[`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md). No upstream character art is used.
 
-The reusable parts of [nilbuild/page-mascot](https://github.com/nilbuild/page-mascot)
-are vendored in `vendor/page-mascot/`. The upstream code and assets are unchanged;
-`UPSTREAM.json` records the exact commit, selected files and SHA-256 checksums.
-Keep its MIT `LICENSE` with copies of the code and assets.
+## The technique
 
-## What we imported
+A character is one square **sprite sheet**: a grid of equal cells, each cell a pose or
+expression of the same drawing. The renderer shows one cell at a time by choosing a frame
+index. Nothing is animated inside the image; motion comes from which frame is shown and
+from moving, rotating and squashing a wrapper around it.
 
-- `skills/page-mascot/reference/`: character descriptions, six drawing styles,
-  generation prompts, framing and consistency rules.
-- `skills/page-mascot/scripts/`: generation, alpha screening, chroma key removal,
-  atlas alignment/building and verification tools.
-- `src/mascot.tsx`: the original React renderer, including sprite selection,
-  pointer tracking, expressions and squash motion, for reference or web use.
-- `characters/{afro,glasses,ballerina,skater}/`: four human examples, each with
-  the original directions and reactions PNG sheets.
-- `public/mascots/`: ready-to-use WebP atlases for those same examples.
+For a 3×3 sheet, show cell `i` with a square crop, `background-size: 300% 300%`, and
+position `(i % 3) * 50%` horizontally, `floor(i / 3) * 50%` vertically. For a 4×4 sheet
+use `400%` and steps of `100/3 %`. Indices are zero-based, left to right then top to
+bottom. `sprites.json` (see `docs/sprites.md`) stores the exact rectangle of every frame,
+so code should read rectangles, not recompute them.
 
-The upstream demo site, deployment setup and other characters were omitted.
-No npm dependency or global skill was installed during the import. New images
-were generated later in `video/avatar-dance-test/`, outside the vendored originals.
+### Bust layout used by the original: directions and reactions
 
-## Rebuild an existing example locally
-
-From the music-reels repository root, the existing `.venv` has Pillow, NumPy and
-SciPy. Run the full screening/build/verification pipeline without image generation:
-
-```bash
-MASCOT_ROOT="$PWD/vendor/page-mascot" \
-  .venv/bin/python vendor/page-mascot/skills/page-mascot/scripts/mascot.py \
-  afro --skip-generate --dest "$PWD/out/page-mascot-check"
-```
-
-This writes two atlases under `out/`; it does not modify the vendored examples.
-For a separate environment, the upstream `scripts/requirements.txt` lists the
-dependencies, including the OpenAI client used only for API generation.
-
-## Generate our own human avatars
-
-Use the upstream DIRECTIONS or REFERENCE prompt to create the first sheet. Generate
-the EXPRESSIONS sheet with the first sheet attached as an image reference. Preserve
-hair, face, clothing, palette, scale and shoulder position. Request actual alpha
-transparency in the image tool; a painted checkerboard is not transparency.
-
-Keep new source sheets in `characters/<name>/directions.png` and `reactions.png`
-at the repository root, separate from the vendored originals. Then process them:
-
-```bash
-.venv/bin/python vendor/page-mascot/skills/page-mascot/scripts/mascot.py \
-  my-avatar --skip-generate --dest "$PWD/video/assets/avatars"
-```
-
-The upstream `generate.py` is also included, but its hard-coded model default is
-upstream-specific. Before using its paid API route, choose a model available on the
-account via the `MASCOT_IMAGE_MODEL` environment variable and provide `OPENAI_API_KEY` through
-the environment. The orchestrator can retry generation, so use `--skip-generate`
-when processing sheets that already exist.
-
-## Use the technique in HyperFrames
-
-The React component is an interactive web mascot. For our rendered reels, select
-sprite cells from composition time instead of pointer events or wall-clock timers.
-The integration below describes the original mapping. The implemented dance and
-portrait examples now live in `video/avatar-dance-test/compositions/orbital.html`.
-
-Both atlases are 3×3. Use a square crop with background size `300% 300%`.
-For cell index `i`, the background position is `(i % 3) * 50%` horizontally and
-`floor(i / 3) * 50%` vertically.
-
-| Index | Directions | Reactions (renderer names) |
+| Index | Directions | Reactions |
 | --- | --- | --- |
 | 0 | up-left | blink |
 | 1 | up | heart |
@@ -85,30 +34,47 @@ For cell index `i`, the background position is `(i % 3) * 50%` horizontally and
 | 7 | down | dizzy |
 | 8 | down-right | delighted |
 
-The prompt describes reaction 4 as star-shaped eyes although the renderer names it
-`wink`; inspect the actual art when assigning reactions.
+Two 3×3 sheets per character: **directions** (same calm face, only the head turns) and
+**reactions** (nine expressions, generated with the first sheet attached as a reference so
+the identity matches). Inspect the actual art when assigning reaction names.
 
-Use our song timing JSON to place gaze changes, blinks and reactions at explicit
-times on a paused, registered GSAP timeline. Animate position, rotation and squash
-on a parent wrapper so changing cells preserves alignment. Preload both sheets.
-Keep assets local and evaluate every state deterministically when seeking backward
-or forward. Read `video/AGENTS.md` and the HyperFrames skills before implementing
-the composition, then run its check and inspect snapshots.
+## Rules that came from measuring many characters
 
-## Dancing needs an additional asset pipeline
+- **The body is one drawing; only the head moves.** Models redraw the body in profile when
+  the head turns. A bust with visible shoulders reads stable from every angle.
+- **The head dominates.** Shoulders at roughly two thirds of the head width.
+- **Nothing touches a cell edge.** Hearts, sparkles and wide ears are the usual casualties;
+  clipped art cannot be recovered, so say in the prompt to draw wide features smaller.
+  Leave clear space below the shoulders too.
+- **Loose long hair is the most common failure** because it is drawn differently in each
+  sheet. Tie it back, or use a bun, beanie or hat.
+- **State what you want, not what to avoid.** Telling an image model "flat, no gradients"
+  gets exactly that. Ask for appeal and detail instead.
+- **One fresh chat per character, two messages** (directions, then reactions with the first
+  result attached). Retrying inside a long chat averages the attempts and the sheets stop
+  matching.
+- **Transparency comes from the tool's own option, not the prompt.** A prompt that only
+  asks for transparency gets a painted grey-and-white checkerboard, which is unrecoverable.
+  For tools without alpha, ask for one flat saturated key colour (green or magenta), never
+  mention transparency, then key it out (`sprites.py ingest --key`).
 
-These are bust portraits, including the ballerina and skater. They contain head
-directions and expressions, not full-body motion, a skeleton or dance frames.
-The existing pipeline can supply faces, reactions and simple beat-synced bobbing.
+## Use it in HyperFrames
 
-For full-body dancing, reuse the reference-image and consistency approach to create
-an ordered sequence of full-body poses, with one character, outfit, camera, scale,
-canvas and ground line. Define the beat subdivision and loop seam explicitly.
-Build a separate pose atlas and drive its frame index from composition time.
-Do not pass those poses through the unchanged bust builder: its shoulder alignment,
-body-matching checks and bottom fade assume a stationary torso and can distort or
-reject deliberate body movement. A dance atlas needs foot/ground anchors and
-checks for clipping, identity consistency and continuity at the loop seam.
+Select sprite cells from composition time, not pointer events or wall-clock timers. Place
+gaze changes, blinks and reactions at explicit times on a paused, registered GSAP timeline.
+Animate position, rotation and squash on a parent wrapper so changing cells preserves
+alignment. Preload sheets, keep assets local, and make every state a pure function of the
+timeline time so seeking backwards works. Read `video/AGENTS.md` and the HyperFrames
+skills first, then run `check` and inspect snapshots. The implemented dance and portrait
+examples live in `video/avatar-dance-test/`.
 
-For fluid dancing beyond a short stylized sprite loop, a rigged character or
-generated motion clip is a separate option; page-mascot does not provide either.
+## Dancing needs a different sheet
+
+Bust sheets have head directions and expressions, not body motion. The original bust
+builder pins the shoulders and fades the bottom, so it rejects or distorts deliberate body
+movement. For dancing, generate an ordered sequence of full-body poses with one
+character, outfit, camera, scale, canvas and ground line, define the beat subdivision and
+loop seam explicitly, and pack it as its own atlas (16 poses per four-beat bar in our
+runbook). Check foot/ground anchors, clipping, identity and continuity at the loop seam.
+For fluid dancing beyond a short stylised sprite loop, a rigged character or generated
+motion clip is a separate option.

@@ -29,7 +29,7 @@ What can be reused from "allow always" (`songs/allow-always/`): the story chain 
 - `video/`: the HyperFrames project (`video/CLAUDE.md` has the commands)
   - `video/allow-always-final/`: the "allow always" reel (final take): permission-prompt hook and loop, avatar disco, console/explosion punch, 80s VHS look and karaoke captions; renders go to `video/out/`
   - `video/avatar-dance-test/`: the avatar dance test and its sprite sheets (dance, close-ups, `assets/action/` console and explosion); `video/assets/disco` links to its `assets/` and the reel needs it
-- `vendor/page-mascot/`: MIT avatar generation tools, sprite renderer and four human examples; see `analysis/avatar-pipeline.md` for rebuild commands and the route to beat-timed avatars and dance poses
+- `vendor/page-mascot/` (since removed): MIT avatar tooling and examples; the retained technique is in `analysis/avatar-pipeline.md`, with credit in `THIRD_PARTY_NOTICES.md`.
 - `branding/`: robot profile portrait and its generation prompt
 - `diagnostics/`: one-off measuring scripts (gitignored)
 
