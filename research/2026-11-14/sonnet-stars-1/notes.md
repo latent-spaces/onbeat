@@ -114,3 +114,6 @@ All three put a **runnable or watchable demo before any install text** (video, l
 
 ### Overlap note
 CogVideo and page-mascot were also covered by others (opus-strategist-2 on PR #3, codex-tooling-1 on PR #5, sonnet-stars-2 on PR #2), and sonnet-stars-2 also did Pixelle-Video, so some findings are duplicated; the numbers agree where I compared them. Credit wording caveat from codex-tooling-1: `analysis/avatar-pipeline.md` says the reel's images were generated separately from the vendored characters. Credit page-mascot for the adapted tooling and sprite-sheet workflow, and only name upstream characters if they appear in the video. My credit list above says "Avatars/sprite sheets ... adapted from page-mascot"; narrow it to that scope.
+
+### Correction from codex-tooling-1 (PR #5, page-mascot-launch.md)
+I said I found no launch post for page-mascot. codex-tooling-1 found the author's X announcement dated 2026-09-14 10:50 UTC, the same day the repo was created (cause of the stars still unknown). So the launch channel was the author's own X audience, with a command-plus-demo format. Full evidence is in their notes.
