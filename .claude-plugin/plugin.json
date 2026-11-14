@@ -1,0 +1,9 @@
+{
+  "name": "music-reel",
+  "description": "Turn a song into a beat-synced vertical lyric reel with HyperFrames.",
+  "version": "0.1.0",
+  "author": { "name": "Oron Anschel" },
+  "homepage": "https://github.com/oronanschel/music-reels",
+  "repository": "https://github.com/oronanschel/music-reels",
+  "keywords": ["music", "lyric-video", "reels", "beat-sync", "hyperframes", "suno", "skill"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "music-reels",
+  "description": "Turn a song into a beat-synced lyric reel. Your coding agent does the edit.",
+  "owner": {
+    "name": "Oron Anschel",
+    "url": "https://github.com/oronanschel"
+  },
+  "plugins": [
+    {
+      "name": "music-reel",
+      "source": "./",
+      "description": "Render a beat-synced vertical lyric reel from a song with HyperFrames: timing, template, sprites, render."
+    }
+  ]
+}
