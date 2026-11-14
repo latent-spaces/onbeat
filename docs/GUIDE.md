@@ -97,4 +97,14 @@ A bar-by-bar story for Suno; a different instrument per section; Whisper on the 
 
 ## 12. Rebuild the hero reel
 
-`video/allow-always-final/` with `songs/allow-always/take-final-yes.mp3` and the committed, hand-corrected `video/data/allow-always-final.{json,js}`. Convert the MP3 to `out/dev/allow-always-final.wav` with ffmpeg (48 kHz) and keep the committed timing. Don't rerun `cut_final.py` for this, because it overwrites the curated alignment.
+`video/allow-always-final/` uses `songs/allow-always/take-final-yes.mp3` and the committed, hand-corrected `video/data/allow-always-final.{json,js}`:
+
+```bash
+mkdir -p out/dev
+ffmpeg -i songs/allow-always/take-final-yes.mp3 -ar 48000 out/dev/allow-always-final.wav
+cd video/allow-always-final
+npx --yes hyperframes@0.9.2 check
+npx --yes hyperframes@0.9.2 render -o ../../out/allow-always-final.mp4    # ~4–7 min for 2:24 at 60 fps
+```
+
+Keep the committed timing. Don't rerun `cut_final.py` for this, because it overwrites the curated alignment. If the composition still loads GSAP from a CDN, the render needs network access.
