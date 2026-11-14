@@ -1,0 +1,16 @@
+{
+  "outDir": "out",
+  "style": "Flat 2D illustration, thick dark outline, 80s synth palette (teal, magenta, cream), no text.",
+  "character": "A small silver robot with a round head, one antenna and a single green visor.",
+  "sheets": [
+    {
+      "id": "robot-dance",
+      "kind": "dance",
+      "grid": {"columns": 4, "rows": 4},
+      "motion": "Two-step groove: weight shifts left, right, arms swing opposite to the feet, pose 16 flows back into pose 1.",
+      "playback": {"fps": 12, "beatsPerLoop": 4},
+      "anchor": "feet at a fixed ground line",
+      "higgsfield": {"model": "<model-id>", "params": {}}
+    }
+  ]
+}
