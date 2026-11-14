@@ -23,6 +23,8 @@ What can be reused from "allow always" (`songs/allow-always/`): the story chain 
 
 ## Repository contents before packaging
 
+These paths now live on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive), not on main.
+
 - `analysis/playbook.md`: how the reference reels work and what we learned; the main document
 - `analysis/runbooks/`: repeatable sprite-reel production workflow, provider-neutral image prompts and cross-session learning log
 - `analysis/breakdown/<id>.md`: per-reel breakdowns of the ten studied reels
@@ -37,4 +39,4 @@ What can be reused from "allow always" (`songs/allow-always/`): the story chain 
 
 ## Reference research
 
-The early research downloaded reference Instagram reels to study how they were made. Those raw inputs are kept for the owner to decide on; see `analysis/playbook.md` for the aggregated findings.
+The early research downloaded reference Instagram reels to study how they were made. The raw inputs and the aggregated findings (`analysis/playbook.md`) were moved to the `archive` branch when main was slimmed down.
