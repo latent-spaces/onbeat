@@ -12,19 +12,31 @@
 
 <p align="center"><sub>Above: a silent 7 s preview of the 11.5 s bundled sample (chorus of "allow always"). Status: <b>early release (v0.1)</b>.</sub></p>
 
-<!-- OWNER: upload the two local clips as GitHub user-attachments, then replace each
-     placeholder with its URL on its own line. GitHub will render players with audio.
-     Verified local files: out/readme/hero.mp4 (23.04 s, 8.8 MB) and
-     out/readme/sample.mp4 (11.53 s, 3.85 MB). These files are ignored, not committed.
-     Do not paste a repository file URL; use the user-attachments upload URL. -->
+<!-- OWNER: upload each clip as a GitHub user-attachment (drag it into the editor of a new issue or PR
+     comment, do not submit), then replace its placeholder with the URL it inserts, on its own line.
+     GitHub then renders a player with sound. Clips live in out/readme/ (ignored, not in git).
+     Do not paste a repository file URL. -->
 
-**The hero reel** — 23 seconds from the finale of "allow always", with sound:
+<!-- VIDEO: out/readme/5-disco.mp4 → paste user-attachments URL here -->
 
-HERO_VIDEO_URL_PLACEHOLDER
+<details>
+<summary><b>One song, five looks</b> — more styles from the same reel</summary>
 
-**The bundled sample** — 11.5 seconds, exactly what `make sample` renders:
+1. **Intro**: a dark terminal, an a cappella "may I read this file".
+<!-- VIDEO: out/readme/1-intro.mp4 → paste user-attachments URL here -->
 
-SAMPLE_VIDEO_URL_PLACEHOLDER
+2. **The drop**: blue, "may I install".
+<!-- VIDEO: out/readme/2-drop.mp4 → paste user-attachments URL here -->
+
+3. **Chorus**: pink, "approve for me".
+<!-- VIDEO: out/readme/3-chorus.mp4 → paste user-attachments URL here -->
+
+4. **Yes!**: giant kinetic type.
+<!-- VIDEO: out/readme/4-yes.mp4 → paste user-attachments URL here -->
+
+The fifth look, the disco with the Earth exploding, is the clip above.
+
+</details>
 
 ---
 
@@ -37,6 +49,10 @@ make sample   # renders the bundled sample -> out/sample.mp4 (no keys, no accoun
 ```
 
 The first render downloads HyperFrames and a headless browser once. With those cached, the render step took about 11–38 s on an Apple M4 laptop, and a full `make sample` including checks took up to about 2 minutes. Cold-install time isn't measured yet. Step-by-step, with the expected output for each step: **[docs/TRY-IT.md](docs/TRY-IT.md)**.
+
+**What you'll make in 5 minutes**: the bundled sample, 11.5 s, exactly what `make sample` renders.
+
+<!-- VIDEO: out/readme/sample.mp4 → paste user-attachments URL here -->
 
 ### Use it from your agent
 
