@@ -12,15 +12,19 @@
 
 <p align="center"><sub>Above: a silent 7 s preview of the 11.5 s bundled sample (chorus of "allow always"). Status: <b>early release (v0.1)</b>.</sub></p>
 
-<!-- OWNER: upload the two local clips as GitHub user-attachments, then replace each
+<!-- OWNER: upload the three local clips as GitHub user-attachments, then replace each
      placeholder with its URL on its own line. GitHub will render players with audio.
-     Verified local files: out/readme/hero.mp4 (23.04 s, 8.8 MB) and
-     out/readme/sample.mp4 (11.53 s, 3.85 MB). These files are ignored, not committed.
+     Local files (ignored, not committed): out/readme/disco.mp4 (9.6 s, 4.2 MB),
+     out/readme/terminal.mp4 (9.6 s, 1.8 MB), out/readme/sample.mp4 (11.5 s, 3.9 MB).
      Do not paste a repository file URL; use the user-attachments upload URL. -->
 
-**The hero reel** — 23 seconds from the finale of "allow always", with sound:
+**"allow always"** — the disco finale, with sound:
 
-HERO_VIDEO_URL_PLACEHOLDER
+DISCO_VIDEO_URL_PLACEHOLDER
+
+**Same song, the terminal look:**
+
+TERMINAL_VIDEO_URL_PLACEHOLDER
 
 **The bundled sample** — 11.5 seconds, exactly what `make sample` renders:
 
