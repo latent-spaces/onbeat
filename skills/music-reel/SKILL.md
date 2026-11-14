@@ -20,11 +20,11 @@ All commands run from the root of the `music-reels` repository (the folder with 
 In a new checkout, do this first, before anything else. Don't generate assets or analyse a new song yet.
 
 ```bash
-make doctor     # checks node >= 22, npx, ffmpeg; python is only needed later
+make doctor     # checks node >= 22, npx, ffmpeg, python3 (stdlib only) and the render browser
 make sample     # renders the bundled no-key sample -> out/sample.mp4
 ```
 
-- The first `make sample` downloads `hyperframes@0.9.2` and a headless browser, which takes a few minutes once. Later renders take about 15-30 s.
+- The first run downloads `hyperframes@0.9.2` and a headless browser once (`make browser` does just that step). With those cached, `make sample` took about 30 s to 2 min on an Apple M4.
 - If `make doctor` prints `missing`, run the fix it prints and run it again. Do not continue with a red item.
 - Tell the person where the file is (`out/sample.mp4`) and ask them to watch it with sound.
 
@@ -35,7 +35,7 @@ Ask the person for an audio file. If they make it in Suno, **they** generate and
 Lay the song out like this:
 
 ```
-songs/<name>/song.mp3      # or .m4a / .wav
+songs/<name>/song.mp3      # or .m4a / .wav / .flac / .ogg / .aiff (or pass AUDIO=/path)
 songs/<name>/lyrics.txt    # optional, one sung line per line
 songs/<name>/reel.json     # template config (title, palette, captions, cast); see video/template/README.md
 ```
@@ -45,7 +45,8 @@ songs/<name>/reel.json     # template config (title, palette, captions, cast); s
 ```bash
 make setup                       # once: .venv with pinned requirements.txt
 make timing SONG=<name>          # beats only (easy start): BPM, beats, bars, sections, kick envelope
-make timing SONG=<name> WORDS=1  # also sung-word times (needs .venv-align, docs/GUIDE.md section 2)
+make timing SONG=<name> WORDS=1  # also sung-word times (once: make setup-align; needs songs/<name>/lyrics.txt)
+                                 # add FORCE=1 to upgrade an existing beats-only timing.json (the old one is backed up)
 ```
 
 Output: `songs/<name>/timing.json`. Read back the BPM and bar count to the person.
@@ -60,7 +61,7 @@ Characters are optional. To add dancing sprites, follow `docs/sprites.md`:
 - **Codex built-in image generation** is the tested route.
 - **Higgsfield** is untested. The adapter prints the commands, and the owner must run any paid generation themselves.
 
-Both routes write sheets plus `sprites.json` (frame rects), so the animation code is the same for either provider. Put them in `songs/<name>/sprites/` and list the dancers in `reel.json` (`"cast": [{"sprite": "robot"}]`). Cast members dance automatically through `SpriteDance`: 16 poses per bar, a hop on every beat, a bigger hop on downbeats and a phase offset per character (`docs/beat-motion.md`).
+Both routes write sheets plus `sprites.json` (frame rects), so the animation code is the same for either provider. Put them in `songs/<name>/sprites/` and list the dancers in `reel.json` (`"cast": [{"name": "robot-dance", "phase": 0}]`, up to three members; `name` is the key in `sprites.json`). Cast members dance automatically through `SpriteDance`: 16 poses per bar, a hop on every beat, a bigger hop on downbeats and a phase offset per character (`docs/beat-motion.md`).
 
 ### 2c. Render and review
 
@@ -70,7 +71,7 @@ make render SONG=<name>          # -> out/<name>.mp4
 
 - **Sync check before a long render:** set `"syncCheck": true` in `reel.json`, or build with `python3 scripts/build_reel.py --song songs/<name> --out out/projects/<name> --sync-check`, or open the preview with `?synccheck`. It draws beat ticks, bar labels and word marks under a playhead. Turn it off for the final render.
 - Change one thing per render, and tell the person exactly which seconds changed.
-- `make render` writes `out/<name>.mp4`. Copy a render you want to keep to a versioned name before you render again.
+- `make render` writes `out/<name>.mp4` the first time, then `out/<name>-2.mp4`, `-3`… so it never overwrites an earlier render.
 - Inspect the encoded MP4 itself, not only the preview.
 
 ## 3. Rules
