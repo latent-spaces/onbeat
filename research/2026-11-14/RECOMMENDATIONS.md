@@ -17,6 +17,10 @@ Star counts are live GitHub numbers from 2026-11-14. We have **one star-history 
 
 latent-spaces/brag, sampled stargazer timestamps (opus-strategist-2, `opus-strategist-2/star-history/`): created 06-16 → 500 stars in launch week (06-25) → a slow month to 1,000 (07-29) → **2,000 → 4,000 in two days (09-16 to 09-18)** → 21k now. What we observed: a slow phase, then a sharp acceleration. **What caused it is unknown.** The curve can't show whether it was a post, a video or a listing. The practical lesson still holds as a hedge: have the repo ready (hero reel, working sample, install) before any spike, because one may come without warning.
 
+**Launch-channel traces found (codex-tooling-2; exposure, not proof of causality):**
+- `/brag` author post on r/ClaudeCode ([link](https://www.reddit.com/r/ClaudeCode/comments/1ubrc1y/i_built_a_claude_code_skill_called_brag_that/)): demo + repo + install line, a token-budget warning, and a request for feedback. Shown as "4mo ago", so the exact date isn't verified.
+- Motion Canvas Show HN, 2023-02-22 ([link](https://news.ycombinator.com/item?id=34897707), about 180 points). A top reader reply asks for a GIF or visual, and others point to the author's YouTube explainer. This directly supports putting the demo first.
+
 ## Positioning
 
 - **One line:** "Suno song in, beat-synced lyric reel out. Your coding agent does the edit."
