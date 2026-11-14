@@ -13,7 +13,7 @@ The upstream code and character images were vendored once (commit
 no upstream character images are used in our reels.
 
 The upstream license is reproduced here because the approach and some of the
-wording of the lessons in `analysis/avatar-pipeline.md` derive from it.
+wording of the lessons in [`analysis/avatar-pipeline.md`](https://github.com/oronanschel/music-reels/blob/archive/analysis/avatar-pipeline.md) (archive branch) derive from it.
 
 ```
 MIT License
