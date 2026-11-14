@@ -1,0 +1,75 @@
+# Plan: make the music-reels journey real
+
+Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.md on main (ba9359e), with team input from the project chat. Status words: **exists** = in the repo today; **to build** = not yet. Sizes: S < ½ day, M ½–2 days, L > 2 days.
+
+## 1. User journey: Claude Code / Codex user
+
+| # | Step | What they see | What they type or click | What can go wrong | Drop-off risk |
+|---|---|---|---|---|---|
+| 1 | See the reel | "allow always" on Instagram or X; the caption says "made with an AI agent, repo in comments / reply" | tap the link | no link: Instagram captions aren't clickable, so the link goes in the bio or a pinned comment, and on X in the first reply | **high**: needs the repo link in the first reply/comment |
+| 2 | Land on the repo | README hero: the reel playing inline plus a poster, then one line: "Suno song in, beat-synced lyric reel out. Your agent does the edit." | scroll | the README opens with planning notes or text before the video (**to build**: README rewrite) | **high**: decided in about 5 s |
+| 3 | Install | a single install block per agent | `npx skills add oronanschel/music-reels` (Claude Code) or the Codex plugin line | no skill exists yet (**to build**); Node is missing | medium |
+| 4 | First render (≤ 5 min target, unmeasured) | the agent prompt "Render the sample reel", then an MP4 in `out/` | paste the prompt from the README | a slow first `npx` HyperFrames download; Chrome/ffmpeg missing. The prototype `video/avatar-dance-test` renders (verified once, cached tooling) | medium: needs a `doctor` check |
+| 5 | Bring their own song | the README section "Make your own". Agents draft lyrics and the Styles line, but never touch Suno credits or CAPTCHAs | export a Suno M4A/MP3 plus lyrics into `songs/<name>/` | Suno free-plan download limits; rights to the song unclear | medium |
+| 6 | Timing | the agent runs beat + word timing and shows the bars and words found | "make timing for songs/<name>" | `.venv-align` install (torch, WhisperX, about 2 GB) is heavy, so offer a **beats-only mode** first (no karaoke). Suno doesn't sing the written lyrics, so the plain alignment drifts (GUIDE §5.2). `align_words.py` without `--lyrics` crashes | **high**: the hardest step |
+| 7 | Look | 3–4 named style presets with a still each (desk world, disco, minimal type), or one place + hero object (playbook §10) | approve or redirect | image-generator access; the sprite-sheet steps are complex (runbooks) | medium |
+| 8 | Compose + review | snapshots at changed moments; a phone-size render | short notes ("lyrics late at 0:41") | renders take 4–7 min for 2:24; GSAP from the CDN fails offline | low (the loop is fun) |
+| 9 | Render + post | a versioned MP4 plus a caption draft (from the `instagram-brief.md` formula) | upload themselves | the export is too big for the app; no credit line | low; each post advertises the repo |
+
+## 1b. CLI-only user (no agent)
+
+1. Same steps 1–2.
+2. `git clone …` → `make doctor` (to build: checks Node, ffmpeg, Python, Chrome).
+3. `make sample` (to build) → renders `video/avatar-dance-test` to `out/sample.mp4`. **Drop-off:** any missing dependency, which the doctor should name with the fix command.
+4. Own song: `make timing SONG=<name>` → edit `songs/<name>/lines.txt` windows if words drift → `make export SONG=<name>` → `make render SONG=<name>`.
+5. Without an agent, the look and composition mean editing HTML by hand, starting from a template (to build: song-agnostic template). **Biggest drop-off for CLI users**; say plainly in the README that the agent path is the easy one.
+
+### First 5 minutes, concretely (codex-tooling-1)
+
+- **0–1 min:** the hero, an "experimental" label, and two buttons: "Try the included sample" or "Make your own". No Suno or API account before the demo.
+- **1–2 min:** clone, then a doctor check for Node (tested on 26), ffmpeg and the render browser. It shows the first-download progress and the exact fix for anything missing.
+- **2–5 min:** these commands exist today: `cd video/avatar-dance-test && npm run check && npm run render` → `out/avatar-dance-test.mp4` (relative to that folder). The agent prompt: "Render the included sample; don't generate assets or analyze a new song." A root `npm run sample` that wraps this and prints the output path is still **to build**.
+- **Acceptance:** a fresh supported machine produces a visible and audible 11.53 s sample with no keys, ML or generation, and the setup and render times are recorded. The measured 14.4 s render used cached tooling, so "under 5 min" is still a target.
+- **Drop-off risks:** the repo is still private at launch, a runtime mismatch, a slow first `npx`/browser download, unexplained check warnings, an output buried in a subfolder.
+
+sonnet-stars-1's draft agrees on the same three cliffs: the stale README top, the first-render prerequisites, and vocal alignment. For the CLI path, its key point is that a config-driven template replaces hand-editing the 1,300-line `index.html`.
+
+**Rules for the entry (codex-tooling-2):** the README's first screen offers two choices, "Try with Claude Code/Codex" or "Try the CLI sample". Each route names its prerequisites, one verified sample action, the output path and playback. GUIDE.md is the secondary making-of, not a prerequisite. Ask for "Use my song" only *after* the first MP4 plays, with no credentials or full dependency list before that first success.
+
+## 2. Build plan
+
+| P | Item | Size | Touches |
+|---|---|---|---|
+| P0 | Tracked poster frame + 10 s preview of allow-always-final (cut on a lyric boundary), with a `.gitignore` exception for it | S | new `assets/readme/`, `.gitignore` |
+| P0 | Owner decision on the reference-research files (`reels.txt`, `analysis/comments/`) before going public | S (owner) | `analysis/`, `reels.txt` |
+| P0 | README rewrite: hero reel (poster + MP4 via GitHub attachment), one line, "Try it", GUIDE link, credits, experimental status; move the 2026-11-11 notes to `docs/history.md` | S | `README.md`, new `docs/history.md` |
+| P0 | Root LICENSE (owner picks) + third-party credit for page-mascot ("Sprite-atlas tooling and reference workflow adapted from page-mascot by Kamran Ahmed (MIT)…") + sample media rights note | S | `LICENSE`, `README.md`, `GUIDE.md` |
+| P0 | `make doctor` + `make sample` (renders the prototype, no keys) | S | new `Makefile`, `video/avatar-dance-test/package.json` |
+| P0 | Final-reel audio fast path: ffmpeg MP3 → WAV, keeping the committed timing; never rerun `cut_final.py` to reproduce | S | new `scripts/prepare_audio.sh`, `songs/allow-always/cut_final.py` (guard against overwrite) |
+| P0 | Vendor GSAP in the final composition | S | `video/allow-always-final/index.html`, `video/assets/` |
+| P1 | Pinned `requirements.txt` / `requirements-align.txt` | S | new files, GUIDE §2 |
+| P1 | Song-agnostic export: generalise `cut_final.py` + `align_final.py` (line windows from a file) | M | `scripts/`, `songs/allow-always/*.py` |
+| P1 | Song-agnostic starter composition (beat clock + voice clock + karaoke). **This gates both "second song without editing HTML" and the skill** (sonnet-stars-2) | M–L | new `video/template/`, `video/src/beatsync.js` |
+| P1 | Skill: `SKILL.md` (Claude Code) + Codex mirror wrapping doctor → timing → export → compose → render; plugin marketplace entry | M | new `skills/music-reel/`, `.claude-plugin/` |
+| P1 | Beats-only timing mode (no WhisperX; the composition hides karaoke) (opus-strategist-2) | S | `scripts/timing.py`, the template |
+| P2 | 3–4 style presets split out of `allow-always-final/index.html` (opus-strategist-2) | L | `video/` |
+| P1 | Sync-check overlay (beat grid + word boundaries) | S | `video/src/beatsync.js` |
+| P2 | Gallery of 2–3 reels with full inputs; short promo cut only on clean musical boundaries | M | `songs/`, `video/`, README |
+| P2 | Translated README (zh) | S | `README.zh-CN.md` |
+| Later | Hosted "paste a Suno link" studio | L | — |
+
+## 3. Launch plan (owner actions, in order)
+
+1. Merge the P0 items. Before any post, open the repo link from a signed-out phone to test it, and don't promise code by DM while the repo is private (codex-tooling-2). Run a fresh-clone test on a second machine and time `make sample`.
+2. **Pilot gate:** watch 2 fresh users (one agent, one CLI) follow the README without help. Record install time vs render time, errors, and whether they find and play the MP4. Both must finish the sample before any promotion; never advertise an unshipped installer or skill (codex-tooling-2).
+3. Choose the license and confirm rights: the Suno take (the plan's terms), the generated art, and the reference-research files (`reels.txt`, `analysis/comments/` stay out or are removed).
+4. Add description and topics (`suno, lyric-video, music-video, beat-sync, hyperframes, claude-code, agent-skills, codex`), then make the repo public.
+5. Post the reel on Instagram (per `songs/allow-always/instagram-brief.md`) and X. One call to action: try the sample. Reply with the repo as "how it was made", the PDoomVideo/page-mascot pattern of a same-day post with command + demo.
+6. Follow with a short screen recording: sample command → MP4 → one editable change, linking GUIDE.md. Then, the same day: r/ClaudeCode / r/ClaudeAI / r/SunoAI posts with the reel inline (read each subreddit's self-promotion rules first). Optionally a Show HN on a US weekday morning, with GUIDE.md as the story and the demo command in the first comment.
+7. Submit to "alternative to" directories (openalternative.co, alternativeto.net), awesome-claude-video-skills ("Music videos"), the HyperFrames showcase/Discord, and skills.sh.
+8. Launch week: ship visible fixes daily (stalled repos plateau), answer issues, post the second reel. Aim for a Trending day.
+9. After 24/72 h, check watch time, shares, repo visits, sample failures and remixes (stars are secondary). Patch the biggest drop-off, then show the next reel. After 48 h, check stars and traffic and decide on a second push. After 2 weeks: review stars, issues and drop-off questions; decide on P2.
+
+## Contributions
+
+Built from the research PRs #1–#6 (all six agents). opus-strategist-2 contributed the agent-journey details (closed PR #9, inlined here), beats-only mode and presets; codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items. codex-tooling-2 contributed the social→repo entry rules and the link test. Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
