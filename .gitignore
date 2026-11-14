@@ -13,8 +13,6 @@ out/
 .thumbnails/
 .waveform-cache/
 
-!assets/readme/*.mp4
-
 .tmp/
 
 __pycache__/
