@@ -2,6 +2,8 @@
 
 opus-strategist-2, 2026-11-14. My part of the team research: agent skills and code-video templates close to music-reels (Suno song → beat/word timing → HyperFrames → render).
 
+> **Update after main moved to 6daad3d (owner steering, 10:15Z):** the repo now has `GUIDE.md` (a 390-line end-to-end guide), a finished 2:24 reel (`video/allow-always-final/`, rendered to the gitignored `video/out/allow-always-final-80s-boom2.mp4`), sung-word alignment (`scripts/align_words.py`, `songs/allow-always/align_final.py`), the Suno prompt history, an Instagram brief and the runbooks in `analysis/runbooks/`. The "Where music-reels fits" section and the recommendations below were corrected for this. The repo comparisons are unchanged.
+
 Method: `gh api` repo metadata and READMEs, `gh search repos`, a star-timestamp sample for one repo (`star-history/`), and the category list in `zhuyansen/awesome-claude-video-skills`. Star counts were taken on 2026-11-14 around 09:45Z. Launch channels are inferred from README links and badges. I did not check them against HN, X or Reddit, so treat them as unverified.
 
 ## The repos
@@ -44,20 +46,23 @@ Created 2026-06-16. Star #100 came on 06-23, #500 on 06-25 (launch week), #1000 
 
 ## Where music-reels fits
 
-- Type: it should ship as a **skill + CLI with a hero reel**, not as a template. That means a skill such as `/music-reel` (Suno song → `timing.py` → HyperFrames composition → render), with `scripts/timing.py` as a usable CLI on its own.
+- What exists now (main 6daad3d): a finished 2:24 9:16 reel with a permission-prompt hook that loops, an avatar disco and karaoke captions. Also GUIDE.md, a full how-it-was-made guide with commands, prompts, a feedback log and dead ends, plus a committed final take (`songs/allow-always/take-final-yes.mp3`) and its timing data (`video/data/allow-always-final.json`). Our repo already has PDoomVideo's ingredients (a finished music video, a storyboard and process docs), and GUIDE.md is more thorough than what PDoomVideo publishes.
+- What doesn't exist yet: an installable skill or one-command CLI. The pipeline is a set of per-song scripts (`cut_final.py`, `align_final.py` with hand-written line windows) across two Python venvs, with no requirements files at the root, plus HyperFrames pinned at 0.9.2 through `npx`. The rendered MP4 isn't in git (`video/out/` is ignored), so the README can't show the reel yet. There is no GIF or short excerpt either.
+- Type: today it is a **studio-style source repo plus a guide**, like PDoomVideo and herk-edit-kit. It could grow into a **skill + CLI**. The fastest credible launch is PDoomVideo's: the reel plus "here's exactly how we made it". The skill can come after.
 - Gap: no popular repo does **song → word/beat-timed lyric reel**. Lyric-video repos have 47 stars or fewer. PDoomVideo (2.9k) proves the demand but is a one-off source dump, not a reusable tool.
 - Theme advantage: "allow always" is an AI-agent joke song, the same vein as P(doom), Clawd and alignment.check. That audience already shares this kind of content on X and YouTube.
 
 ## Recommendations (for RECOMMENDATIONS.md)
 
-1. **Finish one great reel before launch.** It should be 30–45 s, 9:16, and land the hook in the first 2 s. It is the README hero, the launch post and the proof. Without it nothing else matters (patterns 1 and 6).
-2. **Ship it as a skill.** Something like `npx skills add oronanschel/music-reels`, then `/music-reel path/to/song.mp3 lyrics.txt`, plus a Claude Code plugin marketplace entry. Keep `timing.py` usable on its own as a CLI ("song → timing JSON"). It is the most reusable piece and it's what other skill authors would star.
-3. **README anatomy:** the hero reel (GIF + MP4 link) → one line ("Turn a Suno song into a beat-synced lyric reel with Claude Code") → a one-line install → a "Try it" prompt → the 4-step pipeline diagram → a gallery with a raw vs final comparison → "How it was made" (link the playbook) → credits.
-4. **Bundle a sample song with its timing JSON**, so the first run works with no Suno account or credits.
-5. **Make it measurable:** report per-word timing error and beats hit, and add a "sync check" render with a beat grid overlay. That gives us a claim like motionmaxxing's.
-6. **Launch the way PDoom and brag did:** post the reel itself first, from the owner's account, with the repo as the "how it was made" reply. Then submit to awesome-claude-video-skills (Music videos), the HyperFrames showcase/Discord and skills.sh. These are owner actions; agents made no posts or sign-ups.
-7. **Each reel credits the repo.** A small end card or caption ("made with music-reels") means every reel shared also markets the repo, the way brag's videos do.
-8. **Name it.** Use a short, memeable command (for example `/drop`, `/reelify`, `/lipsync`) rather than "music-reels". Every top skill has a one-word verb. This is the owner's decision.
+1. **The hero reel exists. Make it showable in the README.** Cut a 10–15 s GIF/MP4 excerpt (the hook at 0:01 and the disco/Earth explosion at about 1:05, matching the covers in `instagram-brief.md`) and attach it at the top of the README. Link the full 2:24 reel once the owner has posted it.
+2. **Lead with GUIDE.md as the "how it was made" asset** (pattern 4). Its section 9 feedback log ("what the person said → the change that fixed it") and section 11 dead ends are the parts people share. Link both from the launch post.
+3. **Ship a skill next**, something like `npx skills add oronanschel/music-reels` then `/music-reel song.mp3 lyrics.txt`. Generalise `cut_final.py` and `align_final.py` (the per-song line windows) into one `scripts/` entry point first. Keep `timing.py` usable on its own as a CLI ("song → timing JSON").
+4. **Make the first run work offline:** add `requirements.txt` / `requirements-align.txt` for the two venvs, and let the committed `take-final-yes.mp3` and the `allow-always-final` timing JSON render the reel with no Suno account and no alignment step.
+5. **README anatomy:** hero excerpt → one line ("Turn a Suno song into a beat-synced lyric reel with Claude Code") → the pipeline diagram from GUIDE.md section 1 → install/run → gallery (dance test, raw vs final) → GUIDE.md and the playbook → credits (vendored page-mascot MIT, HyperFrames).
+6. **Make it measurable:** timing.py already reports figures we can claim, e.g. "125.009 BPM, median onset scatter 8 ms". Put those numbers in the README, and add a "sync check" render with a beat grid overlay.
+7. **Launch the way PDoom and brag did:** the reel itself goes out first, through the Instagram brief's owner-approved post. Then the repo as the "how it was made" reply on X/YouTube, then submissions to awesome-claude-video-skills (Music videos), the HyperFrames showcase/Discord and skills.sh. All of these are owner actions; agents made no posts or sign-ups.
+8. **Each reel credits the repo.** A small end card or caption ("made with music-reels") means every reel shared also markets the repo. Keep it out of the loop frame so the loop doesn't break.
+9. **Name the command.** Use a short, memeable one (for example `/drop`, `/reelify`) rather than "music-reels". This is the owner's decision.
 
 ## Files
 
