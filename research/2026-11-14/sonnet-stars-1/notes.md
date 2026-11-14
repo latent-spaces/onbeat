@@ -60,3 +60,42 @@ My first draft was written against the old main. What changed:
 - **New point in GUIDE.md's favour:** it is a rare "how we made it" document with prompts and mistakes. Of the repos I surveyed, none has this. The guide is a better headline asset than the code: consider a blog/DEV.to version (AutoMV used one).
 - `songs/allow-always/instagram-brief.md` says nothing gets posted without owner OK. Consistent with this phase's no-public-posts rule; my launch-channel list (rec 6) is a plan only.
 - I did not re-run the render, so the reproducibility of the one-command path is unverified here. codex-tooling-1 owns that audit.
+
+---
+
+## Owner-requested repos (sonnet-stars-1 slice: Pixelle-Video, page-mascot)
+Data: `gh repo view` at 2026-11-14 plus web search. The stargazers API returns 404 for us, so **there are no star-history curves**. Growth rates below are averages from created date, or from third-party snapshots (marked).
+
+### 1. Pixelle-Video (github.com/AIDC-AI/Pixelle-Video, formerly ATH-MaaS/)
+- **Stars:** 30,079, forks 4,366. Created 2025-11-07 (about 12 months). Average about 82 stars/day, but not even: third-party blogs date a launch/trending wave to **2026-05-04/05** when it was about 7,000-7,200 stars, i.e. roughly 23k stars came in the six months after (unverified snapshots, aggregator sources). Last push 2026-06-14.
+- **Type:** studio/engine. Python, Streamlit WebUI + API, ComfyUI / RunningHub workflows, direct model APIs (DashScope, OpenAI, Seedream, Kling...), Windows all-in-one package, Docker. Apache-2.0 (plus NOTICE). Owner is an Alibaba AIDC org, so it has corporate credibility and reach.
+- **README/demo:** centered title, language switch (中文 / English), badge row led by *video tutorial (Bilibili)*, *Windows package*, *docs site*, then an inline demo video **above the text**. Promise in one line: "enter a topic, get a full video: script, images, voice, music, compose". "Zero barrier, zero editing experience." Then a Web UI screenshot, a dated changelog (11 entries in 6 months, which signals it's alive), feature checklist, flow diagram, and a gallery of example videos per module (digital human, image-to-video, motion transfer).
+- **Why it appeals:** it removes the whole job for people who want volume content; Windows package lowers install to a download; Chinese-language-first docs and Bilibili tutorial hit the largest audience for this tool category.
+- **Copy:** video above the fold; one-sentence outcome; a no-terminal install path; dated changelog in README; a docs site; a video tutorial link in the first badge row.
+- **Avoid:** feature-sprawl (every model/API under the sun) and heavy dependencies on ComfyUI/GPU workflows. Our pitch is the opposite: one narrow, finished artifact (beat-synced lyric reel).
+
+### 2. page-mascot (github.com/nilbuild/page-mascot)
+- **Stars:** 1,376, forks 148. Created 2026-09-14, so about 2 months, about 22 stars/day on average. Single commit visible in history ("Initial commit"), one contributor, last push 2026-09-15 (the repo got its stars in the first weeks; no star-history curve). The author is **Kamran Ahmed** (kamran.fyi, 41k GitHub followers; widely known as the roadmap.sh founder). I found no Hacker News/Twitter launch post; the likely main channel is the author's own audience (inference, not verified). A third-party blog (themenonlab.blog) covered it.
+- **Type:** skill + React component + 52 premade characters + demo site (koboyo.com/page-mascot). `npm i page-mascot`, and `npx skills add nilbuild/page-mascot --skill page-mascot`.
+- **README/demo:** logo image, a single bold link "See the fifty-two →" to a live demo, then three tiny code blocks (install, use existing, draw your own with a prompt such as `/page-mascot a chibi otter`), a props table, a "How it works" with two sprite-sheet images, and one image of the same fox in six styles. Short, visual, instantly understood: the demo page is the product.
+- **Why it appeals:** delight + near-zero effort (one tag, one prop pair) + an agent skill so "make one that looks like me" works. The 52-character gallery is shareable on its own.
+- **Copy:** a live gallery page that sells the thing; prompts shown as the usage example (`/music-reels make a reel for song.mp3`); "use existing" vs "draw your own" split; a "How it works" with one diagram; install of skill by one `npx skills add` line.
+- **Avoid:** requiring OPENAI_API_KEY for the main path (it does this for custom drawing).
+
+#### License and credit for our vendored copy
+- Upstream license: **MIT, "Copyright (c) 2026 Kamran Ahmed"**. Our `vendor/page-mascot/UPSTREAM.json` records the upstream commit (`76a44ed…`), import date 2026-11-13, "unmodified" renderer/skill/scripts plus four sample characters (afro, ballerina, glasses, skater), and sha256 hashes. `vendor/page-mascot/LICENSE` is present, so the MIT condition (keep the copyright notice and permission text in copies or substantial portions) is currently met inside `vendor/`.
+- MIT is the only licence stated for the repo, and it has no separate art licence, so the character PNG/WebP files are covered by the same MIT terms as far as I can tell. This is my reading of the files, not legal advice. Worth one message to the author if the reel puts their characters front and centre.
+- **What to do before going public** (the MIT text doesn't require attribution beyond the notice, but crediting is the right move):
+  1. Keep `vendor/page-mascot/LICENSE` intact and untouched. If any vendored file is changed, say so in UPSTREAM.json (it currently says unmodified).
+  2. Add a `CREDITS.md` or README "Credits" section: "Avatars/sprite sheets and the avatar skill adapted from page-mascot by Kamran Ahmed (MIT), https://github.com/nilbuild/page-mascot", naming which four characters appear in the video.
+  3. Add the same credit to the Instagram caption's credit line (GUIDE.md already has "a credit line naming the tools") and optionally the video's end card.
+  4. The repo root has no LICENSE yet: choose ours (MIT would be consistent) and state that `vendor/page-mascot/` keeps its own MIT notice.
+  5. Don't use the author's name or koboyo.com to imply endorsement.
+- Note the community angle: page-mascot is trending in the same "agent skill that draws characters" space, so a tagged thank-you to the author after launch (once posting is allowed) is cheap goodwill and a possible signal-boost.
+
+### Updated recommendations from these two
+- README opening: outcome sentence, then a video/GIF of the reel directly under the title (Pixelle does it above the text), then a badge row led by "Watch / Guide / Install".
+- Make a live gallery page of finished reels (page-mascot's demo page sells it). GitHub Pages is free and needs no account beyond the repo's.
+- Show the agent prompt as the usage example.
+- Keep the dated changelog habit: it signals life.
+- Launch moments that moved these repos: Pixelle had a visible wave around a trending appearance; page-mascot rode the author's existing audience. We have neither, so a trending-day plan plus a ready-made share asset (the reel) matters more for us.
