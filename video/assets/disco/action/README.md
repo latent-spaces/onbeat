@@ -1,10 +1,10 @@
 # Control-panel and explosion sprites
 
-Two independent RGBA PNG sheets, each 3 columns × 3 rows. Read frames 0–8 from
+Two RGBA PNG sheets, each 3 columns × 3 rows. Read frames 0–8 from
 left to right, then top to bottom. Exact cell rectangles are in `sprites.json`.
 Original generated pixels and alpha are preserved.
 
-- `robot-controls-over-shoulder-3x3.png`: camera behind the silver robot's neck,
+- `robot-controls-over-shoulder-3x3-v2.png` (the one the reel uses; the v1 sheet is on the archive branch): camera behind the silver robot's neck,
   with shoulder foreground and hand pressing a fixed console. Frames 0–2 press
   cyan; 3–5 move to and press mustard; 6 presses coral; 7 approaches launch;
   8 presses the large red launch button. The console is included and opaque;
