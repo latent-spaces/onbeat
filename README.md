@@ -93,7 +93,7 @@ There are two clocks. The **beat clock** drives pulses, cuts and dance poses. Th
 | `video/sample/` | the bundled no-key sample (`make sample`) |
 | `video/assets/disco/` | shared sprite sheets used by the sample and the hero |
 | `video/allow-always-final/`, `songs/allow-always/` | the hero reel and what it needs to rebuild |
-| `docs/` | GUIDE (how the hero was made), TRY-IT, beat motion, sprites, timing, history |
+| `docs/` | GUIDE (how the hero was made, timing contract), TRY-IT, beat motion, sprites, history |
 
 Research and process notes (reference-reel analysis, playbook, runbooks, team research, early prototypes) live on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).
 
