@@ -6,7 +6,7 @@ Star counts are live GitHub numbers from 2026-11-14. We have **one star-history 
 
 ## TL;DR
 
-1. **The niche is empty and the engine is hot.** Three agents searched independently: the top "lyric video generator" repo on GitHub has 14–150 stars. HyperFrames, the engine we already use, reached 84k stars in 8 months, and the agent skills built on it get thousands (brag 21k in 5 months). Nobody owns "Suno song → beat-synced, word-timed lyric reel".
+1. **The niche looks underserved and the engine is hot.** Three agents searched independently. The top "lyric video generator" repos in GitHub search have 14 stars (repo-name search) to about 150 (broader search), and lyric-video skills top out at 132. This comes from search samples, not a full census. HyperFrames, the engine we already use, reached 84k stars in 8 months, and the agent skills built on it get thousands (brag 21k in 5 months). Nobody owns "Suno song → beat-synced, word-timed lyric reel".
 2. **Ship it as a Claude Code / Codex skill + CLI, not a studio.** Studios (OpenMontage 80k, MoneyPrinterTurbo 143k, OpenCut 98k) are a crowded fight. A one-command skill is how the fastest risers in our ecosystem won.
 3. **The README's first screen must be a playable reel made by the tool.** Ideally it's a reel about making reels with an agent, so the demo is proof and marketing at once (brag, herk-edit-kit).
 4. **Zero-key try path.** Bundle our own short song plus its timing JSON, so clone → render works in under 5 minutes with no Suno account or API keys. Every small competitor demands keys first.
@@ -35,6 +35,15 @@ latent-spaces/brag, sampled stargazer timestamps (opus-strategist-2, `opus-strat
 6. "What makes a reel work": a short, numbers-first summary of `analysis/playbook.md`. Publish **our own measurements only**: no reference reels, mascot, lyrics or downloaded media from other creators.
 7. Gallery, license, contributing.
 
+## Where the repo stands today (codex-tooling-1/2 audit)
+
+None of the skill / CLI / one-command features recommended here exist yet. They are targets.
+- **A fresh clone can't render.** All three compositions read audio from `video/assets/dev`, a tracked symlink to `../../out/dev`, which is gitignored and missing in a clone. The stub generator writes timing data but no audio.
+- **Dependencies are implicit.** The Python scripts need librosa/numpy/scipy with no manifest, plus a separately hardcoded `.venv-align` (Demucs, torch, faster-whisper, WhisperX).
+- **The data contract has a gap.** `timing.py` emits JSON, but the HTML compositions read `window.TIMING` JS. Only the song-specific `cut.py` and the stub generator bridge the two, and there's no general JSON → composition adapter.
+- **Public metadata is empty.** The repo is private, with no description, homepage, license or topics, and no tracked demo image or video. The README is a "next session" handoff that says no video was built for the current story. There's no GUIDE.md.
+- **Order of work this implies:** a rights-cleared, no-key sample → a general timing-JSON → composition adapter → a preflight/doctor check (deps, audio present) → then the CLI and skill wrapper → then the README. The README should state an "experimental" status honestly until the skill really exists.
+
 ## Before going public: repo work (Phase 2 candidates)
 
 - [ ] Finish **one** great reel with the Suno-first approach (README "Next step"); without it there is nothing to show.
@@ -42,7 +51,7 @@ latent-spaces/brag, sampled stargazer timestamps (opus-strategist-2, `opus-strat
 - [ ] Add `sample/` with an own or CC0 short song, its lyrics and precomputed timing JSON.
 - [ ] Package `SKILL.md` (+ Codex mirror) and a single CLI entry point.
 - [ ] **Decide what to do with the reference research** (`reels.txt`, yt-dlp instructions, `analysis/comments/*.json` holding other people's comments, per-reel breakdowns of another account). Recommended: keep aggregated findings, drop or keep private the raw comment exports and download instructions. **Owner decision.**
-- [ ] LICENSE, topics, release tag, issue templates; optional opt-in outro "made with music-reels" on rendered reels so every share advertises the repo.
+- [ ] Make the repo public (owner decision), plus LICENSE, topics, release tag, issue templates; optional opt-in outro "made with music-reels" on rendered reels so every share advertises the repo.
 
 ## Launch plan (for the owner; we posted nothing)
 
@@ -67,4 +76,6 @@ All of these are outside actions that need the owner's approval:
 | opus-strategist-1 | HyperFrames-ecosystem competitive set, README anatomy | `opus-strategist-1/notes.md` |
 | sonnet-stars-1 | AI music / lyric-video tools | `sonnet-stars-1/notes.md` (PR #1) |
 | sonnet-stars-2 | Creator studios / short-form tools | `sonnet-stars-2/notes.md` (PR #2) |
-| opus-strategist-2 | Claude Code skills, Remotion/HyperFrames templates, brag star history | `opus-strategist-2/notes.md` (branch research/opus-strategist-2) |
+| opus-strategist-2 | Claude Code skills, Remotion/HyperFrames templates, brag star history | `opus-strategist-2/notes.md` (PR #3) |
+| codex-tooling-1 | Reproducibility / tooling readiness of our repo | messages to opus-strategist-1; notes in their own folder/PR if they land |
+| codex-tooling-2 | README / public-facing anatomy audit | messages to opus-strategist-1; notes in their own folder/PR if they land |

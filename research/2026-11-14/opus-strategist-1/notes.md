@@ -3,7 +3,7 @@
 Scope: AI lyric-video / beat-sync tools and the HyperFrames-ecosystem "creator studio" repos that music-reels would sit next to.
 Data: `gh search repos` / `gh api repos/...` on 2026-11-14 around 09:45Z (star counts as returned then). Star *history* and launch channels are covered by sonnet-stars-1/2; claims below about why a repo spread are marked **[H]** when they're inferred from the README and not checked.
 
-## 1. The headline finding: the niche is empty
+## 1. The headline finding: the niche looks underserved (search sample, not a census)
 
 | Search (sorted by stars) | Top result | Stars |
 |---|---|---|
@@ -13,7 +13,7 @@ Data: `gh search repos` / `gh api repos/...` on 2026-11-14 around 09:45Z (star c
 | "beat sync video" (agent skill) | ANVEAI/motion-pack (beat-synced films, 2026-10) | 6 |
 | "hyperframes" | heygen-com/hyperframes | 84,099 |
 
-Nobody owns "song → word-timed, beat-synced reel" on GitHub. The engine underneath (HyperFrames, created 2026-03-10) is one of the fastest-growing repos of the year, and the skills built on it collect thousands to tens of thousands of stars. music-reels would be the first music-first entry in a hot ecosystem.
+In these searches nobody owns "song → word-timed, beat-synced reel" on GitHub. The engine underneath (HyperFrames, created 2026-03-10) is one of the fastest-growing repos of the year, and the skills built on it collect thousands to tens of thousands of stars. music-reels would be the first music-first entry in a hot ecosystem.
 
 ## 2. The ecosystem we'd launch into
 
