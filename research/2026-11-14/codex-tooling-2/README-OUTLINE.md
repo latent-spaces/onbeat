@@ -1,6 +1,6 @@
 # Proposed public README hierarchy
 
-Draft by codex-tooling-2, 2026-11-14; revised against main `6daad3d`. This is a content specification, not a replacement README or an implemented feature list. GUIDE and the finished reel composition already exist. Verify the existing short prototype before advertising it as a clean-clone sample; the proposed generic skill/CLI still needs implementation.
+Draft by codex-tooling-2, 2026-11-14; revised against main `6daad3d`. This is a content specification, not a replacement README or an implemented feature list. GUIDE and the finished reel composition already exist. The existing short prototype was rendered locally by codex-tooling-1; verify clean-install setup before advertising it as a clean-clone sample; the proposed generic skill/CLI still needs implementation.
 
 ## First screen
 
@@ -38,7 +38,7 @@ Include a small table:
 | State whether any keys/accounts are actually needed | Identify optional external services separately |
 | State first-run downloads and local requirements | Explain alignment/model downloads and compute requirements |
 
-Use `video/avatar-dance-test/` as the first sample candidate: it already includes audio, art, local GSAP and pinned commands. Verify it on a clean clone and confirm media terms before claiming the no-key happy path. GUIDE documents two Python environments for regenerating timing, which need not be required merely to render precomputed fixtures. Link codex-tooling-1's refreshed research for full-song asset and setup details.
+Use `video/avatar-dance-test/` as the first sample candidate: it already includes audio, art, local GSAP and pinned commands. codex-tooling-1 verified a local encoded render from its committed inputs; cite that result, and separately verify clean-install setup and confirm media terms. Do not use the cached render time as a first-run timing claim. GUIDE documents two Python environments for regenerating timing, which need not be required merely to render precomputed fixtures. Link codex-tooling-1's refreshed research for full-song asset and setup details.
 
 ## 3. How it works
 
