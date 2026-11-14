@@ -596,13 +596,15 @@
       <svg data-hf-id="hf-l2qy" id="char"></svg>
       <div data-hf-id="hf-81qu" id="label">agent</div>
 
-      <div data-hf-id="hf-7j53" id="dlg" class="panel">
-        <div data-hf-id="hf-d62w" id="dlg-head" class="head">permission request</div>
-        <div data-hf-id="hf-e8cx" id="dlg-cmd">read ../billing-service/.env</div>
-        <div data-hf-id="hf-1nx2" id="dlg-note">outside the approved folder</div>
-        <div data-hf-id="hf-zh4f" id="btn-yes" class="btn">Yes</div>
-        <div data-hf-id="hf-bx5t" id="btn-no" class="btn">No</div>
-        <div data-hf-id="hf-h1ci" id="btn-always" class="btn">Allow always</div>
+      <div id="dialog-layer" style="position: absolute; inset: 0">
+        <div data-hf-id="hf-7j53" id="dlg" class="panel">
+          <div data-hf-id="hf-d62w" id="dlg-head" class="head">permission request</div>
+          <div data-hf-id="hf-e8cx" id="dlg-cmd">read ../billing-service/.env</div>
+          <div data-hf-id="hf-1nx2" id="dlg-note">outside the approved folder</div>
+          <div data-hf-id="hf-zh4f" id="btn-yes" class="btn">Yes</div>
+          <div data-hf-id="hf-bx5t" id="btn-no" class="btn">No</div>
+          <div data-hf-id="hf-h1ci" id="btn-always" class="btn">Allow always</div>
+        </div>
       </div>
 
       <div data-hf-id="hf-fil2" id="log" class="panel">
@@ -1109,7 +1111,7 @@
         show("#disco", from);
         hide("#disco", to);
         // The UI text sits under the floor while it lasts.
-        ["#ui-left", "#ui-right", "#counter", "#label", "#char"].forEach((id) => {
+        ["#ui-left", "#ui-right", "#counter", "#label", "#char", "#dialog-layer"].forEach((id) => {
           hide(id, from);
           show(id, to);
         });
