@@ -1,0 +1,6 @@
+# Analysis + sprite tools. Tested on Python 3.14 / macOS arm64.
+# The bundled render uses Python 3 stdlib and needs no analysis environment.
+librosa==1.0.1
+numpy==2.5.4
+scipy==1.18.1
+Pillow==13.0.0
