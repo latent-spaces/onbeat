@@ -48,6 +48,9 @@
       o.parent,
     );
     var strip = el("div", "position:absolute;left:0;top:0;height:300px;width:" + Math.ceil(dur * pps + W) + "px;", box);
+    // The ruler scrolls past the clipped box on purpose; tell the layout check.
+    box.setAttribute("data-layout-allow-overflow", "");
+    strip.setAttribute("data-layout-allow-overflow", "");
 
     var bars = timing.bars || [];
     timing.beats.forEach(function (b) {
@@ -60,7 +63,7 @@
       );
     });
     bars.forEach(function (b, i) {
-      el("div", "position:absolute;top:8px;left:" + (b * pps + W / 2 + 8) + "px;color:#ffb23f;font-size:26px;", strip, "bar " + (i + 1));
+      el("div", "position:absolute;top:8px;left:" + (b * pps + W / 2 + 8) + "px;color:#ffb23f;font-size:28px;", strip, "bar " + (i + 1));
     });
     (timing.words || []).forEach(function (w) {
       var mark = el(
@@ -69,7 +72,8 @@
           "px;height:22px;background:#3fd17a;border-left:3px solid #fff;",
         strip,
       );
-      el("div", "position:absolute;top:26px;left:0;color:#d8ffe6;font-size:24px;white-space:nowrap;", mark, w.text);
+      mark.setAttribute("data-layout-allow-overflow", "");
+      el("div", "position:absolute;top:26px;left:0;color:#d8ffe6;font-size:28px;white-space:nowrap;", mark, w.text);
     });
 
     // The ruler scrolls linearly with time: the playhead is always at the centre.
