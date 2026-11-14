@@ -16,3 +16,5 @@ out/
 !assets/readme/*.mp4
 
 .tmp/
+
+__pycache__/

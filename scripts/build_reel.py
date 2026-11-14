@@ -104,10 +104,10 @@ def load_inputs(song):
         number(config["captionStartBar"], "captionStartBar")
         if not isinstance(config["captionStartBar"], int):
             raise ValueError("captionStartBar must be an integer")
-    audio_names = [timing.get("audio", ""), "song.mp3", "song.m4a", "song.wav"]
+    audio_names = [timing.get("audio", ""), "song.mp3", "song.m4a", "song.wav", "song.flac", "song.ogg", "song.aiff"]
     audio = next((song / n for n in audio_names if n and Path(n).name == n and (song / n).is_file()), None)
     if audio is None:
-        raise ValueError("no audio: put song.mp3, song.m4a or song.wav in the song folder")
+        raise ValueError("no audio: put song.mp3, .m4a, .wav, .flac, .ogg or .aiff in the song folder")
     sprites = song / "sprites"
     if not (sprites / "sprites.json").exists():
         sprites = ROOT / "video/assets/disco"
