@@ -110,25 +110,44 @@
     return pct(x) + " " + pct(y);
   }
 
-  // background-position for frame i of a sprites.json sheet entry (frame rects in pixels).
-  // Accepts both shapes: { width, height, frames: [{ x, y, width, height }] } and the
-  // docs/sprites.md manifest entry { grid: [cols, rows], tile: { w, h }, frames: [{ i, x, y, w, h }] }.
+  // Sheet geometry from a sprites.json entry. Accepts the ingest output of
+  // skills/music-reel/sprites/sprites.py ({ grid: { columns, rows }, tile: { w, h }, size: { w, h },
+  // frames: [{ i, x, y, w, h }] }), a grid given as [cols, rows], and plain
+  // { width, height, frames: [{ x, y, width, height }] }.
+  function gridOf(sheet) {
+    var g = sheet.grid;
+    if (g && g.columns != null) return [g.columns, g.rows != null ? g.rows : g.columns];
+    if (Array.isArray(g)) return [g[0], g[1] != null ? g[1] : g[0]];
+    if (typeof g === "number") return [g, g];
+    var f = sheet.frames[0];
+    var fw = f.width != null ? f.width : f.w;
+    var fh = f.height != null ? f.height : f.h;
+    var s = sizeOf(sheet);
+    return [Math.round(s[0] / fw), Math.round(s[1] / fh)];
+  }
+
+  function sizeOf(sheet) {
+    if (sheet.width != null) return [sheet.width, sheet.height];
+    if (sheet.size) return [sheet.size.w, sheet.size.h];
+    var g = gridOf(sheet);
+    return [g[0] * sheet.tile.w, g[1] * sheet.tile.h];
+  }
+
+  // background-position for frame i of a sprites.json entry (frame rects in pixels).
   function rectPosition(sheet, i) {
     var f = sheet.frames[i];
     var fw = f.width != null ? f.width : f.w;
     var fh = f.height != null ? f.height : f.h;
-    var W = sheet.width != null ? sheet.width : sheet.grid[0] * sheet.tile.w;
-    var H = sheet.height != null ? sheet.height : sheet.grid[1] * sheet.tile.h;
-    var dx = W - fw;
-    var dy = H - fh;
+    var s = sizeOf(sheet);
+    var dx = s[0] - fw;
+    var dy = s[1] - fh;
     return pct(dx > 0 ? (f.x / dx) * 100 : 0) + " " + pct(dy > 0 ? (f.y / dy) * 100 : 0);
   }
 
   // background-size for a sheet entry: cols*100% rows*100%.
   function backgroundSize(sheet) {
-    var c = sheet.grid ? sheet.grid[0] : Math.round(sheet.width / sheet.frames[0].width);
-    var r = sheet.grid ? sheet.grid[1] : Math.round(sheet.height / sheet.frames[0].height);
-    return c * 100 + "% " + r * 100 + "%";
+    var g = gridOf(sheet);
+    return g[0] * 100 + "% " + g[1] * 100 + "%";
   }
 
   // dance(tl, timing, o): pose stepping plus kick bounce for one character.

@@ -76,3 +76,19 @@ test("rectPosition reads the docs/sprites.md manifest shape (grid, tile, w/h)", 
   for (let i = 0; i < 16; i++) assert.strictEqual(SD.rectPosition(entry, i), SD.cellPosition(i, 4, 4));
   assert.strictEqual(SD.backgroundSize(entry), "400% 400%");
 });
+
+test("rectPosition reads the exact sprites.py ingest output (grid object, size, tile)", () => {
+  const entry = {
+    name: "robot-dance", kind: "dance", file: "robot-dance.webp",
+    grid: { columns: 4, rows: 4, order: "row-major" },
+    tile: { w: 384, h: 384 }, size: { w: 1536, h: 1536 }, anchor: "feet", frames: [],
+  };
+  for (let i = 0; i < 16; i++) entry.frames.push({ i, x: (i % 4) * 384, y: Math.floor(i / 4) * 384, w: 384, h: 384 });
+  assert.strictEqual(SD.rectPosition(entry, 0), "0% 0%");
+  assert.strictEqual(SD.rectPosition(entry, 15), "100% 100%");
+  assert.strictEqual(SD.rectPosition(entry, 5), SD.cellPosition(5, 4, 4));
+  assert.strictEqual(SD.backgroundSize(entry), "400% 400%");
+  const tl = fakeTimeline();
+  SD.dance(tl, T, { target: "#r", sheet: entry, from: groove.start, to: groove.start + 4, bounce: false });
+  assert.ok(new Set(tl.calls.map((c) => c.vars.backgroundPosition)).size > 4, "steps through many poses");
+});
