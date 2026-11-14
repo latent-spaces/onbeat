@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="assets/readme/preview.mp4"><img src="assets/readme/preview.gif" alt="A cel-style robot dances on the beat in front of a coral disc on a cream background while the lyrics 'I don't wanna click no more' highlight word by word" width="320"></a>
+  <img src="assets/readme/preview.gif" alt="A cel-style robot dances on the beat in front of a coral disc on a cream background while the lyrics 'I don't wanna click no more' highlight word by word" width="320">
 </p>
 
 <h1 align="center">music-reels</h1>
@@ -10,7 +10,21 @@
   A Claude Code + Codex skill and a small CLI that measure a song's beats and sung words and drive a <a href="https://hyperframes.heygen.com">HyperFrames</a> reel from them. The output is a vertical 1080×1920 MP4, ready for Reels, Shorts and TikTok.
 </p>
 
-<p align="center"><sub>Above: 7 s of the 11.5 s bundled sample, exactly as <code>make sample</code> renders it (chorus of "allow always"). <a href="assets/readme/preview.mp4">Watch it with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
+<p align="center"><sub>Above: a silent 7 s preview of the 11.5 s bundled sample (chorus of "allow always"). Status: <b>early release (v0.1)</b>.</sub></p>
+
+<!-- OWNER: upload the two local clips as GitHub user-attachments, then replace each
+     placeholder with its URL on its own line. GitHub will render players with audio.
+     Verified local files: out/readme/hero.mp4 (23.04 s, 8.8 MB) and
+     out/readme/sample.mp4 (11.53 s, 3.85 MB). These files are ignored, not committed.
+     Do not paste a repository file URL; use the user-attachments upload URL. -->
+
+**The hero reel** — 23 seconds from the finale of "allow always", with sound:
+
+HERO_VIDEO_URL_PLACEHOLDER
+
+**The bundled sample** — 11.5 seconds, exactly what `make sample` renders:
+
+SAMPLE_VIDEO_URL_PLACEHOLDER
 
 ---
 
