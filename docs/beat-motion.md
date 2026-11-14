@@ -86,7 +86,7 @@ The timing JSON from `scripts/timing.py` (exported to the video as `window.TIMIN
 if (SyncCheck.wanted()) SyncCheck.overlay(tl, TIMING, { parent: document.getElementById("root") });
 ```
 
-It's on when the preview URL has `?synccheck`, or when `window.REEL_CONFIG.syncCheck` is `true`. It draws:
+It's on when the preview URL has `?synccheck`, or when the reel config has `syncCheck: true` (`reel.json` → `window.REEL`, or `python3 scripts/build_reel.py --sync-check`; `window.REEL_CONFIG` also works). It draws:
 
 - a ruler along the bottom that scrolls under a fixed red playhead: thin ticks for beats, tall amber ticks and "bar N" labels for downbeats, green bars for each sung word, with the word text;
 - an amber flash at top right on every beat (full size on downbeats);

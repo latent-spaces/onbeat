@@ -20,9 +20,10 @@
     return n;
   }
 
-  // On when the page URL has ?synccheck, or window.REEL_CONFIG.syncCheck is true.
+  // On when the page URL has ?synccheck, or the reel config (window.REEL from build_reel.py,
+  // or window.REEL_CONFIG) has syncCheck: true.
   function wanted() {
-    var cfg = root.REEL_CONFIG || {};
+    var cfg = root.REEL || root.REEL_CONFIG || {};
     var q = (root.location && root.location.search) || "";
     return cfg.syncCheck === true || /[?&]synccheck\b/.test(q);
   }
