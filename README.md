@@ -12,19 +12,40 @@
 
 <p align="center"><sub>Above: a silent 7 s preview of the 11.5 s bundled sample (chorus of "allow always"). Status: <b>early release (v0.1)</b>.</sub></p>
 
-<!-- OWNER: upload the two local clips as GitHub user-attachments, then replace each
-     placeholder with its URL on its own line. GitHub will render players with audio.
-     Verified local files: out/readme/hero.mp4 (23.04 s, 8.8 MB) and
-     out/readme/sample.mp4 (11.53 s, 3.85 MB). These files are ignored, not committed.
-     Do not paste a repository file URL; use the user-attachments upload URL. -->
+**"allow always"**: the disco finale, with sound.
 
-**The hero reel** — 23 seconds from the finale of "allow always", with sound:
+<!-- VIDEO: out/readme/5-disco.mp4 → paste user-attachments URL here -->
 
-HERO_VIDEO_URL_PLACEHOLDER
+<details>
+<summary>More styles from the same reel</summary>
 
-**The bundled sample** — 11.5 seconds, exactly what `make sample` renders:
+### One song, five looks
 
-SAMPLE_VIDEO_URL_PLACEHOLDER
+The same song and timing data drive every look. Each clip is about 10 s, cut on bar lines.
+
+**Intro**: a dark terminal and an a cappella "may I read this file".
+
+<!-- VIDEO: out/readme/1-intro.mp4 → paste user-attachments URL here -->
+
+**Drop**: the blue drop, "may I install".
+
+<!-- VIDEO: out/readme/2-drop.mp4 → paste user-attachments URL here -->
+
+**Chorus**: the pink chorus, "approve for me".
+
+<!-- VIDEO: out/readme/3-chorus.mp4 → paste user-attachments URL here -->
+
+**Yes!**: giant kinetic type, one word per sung "yes".
+
+<!-- VIDEO: out/readme/4-yes.mp4 → paste user-attachments URL here -->
+
+</details>
+
+## What you'll make in 5 minutes
+
+`make sample` renders this 11.5 s reel from the bundled song, with no keys or accounts:
+
+<!-- VIDEO: out/readme/sample.mp4 → paste user-attachments URL here -->
 
 ---
 
