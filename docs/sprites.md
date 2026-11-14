@@ -42,9 +42,9 @@ light and a dark background before using it. `python $S selftest` runs the whole
 
 ## Provider A: Codex built-in image generation (tested route)
 
-Free under a Codex subscription. `provider codex` prints one block per sheet: use `image_gen` with
+`provider codex` prints one block per sheet: use `image_gen` with
 `transparent_background: true`, pass the reference images, and save the result to the printed path.
-This is how the shipped characters were made; the checks above pass on them.
+This is the route the shipped sample characters came from (see `video/avatar-dance-test/GENERATION-PROMPTS.json`).
 
 ## Provider B: Higgsfield (**untested, needs an owner run**)
 
@@ -64,4 +64,4 @@ tested only on synthetic sheets, so inspect the edges.
 - A checkerboard painted into the PNG is not alpha. Ask for a flat key colour instead.
 - Record frame numbers with each file; they change between revisions.
 - Longer notes: `analysis/runbooks/animated-music-reels.md` section 9 and `analysis/runbooks/image-prompts.md`.
-- The vendored `vendor/page-mascot` has its own keying and consistency checks (MIT, Kamran Ahmed).
+- The atlas approach is adapted from [page-mascot](https://github.com/nilbuild/page-mascot) by nilbuild (MIT); see `THIRD_PARTY_NOTICES.md`.

@@ -18,6 +18,7 @@ All indices are zero-based, row-major (left to right, then top to bottom).
 """
 import argparse
 import json
+import shlex
 import sys
 from pathlib import Path
 
@@ -146,7 +147,7 @@ def cmd_provider(args):
               '# Run these in a Codex session (or Claude Code with the Codex image tool).\n'
               '# Ask for one sheet per message and save each into the sheets/ folder.\n')
         for job in plan['jobs']:
-            refs = ' '.join(job['references']) or 'none'
+            refs = ' '.join(shlex.quote(r) for r in job['references']) or 'none'
             transparent = 'false' if job['key'] else 'true'
             print(f'## {job["name"]}')
             print(f'Use image_gen with transparent_background: {transparent}, '
@@ -158,16 +159,18 @@ def cmd_provider(args):
           '# Generation costs credits. Estimate first with `generate cost`.\n'
           '# Do not assume alpha, reference count or output size: read `model get` first.\n'
           '# Models without alpha: set key to magenta or green in cast.json and re-plan.\n')
+    model = shlex.quote(args.model)
     print('higgsfield model list --json')
-    print(f'higgsfield model get {args.model} --json')
+    print(f'higgsfield model get {model} --json')
     for job in plan['jobs']:
         prompt = base / job['prompt_file']
-        refs = ' '.join(f'--image-references {r}' for r in job['references'])
+        refs = ' '.join(f'--image-references {shlex.quote(r)}' for r in job['references'])
+        quoted = shlex.quote(str(prompt))
         print(f'\n# {job["name"]}')
-        print(f'higgsfield generate cost {args.model} --prompt "$(cat {prompt})"')
-        print(f'higgsfield generate create {args.model} --prompt "$(cat {prompt})" '
+        print(f'higgsfield generate cost {model} --prompt "$(cat {quoted})"')
+        print(f'higgsfield generate create {model} --prompt "$(cat {quoted})" '
               f'{refs} --wait --json')
-        print(f'# download the result URL to {base / job["expected_sheet"]}')
+        print(f'# download the result URL to {shlex.quote(str(base / job["expected_sheet"]))}')
 
 
 # --- ingest -----------------------------------------------------------------------
@@ -180,12 +183,16 @@ def key_out(image, key):
     low, high = 60.0, 150.0
     alpha = np.clip((distance - low) / (high - low), 0, 1)
     rgba = np.dstack([array, alpha * 255]).astype(np.uint8)
-    # despill: where the key channel exceeds the others, pull it down
-    spill = {'magenta': (0, 2), 'green': (1,)}[key]
-    other = [c for c in range(3) if c not in spill]
-    ceiling = rgba[:, :, other].max(axis=2) if key == 'green' else rgba[:, :, 1]
-    for channel in spill:
-        rgba[:, :, channel] = np.minimum(rgba[:, :, channel], ceiling + 20)
+    # despill: where the key channel exceeds the others, pull it down (int math, then clip to uint8)
+    rgb = rgba[:, :, :3].astype(np.int16)
+    if key == 'green':
+        ceiling = np.maximum(rgb[:, :, 0], rgb[:, :, 2])
+        rgb[:, :, 1] = np.minimum(rgb[:, :, 1], ceiling + 20)
+    else:
+        ceiling = rgb[:, :, 1]
+        rgb[:, :, 0] = np.minimum(rgb[:, :, 0], ceiling + 20)
+        rgb[:, :, 2] = np.minimum(rgb[:, :, 2], ceiling + 20)
+    rgba[:, :, :3] = np.clip(rgb, 0, 255).astype(np.uint8)
     return Image.fromarray(rgba, 'RGBA')
 
 
