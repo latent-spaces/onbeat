@@ -174,7 +174,7 @@ def envelopes(y, dur):
 def get_words(path, lyrics, out_json):
     aligner = ROOT / ".venv-align/bin/python"
     if not aligner.exists():
-        raise SystemExit(f"Word alignment needs {aligner} (WhisperX; see docs/GUIDE.md section 2). "
+        raise SystemExit(f"Word alignment needs {aligner} (WhisperX; run make setup-align, see docs/GUIDE.md, Timing). "
                          "Re-run with --beats-only to skip words: beats, bars and sections still work.")
     tmp = out_json.with_suffix(".words.tmp.json")
     cmd = [str(ROOT / ".venv-align/bin/python"), str(ROOT / "scripts/align_words.py"), str(path), str(tmp)]

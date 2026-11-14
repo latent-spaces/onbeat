@@ -115,7 +115,7 @@ make timing SONG=my-song WORDS=1
 make render SONG=my-song
 ```
 
-Expected: the lyrics appear word by word, in time with the singing. Whisper mishears some sung words. The agent should list the guessed words and ask you to confirm them on the render (GUIDE.md §5.2).
+Expected: the lyrics appear word by word, in time with the singing. Whisper mishears some sung words. The agent should list the guessed words and ask you to confirm them on the render ([GUIDE: timing](GUIDE.md#timing-beats-first-words-later)).
 
 ## Step 7 (optional): sync check and sprites
 

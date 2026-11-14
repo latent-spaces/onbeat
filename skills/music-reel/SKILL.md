@@ -45,12 +45,12 @@ songs/<name>/reel.json     # template config (title, palette, captions, cast); s
 ```bash
 make setup                       # once: .venv with pinned requirements.txt
 make timing SONG=<name>          # beats only (easy start): BPM, beats, bars, sections, kick envelope
-make timing SONG=<name> WORDS=1  # also sung-word times (needs .venv-align, docs/GUIDE.md section 2)
+make timing SONG=<name> WORDS=1  # also sung-word times (needs .venv-align: make setup-align)
 ```
 
 Output: `songs/<name>/timing.json`. Read back the BPM and bar count to the person.
 
-Start with **beats-only**. The template then shows lyrics per line or per bar instead of word-by-word karaoke. Add word alignment only if the person wants karaoke. Watch for these known problems (docs/GUIDE.md section 5.2): Suno doesn't sing the lyrics as written, and Whisper mishears vocoder words. Align each line inside its own time window and mark guesses as guesses.
+Start with **beats-only**. The template then shows lyrics per line or per bar instead of word-by-word karaoke. Add word alignment only if the person wants karaoke. Watch for these known problems (docs/GUIDE.md, Timing): Suno doesn't sing the lyrics as written, and Whisper mishears vocoder words. Align each line inside its own time window and mark guesses as guesses.
 
 ### 2b. Look
 

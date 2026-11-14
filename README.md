@@ -57,7 +57,7 @@ make timing SONG=my-song       # beats only: BPM, beats, bars, sections, kick
 make render SONG=my-song       # template reel -> out/my-song.mp4
 ```
 
-Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment environment, see [GUIDE.md §2](docs/GUIDE.md#2-setup)). Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
+Add `WORDS=1` to `make timing` for word-by-word karaoke (needs `make setup-align`; see [the GUIDE](docs/GUIDE.md#timing-beats-first-words-later)). Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
 
 ## What you get
 
@@ -93,7 +93,7 @@ There are two clocks. The **beat clock** drives pulses, cuts and dance poses. Th
 | `video/sample/` | the bundled no-key sample (`make sample`) |
 | `video/assets/disco/` | shared sprite sheets used by the sample and the hero |
 | `video/allow-always-final/`, `songs/allow-always/` | the hero reel and what it needs to rebuild |
-| `docs/` | GUIDE (how the hero was made), TRY-IT, beat motion, sprites, timing, history |
+| `docs/` | GUIDE (how the hero was made, timing contract), TRY-IT, beat motion, sprites, history |
 
 Research and process notes (reference-reel analysis, playbook, runbooks, team research, early prototypes) live on the [`archive` branch](https://github.com/oronanschel/music-reels/tree/archive).
 
