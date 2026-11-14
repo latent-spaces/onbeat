@@ -111,7 +111,13 @@ All of these are outside actions that need the owner's approval:
 |---|---|---|---|---|
 | harry0703/MoneyPrinterTurbo | 143.4k | 2024-03-11 | MIT | studio (WebUI + API): topic → short |
 | ATH-MaaS/Pixelle-Video | 30.1k | 2025-11-07 | Apache-2.0 | studio/engine: fully automated short video |
-| zai-org/CogVideo | 13.2k | 2022-05-29 | Apache-2.0 | model (text/image → video) |
+| zai-org/CogVideo | 13.2k | 2022-05-29 | Apache-2.0 (code; weights separate) | model (text/image → video) |
 | nilbuild/page-mascot | 1.4k | 2026-09-14 | MIT | skill + React component (cursor-watching mascot) |
 
-**page-mascot credit (we vendor it in `vendor/page-mascot/`, upstream commit 76a44ed, per `UPSTREAM.json`).** MIT requires keeping its copyright and license notice with the copies, and `vendor/page-mascot/LICENSE` does that. Recommended, and not yet done: add a "Credits" line to the README and to GUIDE.md ("Avatar characters from nilbuild/page-mascot, MIT"), and credit it in the reel caption or end card if its characters appear on screen. Whether the *generated character art* carries extra terms beyond the MIT code license is unchecked; read its README before going public.
+**page-mascot credit** (codex-tooling-1, PR #5 `page-mascot.md`). The MIT license matches upstream, and all 36 pinned hashes match commit 76a44ed. Keep the copyright and permission notice. Add a visible README/third-party credit: "Sprite-atlas tooling and reference workflow adapted from page-mascot by Kamran Ahmed (MIT); reel dance/action art generated separately." A per-video caption credit is optional, not an MIT requirement.
+
+**Per-repo findings** (star timestamps returned 404 for all four, so growth speed and star causes are unknown):
+- **MoneyPrinterTurbo** (sonnet-stars-2, codex-tooling-2): its day-one README (2024-03-11) already showed portrait/landscape output videos before the install steps and linked a Douyin tutorial. By 03-28 it admitted setup was hard for beginners and linked a hosted alternative. It reached #1 on GitHub Trending. *Copy:* output before install, a tutorial video, shipping constantly. *Avoid:* setup friction.
+- **Pixelle-Video** (sonnet-stars-2, codex-tooling-2): 30.1k stars in about a year. A v0.1.0 Windows bundle came out 2025-11-09, then an X post and a Bilibili tutorial on 11-18. Its README has a demo video, a WebUI screenshot and a dated changelog. *Copy:* a one-click bundle, then the announcement plus a tutorial.
+- **CogVideo** (opus-strategist-2): a research model, whose stars follow model releases through arXiv, Hugging Face and diffusers. *Copy:* a zero-install try-it link and a dated news log. *Avoid:* a GPU-heavy README. It isn't a competitor; at most it's an optional B-roll ingredient.
+- **page-mascot** (codex-tooling-1): the author's X post went out 2026-09-14, about 4 hours after the repo was created, with the `/page-mascot` command, a demo and a link (about 2.2k likes). *Copy:* a same-day post that shows the command and the demo.
