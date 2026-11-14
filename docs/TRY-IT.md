@@ -2,11 +2,11 @@
 
 A script for testing music-reels from a brand-new agent session that knows nothing about the repo. Each step lists what to type and what you should see. If a step doesn't match, stop there and note it.
 
-Time: about 10 minutes to the first render (most of it is the one-time HyperFrames download), plus about 10 more for your own song.
+Time: varies. The first render includes a one-time HyperFrames and browser download, which hasn't been timed on a cold machine. Note your own times.
 
 ## Before you start
 
-- macOS or Linux with **Node 22+**, **ffmpeg** and **git**. Python 3.12+ is only needed from step 5.
+- macOS or Linux with **Node 22+**, **ffmpeg**, **git** and **python3** (the standard library is enough for the sample). The Python packages (`make setup`) are only needed from step 5.
 - The repo must be readable by your GitHub account. It is private until the owner makes it public.
 
 ## Step 1: install the skill
@@ -66,8 +66,8 @@ Any `missing` line comes with a `fix:` command. Run it, then run `make doctor` a
 The agent runs `make sample`.
 
 Expected:
-- A progress bar, then `Render complete` and `Sample written to out/sample.mp4`.
-- The first run downloads HyperFrames 0.9.2 and a browser, which takes a few minutes. Later runs took about 15–17 s on an Apple M4 laptop.
+- A progress bar, then `Render complete` and `Video ready: <absolute path>/out/sample.mp4`.
+- The first run downloads HyperFrames 0.9.2 and a browser. With those cached, the whole `make sample` took between about 30 s and 2 min on an Apple M4 laptop (render step 11–38 s). Write down your own time, both cold and warm.
 - `out/sample.mp4`: a 1080×1920 vertical video with sound.
 
 Open it. You should see illustrated dancers, big captions, and poses and pulses landing on the beat.
@@ -110,12 +110,14 @@ Expected: a vertical MP4 the length of the song, with visuals pulsing on the bea
 ## Step 6 (optional): karaoke words
 
 ```bash
-python3.12 -m venv .venv-align && .venv-align/bin/pip install -r requirements-align.txt
-make timing SONG=my-song WORDS=1
+make setup-align                           # once: Python 3.12 environment for WhisperX
+make timing SONG=my-song WORDS=1 FORCE=1   # needs songs/my-song/lyrics.txt; FORCE=1 because timing.json exists from step 5
 make render SONG=my-song
 ```
 
-Expected: the lyrics appear word by word, in time with the singing. Whisper mishears some sung words. The agent should list the guessed words and ask you to confirm them on the render (GUIDE.md §5.2).
+`FORCE=1` lets it replace the beats-only `timing.json`. The previous file is backed up after the analysis succeeds.
+
+Expected: the lyrics appear word by word, in time with the singing. Whisper mishears some sung words. The agent should list the guessed words and ask you to confirm them on the render (docs/GUIDE.md §5.2).
 
 ## Step 7 (optional): sync check and sprites
 

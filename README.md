@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="assets/readme/preview.mp4"><img src="assets/readme/preview.gif" alt="An illustrated robot dances in a spaceship lounge while pink karaoke captions sing 'I don't wanna click no more', cut to the beat" width="320"></a>
+  <a href="assets/readme/preview.mp4"><img src="assets/readme/preview.gif" alt="A cel-style robot dances on the beat in front of a coral disc on a cream background while the lyrics 'I don't wanna click no more' highlight word by word" width="320"></a>
 </p>
 
 <h1 align="center">music-reels</h1>
@@ -10,7 +10,7 @@
   A Claude Code + Codex skill and a small CLI that measure a song's beats and sung words and drive a <a href="https://hyperframes.heygen.com">HyperFrames</a> reel from them. The output is a vertical 1080×1920 MP4, ready for Reels, Shorts and TikTok.
 </p>
 
-<p align="center"><sub>Above: 6 s of an 11.5 s render from the chorus of "allow always". <a href="assets/readme/preview.mp4">Watch it with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
+<p align="center"><sub>Above: 7 s of the 11.5 s bundled sample, exactly as <code>make sample</code> renders it (chorus of "allow always"). <a href="assets/readme/preview.mp4">Watch it with sound</a>. Status: <b>early release (v0.1)</b>.</sub></p>
 
 ---
 
@@ -18,11 +18,11 @@
 
 ```bash
 git clone https://github.com/oronanschel/music-reels && cd music-reels
-make doctor   # checks node, npx, ffmpeg and prints a fix for anything missing
+make doctor   # checks node, npx, ffmpeg, python3 and the render browser; prints a fix for anything missing
 make sample   # renders the bundled sample -> out/sample.mp4 (no keys, no accounts)
 ```
 
-The first render downloads HyperFrames and a headless browser once. After that, the sample rendered in about 15–17 s on an Apple M4 laptop. Step-by-step, with the expected output for each step: **[docs/TRY-IT.md](docs/TRY-IT.md)**.
+The first render downloads HyperFrames and a headless browser once. With those cached, the render step took about 11–38 s on an Apple M4 laptop, and a full `make sample` including checks took up to about 2 minutes. Cold-install time isn't measured yet. Step-by-step, with the expected output for each step: **[docs/TRY-IT.md](docs/TRY-IT.md)**.
 
 ### Use it from your agent
 
@@ -57,7 +57,7 @@ make timing SONG=my-song       # beats only: BPM, beats, bars, sections, kick
 make render SONG=my-song       # template reel -> out/my-song.mp4
 ```
 
-Add `WORDS=1` to `make timing` for word-by-word karaoke (needs the alignment environment, see [GUIDE.md §2](docs/GUIDE.md#2-setup)). Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
+Add `WORDS=1` to `make timing` for word-by-word karaoke (run `make setup-align` once and put the sung lyrics in `songs/my-song/lyrics.txt`; add `FORCE=1` to replace an existing beats-only timing). The audio can also be `.m4a`, `.wav`, `.flac`, `.ogg` or `.aiff`, or you can pass `AUDIO=/path/to/file`. Repeated renders go to `out/my-song-2.mp4` and so on. Change the title, palette, captions and cast in `songs/my-song/reel.json`. You don't need to edit any HTML.
 
 ## What you get
 
