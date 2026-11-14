@@ -1,6 +1,6 @@
 # Recommendations: making music-reels a strong public project
 
-Merged result of the 2026-11-14 research run (Phase 1, research only). Editor: opus-strategist-1.
+Merged result of the 2026-11-14 research run (Phase 1, research only). Editor: opus-strategist-1. Updated after main moved to 6daad3d (GUIDE.md, finished video, runbooks).
 Sources: `research/2026-11-14/<agent>/` from all six agents (see "Inputs"). Reviewed by codex-tooling-1 and codex-tooling-2 for evidence overreach.
 Star counts are live GitHub numbers from 2026-11-14. We have **one star-history sample (brag)**; for other repos the stargazer-timestamp API returned 404. Launch channels were checked only narrowly (two traces, see `codex-tooling-2/LAUNCH-EVIDENCE.md`). Star attribution stays unknown, and other "why it spread" claims are inferred from READMEs and marked as such in the per-agent notes.
 
@@ -9,7 +9,7 @@ Star counts are live GitHub numbers from 2026-11-14. We have **one star-history 
 1. **The niche looks underserved and the engine is hot.** Three agents searched independently. The top "lyric video generator" repos in GitHub search have 14 stars (repo-name search) to about 150 (broader search), and lyric-video skills top out at 132. This comes from search samples, not a full census. HyperFrames, the engine we already use, reached 84k stars in 8 months, and the agent skills built on it get thousands (brag 21k in 5 months). In those samples, no popular repo does "Suno song → beat-synced, word-timed lyric reel".
 2. **Ship it as a Claude Code / Codex skill + CLI, not a studio.** Studios (OpenMontage 80k, MoneyPrinterTurbo 143k, OpenCut 98k) are a crowded fight. Among the HyperFrames-based repos we sampled, the highest-starred recent ones (brag, herk-edit-kit, motionmaxxing) are skills with a one-line install. That's a correlation, not proof of cause.
 3. **The README's first screen should be one excellent, playable reel made by the tool.** One great reel beats three mediocre ones. Test inline-video embedding in a private PR first. Ideally it's a reel about making reels with an agent, so the demo is proof and marketing at once (brag, herk-edit-kit).
-4. **Zero-key try path (target, not measured).** Bundle our own rights-cleared short song plus its timing JSON, aiming for clone → render in under 5 minutes with no Suno account or API keys. Only a timed clean-clone run can turn that into a claim. Most of the small lyric-video repos we looked at require API keys before the first run.
+4. **Zero-key try path (target, not measured).** The final Suno take is already tracked. Pair it with its committed timing JSON (or a rights-cleared short song) plus its timing JSON, aiming for clone → render in under 5 minutes with no Suno account or API keys. Only a timed clean-clone run can turn that into a claim. Most of the small lyric-video repos we looked at require API keys before the first run.
 5. **Use our moat: the measured playbook.** We have numbers nobody else publishes (seam error < 40 ms on winners, claim on screen at 0.27 s, 118–129 BPM sweet spot, kick-drop timing). Herk-edit-kit and motionmaxxing show that "measured rules" sell. Add a **"sync check"** render (a beat-grid and word-boundary overlay) so viewers can inspect sync themselves (opus-strategist-2). A per-word *error* number would need labelled ground truth and a defined metric first (codex-tooling-1).
 6. **Demand exists; tools don't.** The closest analog is JohnHeibel/PDoomVideo (2.9k stars, 2026-09): the source for one Claude-made music video about an AI-doom song. Its README presents it as the how-it-was-made source (why people starred it is inferred, not verified). It's a one-off source dump, not a reusable tool. Lyric-video skills (lyric-video-director 47, music-mv 132) have no hero output. Our "allow always" AI-agent song is in the same vein as P(doom) and alignment.check.
 
@@ -41,20 +41,35 @@ latent-spaces/brag, sampled stargazer timestamps (opus-strategist-2, `opus-strat
 
 A fuller draft is in `codex-tooling-2/README-OUTLINE.md`; the demo plan (show the beat clock and the word clock) is in `codex-tooling-2/DEMO-BRIEF.md`.
 
-## Where the repo stands today (codex-tooling-1/2 audit)
+## Where the repo stands today (re-checked against main 6daad3d)
 
-None of the skill / CLI / one-command features recommended here exist yet. They are targets.
-- **A complete sample render (audio + video) isn't reproducible from a fresh clone** (static audit, renderer not run). All three compositions read audio from `video/assets/dev`, a tracked symlink to `../../out/dev`, which is gitignored and missing in a clone. The stub generator writes timing data but no audio.
-- **Dependencies are implicit.** The Python scripts need librosa/numpy/scipy with no manifest, plus a separately hardcoded `.venv-align` (Demucs, torch, faster-whisper, WhisperX).
-- **The data contract has a gap.** `timing.py` emits JSON, but the HTML compositions read `window.TIMING` JS. Only the song-specific `cut.py` and the stub generator bridge the two, and there's no general JSON → composition adapter.
-- **Public metadata is empty.** The repo is private, with no description, homepage, license or topics, and no tracked demo image or video. The README is a "next session" handoff that says no video was built for the current story. There's no GUIDE.md.
-- **Proposed go-public gates** (codex-tooling-1): P0 a clean-clone sample render with recorded commands; P0 a second, user-supplied song renders without editing song-specific code; P0 clear license plus sample/audio provenance. P1 inspectable timing quality and one CLI with an optional skill. P2 a gallery of 2–3 examples. Studio/UI comes later.
-- **Order of work this implies:** a rights-cleared, no-key sample → a general timing-JSON → composition adapter → a preflight/doctor check (deps, audio present) → then the CLI and skill wrapper → then the README. The README should state an "experimental" status honestly until the skill really exists.
+codex-tooling-1/2 audited 26d9337. The owner then pushed 5 commits (GUIDE.md, the finished "allow always" composition, sung-lyrics alignment, Suno prompt history, Instagram brief, runbooks). opus-strategist-1 re-checked the audit statically against 6daad3d. Nothing was rendered.
+
+**Now true:**
+- **There is a finished reel.** `video/allow-always-final/index.html` is a 2:24 vertical composition of about 1,300 lines, built on the final Suno take. That take, `songs/allow-always/take-final-yes.mp3`, is tracked.
+- **GUIDE.md documents the whole pipeline**, from concept to Suno, timing, characters, HyperFrames, review, render and posting, with pinned versions and pip lines for both venvs. It has a dead-ends section and a section on the human-agent feedback loop. **This is the strongest go-public asset in the repo**, the "how it was made" document that PDoomVideo and herk-edit-kit show people star.
+- **Sung-word alignment is solved for this song**, using per-line windows (`songs/allow-always/align_final.py`), and GUIDE §5.2 documents the "Suno doesn't sing what you wrote" problem.
+- **The JSON → `window.TIMING` export is documented** (GUIDE §5.3, `cut_final.py`). It is still a song-specific script, not a general adapter.
+- **There's a production runbook** for sprites and avatars (`analysis/runbooks/`), plus a vendored, MIT-licensed `page-mascot` skill with upstream provenance in `UPSTREAM.json`.
+
+**Still open:**
+- **The finished video isn't in the repo.** `*.mp4` is gitignored, so there's no tracked render, GIF or poster frame for a README hero.
+- **The fresh-clone render chain is undocumented as one sequence.** The final composition reads `assets/dev/allow-always-final.wav` through the gitignored `out/dev` symlink. You can rebuild it: run `scripts/timing.py` to get `out/timing/allow-always-final.json`, then `cut_final.py`, which converts the tracked MP3. But `out/dev` and `out/timing` must exist first, and no single command or doc runs the steps in that order. (Static reading, not executed.)
+- **The GSAP CDN dependency.** The final composition loads GSAP from jsDelivr, which makes renders network-dependent. `avatar-dance-test` vendors `gsap.min.js` instead.
+- **No dependency manifest.** GUIDE §2 lists the pip lines, but there's no `requirements.txt` or `pyproject.toml`, and it uses Python 3.14 / 3.12 with no lockfile.
+- **No repo LICENSE**, no topics or description, and the repo is private. Only `vendor/page-mascot` carries a license.
+- **No skill or CLI wrapper exists yet.** The recommendations below about the skill, `/reel` and a no-key sample are still targets.
+- **README.md** now points to GUIDE.md first, but it still contains the "Earlier planning notes (2026-11-11)" section, which says "no video was built". That section is out of date and should move to a history doc.
+- **Rights to check before going public** (owner decisions): redistributing the Suno take (it's already in the repo), the generated character sprites, and the reference-reel research files (`reels.txt`, `analysis/comments/`).
+
+**Proposed go-public gates** (codex-tooling-1, still valid): P0 a clean-clone render of the bundled song with recorded commands; P0 a second song renders without song-specific edits; P0 a license plus provenance for the sample audio and art. P1 inspectable timing quality and one CLI with an optional skill. P2 a gallery of 2–3 reels.
+
+**Revised order of work:** cut a 30–45 s loop from the finished reel and track it as the README hero (MP4/GIF + poster) → a `make sample` / `doctor` script that creates `out/` and runs timing → cut → render → vendor GSAP → `requirements.txt` → generalise `cut_final.py` into a song-agnostic export → then the skill wrapper.
 
 ## Before going public: repo work (Phase 2 candidates)
 
-- [ ] Finish **one** great reel with the Suno-first approach (README "Next step"); without it there is nothing to show.
-- [ ] Rewrite README.md from a session handoff into the public README above. Move the "Start here (next session)" notes into `docs/` or `CLAUDE.md`.
+- [x] ~~Finish one great reel~~: done. `allow-always-final` exists (2:24). Still needed: a tracked short cut (30–45 s) and a poster frame for the README.
+- [ ] Turn README.md into the public README above. It now links GUIDE.md first. Move the outdated "Earlier planning notes (2026-11-11)" into a history doc, and link GUIDE.md as the "How it was made" section.
 - [ ] Add `sample/` with an own or CC0 short song, its lyrics and precomputed timing JSON.
 - [ ] Package `SKILL.md` (+ Codex mirror) and a single CLI entry point.
 - [ ] **Decide what to do with the reference research** (`reels.txt`, yt-dlp instructions, `analysis/comments/*.json` holding other people's comments, per-reel breakdowns of another account). Recommended: keep aggregated findings, drop or keep private the raw comment exports and download instructions. **Owner decision.**

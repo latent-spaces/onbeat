@@ -47,13 +47,14 @@ Adjacent music repos with real pull: m-bain/whisperX 25k (word timestamps), rzru
 - A **real measured playbook** from 10 breakdowns of a reel account (BPM range, seam error < 40 ms on winners, claim on screen at 0.27 s, kick-drop timing). Nobody else publishes "why this reel got 647K views" with numbers.
 - **Word + beat timing** (`scripts/timing.py`, `align_words.py`): the hard part lyric tools skip.
 - A **Suno recipe** that controls arrangement (a cappella intro → riser → drop, Duration = Custom).
-- Gaps: no finished reel, no one-command path, a README written as a session handoff, Instagram-download research that should stay out of the public story.
+- Since main 6daad3d: a finished 2:24 reel (`video/allow-always-final/`) and a full how-it-was-made **GUIDE.md**, our answer to herk-edit-kit's EDITING-PLAYBOOK and PDoomVideo's STORYBOARD.md.
+- Gaps: no tracked render or GIF of the reel, no one-command path or skill, outdated planning notes still in the README, and Instagram-download research that should stay out of the public story.
 
 ## 5. Recommendations (for RECOMMENDATIONS.md)
 
 1. **Position:** "The first HyperFrames skill for music: Suno song in, beat-synced lyric reel out." Type: a Claude Code/Codex **skill + CLI**, not a studio. Studios are a crowded 80k-star fight; a skill is how brag (21k in ~5 months) won.
 2. **Name it as a verb:** e.g. `/reel` or `/lyric-reel`. One line: "Your song deserves a video."
-3. **Ship one great reel before launch.** It has to be made by the skill about the skill, so the reel's song is about making reels with an agent (the "allow always" concept fits). Embed it as playable MP4 at the top of the README.
+3. **Lead with the reel we now have** (`allow-always-final`). Cut a 30–45 s loop for the README. Ideally the hero is made by the skill about the skill, so the reel's song is about making reels with an agent (the "allow always" concept fits). Embed it as playable MP4 at the top of the README.
 4. **Demo input that needs no Suno account:** a bundled CC0/own short song + its timing JSON, so `npx …` → render works offline in under 5 minutes.
 5. **Lead with the playbook as the hook:** "We measured 10 viral reels. Here's what the top one did in its first 0.27 s." Publish our own measurements and leave out their media, mascot and lyrics.
 6. **Topics:** claude-code, agent-skills, claude-skills, hyperframes, codex, suno, lyric-video, music-video. Submit to awesome-claude-video-skills once it's public (needs owner approval: outside action).
