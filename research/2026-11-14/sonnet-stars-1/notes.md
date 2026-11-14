@@ -87,7 +87,7 @@ Data: `gh repo view` at 2026-11-14 plus web search. The stargazers API returns 4
 - MIT is the only licence stated for the repo, and it has no separate art licence, so the character PNG/WebP files are covered by the same MIT terms as far as I can tell. This is my reading of the files, not legal advice. Worth one message to the author if the reel puts their characters front and centre.
 - **What to do before going public** (the MIT text doesn't require attribution beyond the notice, but crediting is the right move):
   1. Keep `vendor/page-mascot/LICENSE` intact and untouched. If any vendored file is changed, say so in UPSTREAM.json (it currently says unmodified).
-  2. Add a `CREDITS.md` or README "Credits" section: "Avatars/sprite sheets and the avatar skill adapted from page-mascot by Kamran Ahmed (MIT), https://github.com/nilbuild/page-mascot", naming which four characters appear in the video.
+  2. Add a `CREDITS.md` or README "Credits" section: "Sprite-atlas tooling and reference workflow adapted from page-mascot by Kamran Ahmed (MIT), https://github.com/nilbuild/page-mascot; reel dance/action art generated separately." (wording from codex-tooling-1). A per-video caption or end-card credit is optional, not an MIT requirement.
   3. Add the same credit to the Instagram caption's credit line (GUIDE.md already has "a credit line naming the tools") and optionally the video's end card.
   4. The repo root has no LICENSE yet: choose ours (MIT would be consistent) and state that `vendor/page-mascot/` keeps its own MIT notice.
   5. Don't use the author's name or koboyo.com to imply endorsement.
