@@ -32,7 +32,7 @@ Editor: opus-strategist-1, 2026-11-14. Built on `RECOMMENDATIONS.md` and GUIDE.m
 - **Acceptance:** a fresh supported machine produces a visible and audible 11.53 s sample with no keys, ML or generation, and the setup and render times are recorded. The measured 14.4 s render used cached tooling, so "under 5 min" is still a target.
 - **Drop-off risks:** the repo is still private at launch, a runtime mismatch, a slow first `npx`/browser download, unexplained check warnings, an output buried in a subfolder.
 
-sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the same three cliffs: the stale README top, the first-render prerequisites, and vocal alignment. For the CLI path, its key point is that a config-driven template replaces hand-editing the 1,300-line `index.html`.
+sonnet-stars-1's draft agrees on the same three cliffs: the stale README top, the first-render prerequisites, and vocal alignment. For the CLI path, its key point is that a config-driven template replaces hand-editing the 1,300-line `index.html`.
 
 **Rules for the entry (codex-tooling-2):** the README's first screen offers two choices, "Try with Claude Code/Codex" or "Try the CLI sample". Each route names its prerequisites, one verified sample action, the output path and playback. GUIDE.md is the secondary making-of, not a prerequisite. Ask for "Use my song" only *after* the first MP4 plays, with no credentials or full dependency list before that first success.
 
@@ -61,14 +61,15 @@ sonnet-stars-1's draft (branch `research/sonnet-stars-1-plan`) agrees on the sam
 ## 3. Launch plan (owner actions, in order)
 
 1. Merge the P0 items. Before any post, open the repo link from a signed-out phone to test it, and don't promise code by DM while the repo is private (codex-tooling-2). Run a fresh-clone test on a second machine and time `make sample`.
-2. Choose the license and confirm rights: the Suno take (the plan's terms), the generated art, and the reference-research files (`reels.txt`, `analysis/comments/` stay out or are removed).
-3. Add description and topics (`suno, lyric-video, music-video, beat-sync, hyperframes, claude-code, agent-skills, codex`), then make the repo public.
-4. Post the reel on Instagram (per `songs/allow-always/instagram-brief.md`) and X. Reply with the repo as "how it was made", the PDoomVideo/page-mascot pattern of a same-day post with command + demo.
-5. Same day: r/ClaudeCode / r/ClaudeAI / r/SunoAI posts with the reel inline (read each subreddit's self-promotion rules first). Optionally a Show HN on a US weekday morning, with GUIDE.md as the story and the demo command in the first comment.
-6. Submit to "alternative to" directories (openalternative.co, alternativeto.net), awesome-claude-video-skills ("Music videos"), the HyperFrames showcase/Discord, and skills.sh.
-7. Launch week: ship visible fixes daily (stalled repos plateau), answer issues, post the second reel. Aim for a Trending day.
-8. After 48 h, check stars and traffic and decide on a second push. After 2 weeks: review stars, issues and drop-off questions; decide on P2.
+2. **Pilot gate:** watch 2 fresh users (one agent, one CLI) follow the README without help. Record install time vs render time, errors, and whether they find and play the MP4. Both must finish the sample before any promotion; never advertise an unshipped installer or skill (codex-tooling-2).
+3. Choose the license and confirm rights: the Suno take (the plan's terms), the generated art, and the reference-research files (`reels.txt`, `analysis/comments/` stay out or are removed).
+4. Add description and topics (`suno, lyric-video, music-video, beat-sync, hyperframes, claude-code, agent-skills, codex`), then make the repo public.
+5. Post the reel on Instagram (per `songs/allow-always/instagram-brief.md`) and X. One call to action: try the sample. Reply with the repo as "how it was made", the PDoomVideo/page-mascot pattern of a same-day post with command + demo.
+6. Follow with a short screen recording: sample command → MP4 → one editable change, linking GUIDE.md. Then, the same day: r/ClaudeCode / r/ClaudeAI / r/SunoAI posts with the reel inline (read each subreddit's self-promotion rules first). Optionally a Show HN on a US weekday morning, with GUIDE.md as the story and the demo command in the first comment.
+7. Submit to "alternative to" directories (openalternative.co, alternativeto.net), awesome-claude-video-skills ("Music videos"), the HyperFrames showcase/Discord, and skills.sh.
+8. Launch week: ship visible fixes daily (stalled repos plateau), answer issues, post the second reel. Aim for a Trending day.
+9. After 24/72 h, check watch time, shares, repo visits, sample failures and remixes (stars are secondary). Patch the biggest drop-off, then show the next reel. After 48 h, check stars and traffic and decide on a second push. After 2 weeks: review stars, issues and drop-off questions; decide on P2.
 
 ## Contributions
 
-Built from the research PRs #1–#6 (all six agents). opus-strategist-2 contributed the agent-journey details (PR #9, `plan-journey-claude-code.md`), beats-only mode and presets; codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items (`research/sonnet-stars-2-plan` branch). codex-tooling-2 contributed the social→repo entry rules and the link test. Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
+Built from the research PRs #1–#6 (all six agents). opus-strategist-2 contributed the agent-journey details (closed PR #9, inlined here), beats-only mode and presets; codex-tooling-1 contributed the first-5-minutes acceptance criteria; sonnet-stars-1 contributed the journey draft; sonnet-stars-2 contributed the CLI journey details, the template-gating point and the launch-sequence items. codex-tooling-2 contributed the social→repo entry rules and the link test. Chat additions from codex-tooling-1/2 and opus-strategist-2 are folded in as they arrive.
