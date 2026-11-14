@@ -2,7 +2,11 @@
 
 Usage:
   .venv/bin/python scripts/timing.py <audio-or-video> [--lyrics lyrics.txt] [--beats-per-bar 4]
-      [--trim START_BAR N_BARS] [--no-words] -o out/timing/<name>.json
+      [--trim START_BAR N_BARS] [--beats-only] -o out/timing/<name>.json
+
+Beats-only mode (--beats-only, same as --no-words) needs no word alignment: no .venv-align, no WhisperX,
+no lyrics. The JSON then has "mode": "beats-only" and empty "words" and "lines"; everything else (beats, bars,
+sections, envelopes) is identical, so templates can run on it. Start here; add words later.
 
 - Beat grid: one fixed tempo. A comb search over the onset envelope gives BPM and a rough phase; the
   kick decides beat vs off-beat; then the phase is moved onto hi-band waveform attacks (median offset),
@@ -168,6 +172,10 @@ def envelopes(y, dur):
 
 
 def get_words(path, lyrics, out_json):
+    aligner = ROOT / ".venv-align/bin/python"
+    if not aligner.exists():
+        raise SystemExit(f"Word alignment needs {aligner} (WhisperX; see GUIDE.md section 2). "
+                         "Re-run with --beats-only to skip words: beats, bars and sections still work.")
     tmp = out_json.with_suffix(".words.tmp.json")
     cmd = [str(ROOT / ".venv-align/bin/python"), str(ROOT / "scripts/align_words.py"), str(path), str(tmp)]
     if lyrics:
@@ -214,7 +222,8 @@ def main():
     ap.add_argument("--lyrics")
     ap.add_argument("--beats-per-bar", type=int, default=4)
     ap.add_argument("--trim", nargs=2, type=int, metavar=("START_BAR", "N_BARS"))
-    ap.add_argument("--no-words", action="store_true")
+    ap.add_argument("--beats-only", "--no-words", dest="no_words", action="store_true",
+                    help="skip word alignment (no .venv-align needed)")
     a = ap.parse_args()
     out, bpb, path = Path(a.out), a.beats_per_bar, Path(a.audio)
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -240,6 +249,7 @@ def main():
         "audio": path.name, "duration": round(dur, 4), "fps": FPS,
         "bpm": round(60 / per, 4), "beatPeriod": round(per, 6), "beatsPerBar": bpb,
         "beats": np.round(beats, 4).tolist(), "bars": np.round(bars, 4).tolist(),
+        "mode": "beats-only" if a.no_words else "words",
         "words": words, "lines": lines, "sections": sections, "envelopes": envelopes(y, dur),
     }
     json.dump(res, open(out, "w"))
