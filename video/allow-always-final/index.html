@@ -1129,19 +1129,15 @@
       }
       // The console insert and the impacts. Sixth-beat steps: 12.5 fps at this tempo.
       const STEP = BEAT / 6;
-      // Frames 0-5 mash the buttons; then 6 reaches, 7 presses launch, 8 recoils, right before the cut.
-      function controls(from, to) {
-        shot("#d-console", from, to);
-        const n = Math.round((to - from) / STEP);
-        const tail = [6, 6, 7, 7, 7, 8];
-        for (let k = 0; k < n; k++) {
-          const f = k < n - tail.length ? k % 6 : tail[k - (n - tail.length)];
-          tl.set("#d-panel", { backgroundPosition: ATLAS3(f) }, at(from + k * STEP));
-        }
+      // The console insert: one sheet frame per half beat. Frames 0-5 press buttons, 6 reaches, 7 presses launch, 8 recoils.
+      function controls(from, frames) {
+        shot("#d-console", from, from + (frames.length * BEAT) / 2);
+        frames.forEach((f, k) => tl.set("#d-panel", { backgroundPosition: ATLAS3(f) }, at(from + (k * BEAT) / 2)));
       }
       // One explosion, spark to smoke, played once.
-      function boom(k, t) {
+      function boom(k, t, dx = 0, dy = 0) {
         const id = "#d-boom" + (k + 1);
+        tl.set(id, { x: dx, y: dy }, at(t));
         for (let f = 0; f < 9; f++) tl.set(id, { opacity: 1, backgroundPosition: ATLAS3(f) }, at(t + f * STEP));
         hide(id, t + 9 * STEP);
       }
@@ -1162,14 +1158,29 @@
       disco(outro, loop);
       [0, 1, 2].forEach((n) => routine(outro + n * 6 * BAR));
 
-      // "wait, wait, what did you approve?" The answer: on the drop the robot mashes the console,
-      // hits launch, and the Earth takes one impact per sung "yes" while the humans keep dancing.
+      // "wait, wait, what did you approve?" The answer, in two console inserts cut with the dancing:
+      // the robot presses a few buttons; later it reaches for launch and hits it.
+      // Then the Earth takes one impact per sung "yes" while the humans keep dancing.
       const launchBar = bar(33);
+      const launchAt = launchBar + BEAT;
       const afterLaunch = bar(34) + 2 * BEAT;
       disco(spam, afterLaunch);
-      controls(spam, launchBar);
-      ensemble(launchBar, afterLaunch);
+      controls(spam, [0, 1, 3, 4]);
+      ensemble(spam + 2 * BEAT, launchBar);
+      controls(launchBar, [5, 6, 7, 8]);
+      ensemble(launchBar + 2 * BEAT, afterLaunch);
       W(17).forEach((w, k) => boom(k, w.start));
+      // After the first hit the Earth keeps burning: a new explosion every beat whenever it is on screen,
+      // rotating through the three spots, each nudged a little so it never repeats exactly.
+      const nudge = mulberry32(4412);
+      function barrage(from, to) {
+        let k = 0;
+        for (let t = from; t + 9 * STEP < to; t += BEAT, k++) {
+          boom(k % 3, t, (nudge() - 0.5) * 120, (nudge() - 0.5) * 90);
+        }
+      }
+      barrage(W(17)[2].start + BEAT, afterLaunch);
+      barrage(outro, loop);
 
       // ================= 80s pass: VHS tape, glitch tears, avatars breaking through =================
       // Seeded, so every render glitches the same way.
@@ -1225,7 +1236,7 @@
       }
 
       // Launch and impacts shake the tape.
-      tear(launchBar - 4 * STEP, 2, 16);
+      tear(launchAt, 2, 16);
       W(17).forEach((w) => tear(w.start + 2 * STEP, 4, 34));
       // Every section change tears the tape.
       [drop, brk, free, brk2, spam, brk3, duet, brk4, outro, loop].forEach((t) => tear(t, 4, 40));

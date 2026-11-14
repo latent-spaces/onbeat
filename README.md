@@ -1,6 +1,10 @@
 # music-reels
 
-## Start here (next session)
+## Start here
+
+**[GUIDE.md](GUIDE.md)** walks through the whole process end to end: concept, Suno song, timing, characters,
+HyperFrames composition, review, render and posting, with the commands, prompts and mistakes from making
+"allow always". The Suno prompts are in [`songs/allow-always/suno-prompts.md`](songs/allow-always/suno-prompts.md).
 
 The avatar/sprite workflow and full-video integration now exist. For this kind of
 illustrated music reel, start with the [production runbook](analysis/runbooks/animated-music-reels.md),

@@ -30,7 +30,12 @@ finished reusable provider/asset framework.
 The full-video integration exists in `video/allow-always-final/index.html` and
 was already committed separately. Its current uncommitted edits belong to that
 ongoing session. This log does not claim those edits were reviewed or validated
-as part of the runbook task. Add that session's actual findings below.
+as part of the runbook task.
+
+**2026-11-14, full-video session:** findings are written up in [`GUIDE.md`](../../GUIDE.md)
+(sections 4–9: Suno, alignment against what was actually sung, the composition patterns,
+gotchas, the feedback table) and in `songs/allow-always/suno-prompts.md`. The final render
+is `video/out/allow-always-final-80s-boom2.mp4`.
 
 ## Entry template
 
