@@ -98,20 +98,37 @@
 
   // background-position for cell i of a cols x rows sheet drawn with
   // background-size: cols*100% rows*100%.
+  function pct(v) {
+    return Math.round(v * 1e4) / 1e4 + "%";
+  }
+
   function cellPosition(i, cols, rows) {
     var c = cols || 4;
     var r = rows || c;
     var x = c > 1 ? ((i % c) * 100) / (c - 1) : 0;
     var y = r > 1 ? (Math.floor(i / c) * 100) / (r - 1) : 0;
-    return x + "% " + y + "%";
+    return pct(x) + " " + pct(y);
   }
 
   // background-position for frame i of a sprites.json sheet entry (frame rects in pixels).
+  // Accepts both shapes: { width, height, frames: [{ x, y, width, height }] } and the
+  // docs/sprites.md manifest entry { grid: [cols, rows], tile: { w, h }, frames: [{ i, x, y, w, h }] }.
   function rectPosition(sheet, i) {
     var f = sheet.frames[i];
-    var dx = sheet.width - f.width;
-    var dy = sheet.height - f.height;
-    return (dx > 0 ? (f.x / dx) * 100 : 0) + "% " + (dy > 0 ? (f.y / dy) * 100 : 0) + "%";
+    var fw = f.width != null ? f.width : f.w;
+    var fh = f.height != null ? f.height : f.h;
+    var W = sheet.width != null ? sheet.width : sheet.grid[0] * sheet.tile.w;
+    var H = sheet.height != null ? sheet.height : sheet.grid[1] * sheet.tile.h;
+    var dx = W - fw;
+    var dy = H - fh;
+    return pct(dx > 0 ? (f.x / dx) * 100 : 0) + " " + pct(dy > 0 ? (f.y / dy) * 100 : 0);
+  }
+
+  // background-size for a sheet entry: cols*100% rows*100%.
+  function backgroundSize(sheet) {
+    var c = sheet.grid ? sheet.grid[0] : Math.round(sheet.width / sheet.frames[0].width);
+    var r = sheet.grid ? sheet.grid[1] : Math.round(sheet.height / sheet.frames[0].height);
+    return c * 100 + "% " + r * 100 + "%";
   }
 
   // dance(tl, timing, o): pose stepping plus kick bounce for one character.
@@ -196,6 +213,7 @@
     silentAt: silentAt,
     cellPosition: cellPosition,
     rectPosition: rectPosition,
+    backgroundSize: backgroundSize,
     dance: dance,
     cast: cast,
   };

@@ -69,3 +69,10 @@ test("cellPosition and rectPosition agree for a regular grid", () => {
   for (let i = 0; i < 9; i++) sheet.frames.push({ x: (i % 3) * 418, y: Math.floor(i / 3) * 418, width: 418, height: 418 });
   for (let i = 0; i < 9; i++) assert.strictEqual(SD.rectPosition(sheet, i), SD.cellPosition(i, 3, 3));
 });
+
+test("rectPosition reads the docs/sprites.md manifest shape (grid, tile, w/h)", () => {
+  const entry = { grid: [4, 4], tile: { w: 384, h: 384 }, frames: [] };
+  for (let i = 0; i < 16; i++) entry.frames.push({ i, x: (i % 4) * 384, y: Math.floor(i / 4) * 384, w: 384, h: 384 });
+  for (let i = 0; i < 16; i++) assert.strictEqual(SD.rectPosition(entry, i), SD.cellPosition(i, 4, 4));
+  assert.strictEqual(SD.backgroundSize(entry), "400% 400%");
+});
