@@ -5,5 +5,6 @@
   "author": { "name": "Oron Anschel" },
   "homepage": "https://github.com/latent-spaces/onbeat",
   "repository": "https://github.com/latent-spaces/onbeat",
+  "privacyPolicyUrl": "https://github.com/latent-spaces/onbeat/blob/main/PRIVACY.md",
   "keywords": ["music", "lyric-video", "reels", "beat-sync", "hyperframes", "suno", "skill"]
 }

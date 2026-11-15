@@ -35,6 +35,7 @@
       "Check the sync of my reel."
     ],
     "websiteURL": "https://github.com/latent-spaces/onbeat",
+    "privacyPolicyURL": "https://github.com/latent-spaces/onbeat/blob/main/PRIVACY.md",
     "brandColor": "#ED553B",
     "composerIcon": "./assets/icon.png",
     "logo": "./assets/logo.png"

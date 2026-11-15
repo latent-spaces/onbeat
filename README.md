@@ -110,7 +110,7 @@ The disco and terminal videos above are earlier agent-directed demos. The bundle
 
 ## Setup, data and costs
 
-The agent reads your audio/reference files, writes a reel folder and runs local analysis and rendering commands. Rendering needs Node 22+ and ffmpeg; beat analysis adds a Python environment with the pinned dependencies in `scripts/requirements.txt`. Optional word alignment uses a separate Python 3.12 environment and large local speech/separation models. First use downloads packages, a headless browser, models and potentially fonts; the audio-analysis scripts themselves run locally. Your coding agent's data handling depends on its provider and settings. Image generation sends prompts and supplied reference images to the selected provider and may use credits. The skill asks before paid generation and does not publish your reel.
+The agent reads your audio/reference files, writes a reel folder and runs local analysis and rendering commands. Rendering needs Node 22+ and ffmpeg; beat analysis adds a Python environment with the pinned dependencies in `scripts/requirements.txt`. Optional word alignment uses a separate Python 3.12 environment and large local speech/separation models. First use downloads packages, a headless browser, models and potentially fonts; the audio-analysis scripts themselves run locally. Your coding agent's data handling depends on its provider and settings. Image generation sends prompts and supplied reference images to the selected provider and may use credits. The skill asks before paid generation and does not publish your reel. Details are in [PRIVACY.md](PRIVACY.md).
 
 ## Limits and verification
 
