@@ -27,6 +27,10 @@ The dancers aren't generated video. An image model draws one sheet of 16 poses, 
 
 <p align="center"><sub>Left: the sheet, with the pose on screen highlighted. Right: the same sheet, stepped by the measured beat. This is the bundled example's own code and timing.</sub></p>
 
+<p align="center"><b>With sound:</b></p>
+
+<p align="center"><video src="https://github.com/user-attachments/assets/66a7f5fe-2304-4cbd-8b9a-4e7e5f35e662" controls width="840"></video></p>
+
 ## Install
 
 **Claude Code**
