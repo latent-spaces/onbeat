@@ -2,6 +2,17 @@
 
 <p align="center"><strong>Give your coding agent a song. Get back a beat-synced lyric reel.</strong></p>
 
+<p align="center"><img src=".github/sprite-dance.gif" width="840" alt="A 4 by 4 robot sprite sheet with the current pose highlighted, the robot dancing through those poses, and the song's sound bars with a mark on every measured beat"></p>
+
+<p align="center"><sub>Left: the sheet, with the pose on screen highlighted. Right: the same sheet, stepped by the beat. Bottom: the song, with a mark on every beat measured from it.</sub></p>
+
+<details>
+<summary><b>▶ Watch with sound</b></summary>
+
+https://github.com/user-attachments/assets/21d5e499-cfd0-425b-9b77-3e270fb0f3f0
+
+</details>
+
 <table>
   <tr>
     <td width="33%"><video src="https://github.com/user-attachments/assets/79c3ae9a-1460-4bc8-b06d-348ebfaf9b23" controls></video></td>
@@ -22,17 +33,6 @@ onbeat is a skill for **Claude Code** and **Codex**. It teaches your agent to me
 ## Sprites, not a video model
 
 The dancers aren't generated video. An image model draws one sheet of 16 poses, once. onbeat measures the beats in the audio and steps through those poses on them: a new pose every quarter beat and a small hop on every beat. So every move lands on the beat, the character looks the same in every frame, and a re-render costs nothing.
-
-<p align="center"><img src=".github/sprite-dance.gif" width="840" alt="A 4 by 4 robot sprite sheet with the current pose highlighted, the robot dancing through those poses, and the song's sound bars with a mark on every measured beat"></p>
-
-<p align="center"><sub>Left: the sheet, with the pose on screen highlighted. Right: the same sheet, stepped by the beat. Bottom: the song, with a mark on every beat measured from it.</sub></p>
-
-<details>
-<summary><b>▶ Watch with sound</b></summary>
-
-https://github.com/user-attachments/assets/21d5e499-cfd0-425b-9b77-3e270fb0f3f0
-
-</details>
 
 ## Install
 
