@@ -120,7 +120,7 @@ Run `node --test tests/` for the helper regressions and `bash skills/onbeat/scri
 
 ## Status
 
-This is an early release (v0.2). The bundled example and helper tests pass. An assisted unfamiliar-song session exercised concept choices, reference-led character graphics, a short three-character dancing draft and a visual revision. It required intervention, so it is not an unedited first-try result. A cold plugin install, fresh word-alignment install, broad genre coverage, independent repeatability and a controlled with/without-OnBeat comparison remain unverified. The Higgsfield sprite route only prints its commands.
+This is an early release (v0.2). The bundled example and helper tests pass. An assisted unfamiliar-song session exercised concept choices, reference-led character graphics, a short three-character dancing draft and a visual revision. It required intervention, so it is not an unedited first-try result. Clean installs from GitHub were checked for the Claude Code plugin, the Codex plugin and `npx skills add`; from the clean Claude Code install, a headless agent rendered the example unaided. A fresh word-alignment install, broad genre coverage, independent repeatability and a controlled with/without-OnBeat comparison remain unverified. The Higgsfield sprite route only prints its commands.
 
 ## Credits and licence
 
