@@ -29,7 +29,7 @@ The dancers aren't generated video. An image model draws one sheet of 16 poses, 
 
 <p align="center"><b>With sound:</b></p>
 
-<p align="center"><video src="https://github.com/user-attachments/assets/66a7f5fe-2304-4cbd-8b9a-4e7e5f35e662" controls width="840"></video></p>
+https://github.com/user-attachments/assets/66a7f5fe-2304-4cbd-8b9a-4e7e5f35e662
 
 ## Install
 
