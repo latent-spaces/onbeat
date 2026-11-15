@@ -36,14 +36,22 @@ The dancers aren't generated video. An image model draws one sheet of 16 poses, 
 
 ## Install
 
-**Claude Code**
+**Any agent, one command** ([skills.sh](https://skills.sh))
+
+```bash
+npx skills add latent-spaces/onbeat
+```
+
+It asks which agents to install for (Claude Code, Codex and others) and copies the skill into your project. Add `-g` to install it for all projects.
+
+**Claude Code plugin**
 
 ```text
 /plugin marketplace add latent-spaces/onbeat
 /plugin install onbeat@onbeat
 ```
 
-**Codex**
+**Codex plugin**
 
 ```bash
 codex plugin marketplace add latent-spaces/onbeat
