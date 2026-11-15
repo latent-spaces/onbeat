@@ -2,22 +2,41 @@
   "name": "onbeat",
   "version": "0.2.0",
   "description": "Turn a song into a beat-synced vertical lyric reel with HyperFrames.",
-  "author": { "name": "Oron Anschel", "url": "https://github.com/oronanschel" },
+  "author": {
+    "name": "Oron Anschel",
+    "url": "https://github.com/oronanschel"
+  },
   "homepage": "https://github.com/latent-spaces/onbeat",
   "repository": "https://github.com/latent-spaces/onbeat",
-  "keywords": ["music", "lyric-video", "reels", "beat-sync", "hyperframes", "suno", "skill"],
+  "keywords": [
+    "music",
+    "lyric-video",
+    "reels",
+    "beat-sync",
+    "hyperframes",
+    "suno",
+    "skill"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "onbeat",
-    "shortDescription": "Song in, beat-synced lyric reel out.",
+    "shortDescription": "Song in, synced reel out.",
     "longDescription": "Measure a song's beats (and optionally its sung words), write a HyperFrames scene on that timing, and render a vertical MP4. Starts with a bundled example that needs no keys.",
     "developerName": "Oron Anschel",
     "category": "Creativity",
-    "capabilities": ["Read", "Write", "Execute"],
+    "capabilities": [
+      "Read",
+      "Write",
+      "Execute"
+    ],
     "defaultPrompt": [
       "Render the onbeat example.",
       "Make a beat-synced reel for my song.",
       "Check the sync of my reel."
-    ]
+    ],
+    "websiteURL": "https://github.com/latent-spaces/onbeat",
+    "brandColor": "#ED553B",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
   }
 }
