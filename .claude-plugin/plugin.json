@@ -3,7 +3,7 @@
   "description": "Turn a song into a beat-synced vertical lyric reel with HyperFrames.",
   "version": "0.2.0",
   "author": { "name": "Oron Anschel" },
-  "homepage": "https://github.com/oronanschel/onbeat",
-  "repository": "https://github.com/oronanschel/onbeat",
+  "homepage": "https://github.com/latent-spaces/onbeat",
+  "repository": "https://github.com/latent-spaces/onbeat",
   "keywords": ["music", "lyric-video", "reels", "beat-sync", "hyperframes", "suno", "skill"]
 }

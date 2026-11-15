@@ -32,14 +32,14 @@ The dancers aren't generated video. An image model draws one sheet of 16 poses, 
 **Claude Code**
 
 ```text
-/plugin marketplace add oronanschel/onbeat
+/plugin marketplace add latent-spaces/onbeat
 /plugin install onbeat@onbeat
 ```
 
 **Codex**
 
 ```bash
-codex plugin marketplace add oronanschel/onbeat
+codex plugin marketplace add latent-spaces/onbeat
 codex plugin add onbeat@onbeat
 ```
 
@@ -62,7 +62,7 @@ Higgsfield and Codex's built-in image generator are the main image routes. In Co
 The example renders by itself. You need Node 22+ and ffmpeg, and no keys or accounts.
 
 ```bash
-git clone https://github.com/oronanschel/onbeat && cd onbeat/skills/onbeat/example
+git clone https://github.com/latent-spaces/onbeat && cd onbeat/skills/onbeat/example
 ```
 
 ```bash
