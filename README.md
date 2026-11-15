@@ -25,7 +25,14 @@ The dancers aren't generated video. An image model draws one sheet of 16 poses, 
 
 <p align="center"><img src=".github/sprite-dance.gif" width="840" alt="A 4 by 4 robot sprite sheet with the current pose highlighted, the robot dancing through those poses, and the song's sound bars with a mark on every measured beat"></p>
 
-<p align="center"><sub>Left: the sheet, with the pose on screen highlighted. Right: the same sheet, stepped by the beat. Bottom: the song, with a mark on every beat measured from it. <a href="https://github.com/user-attachments/assets/21d5e499-cfd0-425b-9b77-3e270fb0f3f0">▶ Watch with sound</a></sub></p>
+<p align="center"><sub>Left: the sheet, with the pose on screen highlighted. Right: the same sheet, stepped by the beat. Bottom: the song, with a mark on every beat measured from it.</sub></p>
+
+<details>
+<summary><b>▶ Watch with sound</b></summary>
+
+https://github.com/user-attachments/assets/21d5e499-cfd0-425b-9b77-3e270fb0f3f0
+
+</details>
 
 ## Install
 
