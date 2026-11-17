@@ -16,7 +16,7 @@ Everything on screen follows one of two clocks, both measured from the audio:
 
 | Folder | What it holds |
 |---|---|
-| `example/` | a complete 11.5-second reel that renders as it is. Copy it to start a new reel. |
+| `example/` | a complete 34.6-second animation showcase: original paper, pixel, clay and '80s anime, solo choreography, new 3×3 face-dancing portraits, layered scenery and timed lyrics. Renders as it is; copy it to start a reel. |
 | `scripts/` | `timing.py` (beats, bars, sections, words) and `sprites.py` (checks character sheets) |
 | `references/` | `hyperframes.md` (render rules), `beat-motion.md` (dance and sync check), `sprites.md` (characters) |
 
@@ -90,6 +90,8 @@ For a new song, collaborate on the idea before building the full video. Reuse de
 4. **First motion draft.** Build a short beat-aligned passage that demonstrates the actual avatar dance, lyric treatment and one musical change. Let the person review the movement with sound. Iterate on this passage before extending it to the requested duration; don't present the full render as the first creative checkpoint.
 5. **Full draft and revision.** Extend the agreed direction across the song excerpt, keeping approved characters and measured timing. Ask for focused feedback and revise the relevant parts. Number drafts and preserve earlier versions for comparison. Continue to the sync and render checks in step 4.
 
+When the person asks to save session learnings into the skill, show the revised animation first and promote the learnings only after they approve the result. Treat numerical sync checks and the person's sound-on review as different evidence.
+
 Concept or artwork approval does not authorize paid generation. Follow the generation and publishing rules below.
 
 For the motion draft, a chorus passage of roughly 8–12 seconds often shows enough. State its interval in the original song. Keep the approved character images as direct references when generating assets, use a separate background plate, and bring friends into the scene on measured beats or bar downbeats. See `references/beat-motion.md` for keeping entrance movement separate from dancing.
@@ -97,7 +99,10 @@ For the motion draft, a chorus passage of roughly 8–12 seconds often shows eno
 Design:
 
 - Make one place with one hero subject, not a dashboard of small parts. Pick a palette of three or four colours and one typeface.
+- Choose solo, duet or ensemble shots to serve the brief. A style showcase can give each character its own world and sequence; it does not need a group-dance story. For public examples, create original identities and describe the medium, era, palette and linework instead of borrowing identifiable franchise characters.
 - Let the song's shape drive the video. Use `sections` for the big changes: a new look, a cut or a drop when the kick comes in or goes out.
+- For a layered scene, keep the background plate, dancers and transparent foreground props separate. Put foreground props in front of the cast and move the scenery layers by different small amounts over a musical phrase for a multiplane feel. Keep faces, feet and lyrics readable. The example's `src/showcase.js` demonstrates four solo styles and cuts on measured bar downbeats; `src/groove.js` sequences drawn accents without an added hop.
+- Reuse pose sheets and scenery across scenes and revisions. Changing choreography, lyrics, cuts or layer positions needs a local render, not another generation call. This is the main cost advantage over repeatedly generating video clips; don't invent a fixed saving or imply that creating new artwork is free.
 - Give every moving thing a clock. Decoration follows the beat clock, and lyrics follow the voice clock. Nothing moves on a time you made up.
 - Keep text large and inside the middle 80% of the frame. The apps cover the top and bottom of a reel.
 
@@ -108,14 +113,18 @@ Timing:
 - The root's `data-fps` is the only video frame-rate setting. The example assigns it to `T.fps` before calling the helpers; keep that line. Timing data has no video frame rate. Envelopes are sampled 60 times per second and carry their own `hop` in seconds, independent of `data-fps`.
 - A hit is instant on the beat and then decays within the beat (`expo.out` over about 85% of `beatPeriod`). Don't ease into a beat, because that looks late.
 - Make bar downbeats bigger than the other beats.
+- Inspect which drawing carries the accent: the stamp, shoulder hit or strongest silhouette should land on the beat, with recovery drawings between. Starting a pose sequence on the beat is not enough if its visual hit arrives later. Quarter-beat body drawings and half-beat face drawings worked in the approved example; use them as a starting point, then review the actual movement with sound. See `references/beat-motion.md` for pose selection and optional bounce.
 
 Helpers in `example/src/`, to use or to replace with your own code:
 
 - `beatsync.js`: `BeatSync.at`, `el`, `BeatPulse`, `BeatStepper`, `KaraokeLine`, `DropLine`, `PaletteCut`, `holdTo`. Each is a few lines; read the file.
 - `spritedance.js`: `SpriteDance.dance(...)` steps a character sheet through its poses once per bar and hops on each beat.
+- `groove.js`: the example's authored pose order, with strong drawings on beats and no synthetic hop. Its cell indices are specific to the bundled sheets; inspect a new sheet before reusing them.
 - `synccheck.js`: the overlay in step 4.
 
 **Characters (optional).** A dancer is one 4×4 sheet of 16 poses. `references/sprites.md` covers how to generate and check one, and `references/beat-motion.md` covers how it dances. Generating images may cost the person credits, so ask before you do it.
+
+**Face-dancing close-ups.** Make a separate 3×3 sheet of nine new head-and-shoulder drawings from the approved character reference: nods, tilts, eye changes, mouth expressions and shoulder accents. An enlarged body-sheet crop does not provide that acting. Hold a close-up for several measured beats and frame the shoulders through the bottom edge so the bust does not float above the scenery. See `references/sprites.md` for the portrait contract and `references/beat-motion.md` for its clock.
 
 **Image-generation routes.** The two main routes are Higgsfield, or Codex's built-in image generator when working in Codex. Use the person's chosen provider; in Codex, prefer the built-in tool when no provider is specified. Both can make concept graphics and character assets. Check each provider's image-reference and transparency support before preparing production sheets. The Higgsfield sprite integration is still untested; see `references/sprites.md`. These routes do not override the paid-generation rules below.
 

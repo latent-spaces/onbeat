@@ -25,6 +25,10 @@ For production, pass the chosen concept image as a direct reference for each cha
 Indices are zero-based and row-major. `sprites.json` stores every frame rectangle
 (`frames: [{i, x, y, w, h}]`), the grid, the anchor, the provider, the model and whether the alpha check passed.
 
+For face-dancing close-ups, generate new portrait artwork from the approved identity reference. Make the face dominate each cell, with shoulders and a little upper chest, rather than waist or legs. Draw a coherent sequence of head tilts, nods, eyelid/mouth changes and shoulder accents at a consistent head scale. Preserve the character's material: pixel redraws, tactile clay, cut paper or cel linework. Inspect the nine drawings together before sequencing them.
+
+This is separate acting, not an enlarged crop of the full-body sheet. Leave transparent margin inside each atlas cell to avoid neighboring-cell bleed; in the final composition, extend the portrait's shoulders through the bottom frame edge so the cutout reads as a close shot rather than a floating bust. Hold it for several measured beats. See `beat-motion.md` for the half-beat portrait clock used in the approved example.
+
 ## Steps
 
 Before generating a complete dance sheet, follow the creative checkpoints in `../SKILL.md`: agree the concept and references, show a rough character/look study in a representative frame, and incorporate the person's feedback. Once the character is agreed, generate the sheet, inspect it and test a short beat-synced dance passage before building the full reel. If the person has already approved those decisions or explicitly requested autonomous work, use that authorization without repeating the checkpoints.
@@ -34,7 +38,7 @@ S=<this skill's folder>/scripts
 python $S/sprites.py plan $S/cast.example.json --out work/sprites   # copy and edit cast.json first
 python $S/sprites.py provider codex --plan work/sprites/plan.json   # or: higgsfield
 # ... generate the sheets, save each to work/sprites/sheets/<name>.png ...
-python $S/sprites.py ingest work/sprites/sheets/robot-dance.png --name robot-dance --kind dance --out work/sprites
+python $S/sprites.py ingest work/sprites/sheets/clay-dance.png --name clay-dance --kind dance --out work/sprites
 python $S/sprites.py check work/sprites   # exit code 1 on any failure
 ```
 
@@ -59,7 +63,7 @@ If the role is ambiguous, ask. Inspect local images before using them and keep t
 
 `provider codex` prints one block per sheet: use `image_gen` with
 `transparent_background: true`, pass the reference images, and save the result to the printed path.
-This is the route the example's robot came from.
+This is the route the example's original paper moth, pixel beet, clay pebble and anime dancer came from. Source sheets and prompts are included with the example; rendering them does not call an image provider.
 
 ## Provider B: Higgsfield (**untested, needs an owner run**)
 

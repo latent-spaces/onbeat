@@ -2,37 +2,34 @@
 
 <p align="center"><strong>Give your coding agent a song. Get back a beat-synced lyric reel.</strong></p>
 
-<p align="center"><img src=".github/sprite-dance.gif" width="840" alt="A 4 by 4 robot sprite sheet with the current pose highlighted, the robot dancing through those poses, and the song's sound bars with a mark on every measured beat"></p>
+<p align="center"><img src=".github/four-styles.gif" width="420" alt="Original paper, pixel, clay and 1980s anime characters in expressive face-dancing close-ups"></p>
 
-<p align="center"><sub>Left: the sheet, with the pose on screen highlighted. Right: the same sheet, stepped by the beat. Bottom: the song, with a mark on every beat measured from it.</sub></p>
+<p align="center"><sub>Four styles in motion: paper cut, pixel art, handmade clay and 1980s anime. Original characters, expressive faces and a beat measured from the song.</sub></p>
 
-<details>
-<summary><b>▶ Watch with sound</b></summary>
+The bundled example is a **34.6-second animation showcase**. Each style gets its own sequence of grounded full-body choreography and genuine face-dancing close-ups. The close-ups are new 3×3 head-and-shoulder drawings with nods, eye changes and expressions; they aren't enlarged body sprites. The anime sequence combines hand-inked '80s cels, a blue-hour city-pop rooftop and a longer face-led finish. Layered scenery gives each world depth, and the music drives the cuts and weight shifts.
 
-https://github.com/user-attachments/assets/21d5e499-cfd0-425b-9b77-3e270fb0f3f0
-
-</details>
-
-<table>
-  <tr>
-    <td width="33%"><video src="https://github.com/user-attachments/assets/79c3ae9a-1460-4bc8-b06d-348ebfaf9b23" controls></video></td>
-    <td width="33%"><video src="https://github.com/user-attachments/assets/5ffe9794-b99c-476b-b27c-0044d51e0f63" controls></video></td>
-    <td width="33%"><video src="https://github.com/user-attachments/assets/ba9085e6-6655-48e6-92cb-39f54c828499" controls></video></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Disco</b><br><sub>agent-directed</sub></td>
-    <td align="center"><b>Terminal</b><br><sub>same song, another look</sub></td>
-    <td align="center"><b>The sample</b><br><sub>the bundled example</sub></td>
-  </tr>
-</table>
-
-<p align="center"><sub>Turn the sound on. Every move, cut and word lands on a beat measured from the audio.</sub></p>
+**Watch with sound:** [render the bundled example](#try-it-without-an-agent). The GIF above is a silent close-up teaser; the full MP4 includes the song and timed lyrics.
 
 onbeat is a skill for **Claude Code** and **Codex**. It teaches your agent to measure the beats and sung words of a song and to write a [HyperFrames](https://hyperframes.heygen.com) scene that moves on those times. The result is a vertical 1080×1920 MP4 for Reels, Shorts and TikTok.
 
-## Sprites, not a video model
+## Old-school animation, much cheaper to iterate
 
-The dancers aren't generated video. An image model draws one sheet of 16 poses, once. onbeat measures the beats in the audio and steps through those poses on them: a new pose every quarter beat and a small hop on every beat. So every move lands on the beat, the character looks the same in every frame, and a re-render costs nothing.
+Generate the artwork once. Animate it as many times as you like.
+
+The dancers are **sprite sheets**, not generated video clips. An image model draws 16 body poses per character and, for face dancing, a separate sheet of nine close-up poses. onbeat then steps through those drawings on beats measured from the song, layers them with scenery, and renders the result locally with HyperFrames. The same character art stays consistent across every scene, and the motion clock stays tied to the music.
+
+This is where the cost advantage comes from: **changing the timing, swapping a background, moving a dancer, editing the lyrics or re-rendering existing artwork requires zero additional image or video generation calls.** You can switch between styles, cut from body animation to face animation and revise the choreography without generating a new video clip for every scene or revision. Local renders still use your computer; making new artwork may use provider credits.
+
+| What changes | With onbeat's reusable artwork |
+| --- | --- |
+| A move lands late | Adjust the measured timing or choreography and render again. |
+| The scene needs more depth | Move the background, dancers and foreground props independently. |
+| Another style joins the cast | Add its pose sheet; keep the existing cast and timing. |
+| The lyrics, layout or cut needs revision | Edit the scene and render again with the same images. |
+
+Getting several consistent characters, precise beat timing and matching scene changes from generated video can take repeated clip generation and selection. onbeat makes those choices explicit in code instead. That makes iteration much cheaper when you reuse artwork; the exact saving depends on the image/video providers and number of revisions. This is a workflow advantage, not a measured price benchmark.
+
+The tradeoff is deliberate: this looks like assembled, pose-based animation. It is built for rhythmic dancing and stylized worlds; it does not simulate continuous cinematic character motion.
 
 ## Install
 
@@ -103,10 +100,10 @@ skills/onbeat/
   SKILL.md      the method: measure, write one scene, check the sync, render
   references/   render rules, beat motion, character sprites
   scripts/      timing.py (beats, bars, words) and sprites.py (checks character sheets)
-  example/      a complete 11.5-second reel to copy and rewrite
+  example/      a complete 34.6-second showcase to copy and rewrite
 ```
 
-The disco and terminal videos above are earlier agent-directed demos. The bundled example is the reproducible starting point in this package.
+The bundled example is the reproducible four-style animation showcase. It includes the original cast, separate scenery layers, source artwork and prompts; no image-generation account is needed to render it.
 
 ## Setup, data and costs
 

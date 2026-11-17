@@ -8,7 +8,7 @@ checks, sprites.json) is the same, so the animation code never changes per provi
     sprites.py plan cast.json --out work/sprites
     sprites.py provider codex --plan work/sprites/plan.json
     sprites.py provider higgsfield --plan work/sprites/plan.json   # prints commands only
-    sprites.py ingest work/sprites/sheets/robot-dance.png --name robot-dance \
+    sprites.py ingest work/sprites/sheets/clay-dance.png --name clay-dance \
         --kind dance --out work/sprites
     sprites.py check work/sprites
     sprites.py selftest

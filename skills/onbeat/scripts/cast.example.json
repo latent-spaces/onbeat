@@ -1,10 +1,10 @@
 {
-  "style": "restrained 1970s anime cel look, flat painted colors, thin dark outlines, one hard cel-shadow shape, no gradients, no glow, no text",
+  "style": "handmade plasticine stop-motion miniature, visible fingerprints and thumb dents, matte clay, soft studio lighting, no text",
   "key": null,
   "characters": [
     {
-      "id": "robot",
-      "description": "a slim silver robot with a rounded black-visor helmet, mustard earpieces and a coral chest chevron",
+      "id": "clay",
+      "description": "an original asymmetrical lilac pebble creature with short clay arms and legs, two dark oval eyes and a cheerful open smile; no existing character reference",
       "sheets": ["dance", "portrait"],
       "references": []
     }
