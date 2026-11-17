@@ -4,6 +4,8 @@
 
 <p align="center"><strong>No video model needed. Generate images for cents, then animate and render locally.</strong></p>
 
+https://github.com/user-attachments/assets/77598d0c-808b-4782-8bf8-c8fd59e8ce20
+
 <table>
   <tr>
     <th align="center">Finished video</th>
@@ -27,7 +29,7 @@ The bundled example is an **11.5-second retro spaceship dance**. Two original hu
 
 The [34.6-second four-style showcase](skills/onbeat/examples/four-styles) is also included as an alternate example: paper cut, pixel art, handmade clay and original '80s anime.
 
-**Click the preview above and turn on sound** to hear the song and beat-aligned animation. [Render the bundled example yourself](#try-it-without-an-agent).
+**Press play above and turn on sound** to hear the song and beat-aligned animation. [Render the bundled example yourself](#try-it-without-an-agent).
 
 onbeat is a skill for **Claude Code** and **Codex**. It teaches your agent to measure the beats and sung words of a song and to write a [HyperFrames](https://hyperframes.heygen.com) scene that moves on those times. The result is a vertical 1080×1920 MP4 for Reels, Shorts and TikTok.
 
