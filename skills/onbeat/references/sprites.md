@@ -63,7 +63,7 @@ If the role is ambiguous, ask. Inspect local images before using them and keep t
 
 `provider codex` prints one block per sheet: use `image_gen` with
 `transparent_background: true`, pass the reference images, and save the result to the printed path.
-This is the route the example's original paper moth, pixel beet, clay pebble and anime dancer came from. Source sheets and prompts are included with the example; rendering them does not call an image provider.
+This is the route used for the default example's two original human dancers and mechanical robot, and the alternate four-style cast. The spaceship revision used the earlier pose sheets as choreography references while replacing character identity. Source sheets and prompts are included with each example; rendering them does not call an image provider.
 
 ## Provider B: Higgsfield (**untested, needs an owner run**)
 

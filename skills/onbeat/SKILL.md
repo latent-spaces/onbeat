@@ -16,7 +16,8 @@ Everything on screen follows one of two clocks, both measured from the audio:
 
 | Folder | What it holds |
 |---|---|
-| `example/` | a complete 34.6-second animation showcase: original paper, pixel, clay and '80s anime, solo choreography, new 3×3 face-dancing portraits, layered scenery and timed lyrics. Renders as it is; copy it to start a reel. |
+| `example/` | a complete 11.5-second retro spaceship dance: two original human dancers, a mechanical robot, separate 3×3 face-dancing portraits, layered scenery and timed lyrics. Renders as it is; copy it to start a reel. |
+| `examples/four-styles/` | the alternate 34.6-second paper, pixel, clay and original anime showcase, with its artwork and source prompts. |
 | `scripts/` | `timing.py` (beats, bars, sections, words) and `sprites.py` (checks character sheets) |
 | `references/` | `hyperframes.md` (render rules), `beat-motion.md` (dance and sync check), `sprites.md` (characters) |
 
@@ -119,7 +120,7 @@ Helpers in `example/src/`, to use or to replace with your own code:
 
 - `beatsync.js`: `BeatSync.at`, `el`, `BeatPulse`, `BeatStepper`, `KaraokeLine`, `DropLine`, `PaletteCut`, `holdTo`. Each is a few lines; read the file.
 - `spritedance.js`: `SpriteDance.dance(...)` steps a character sheet through its poses once per bar and hops on each beat.
-- `groove.js`: the example's authored pose order, with strong drawings on beats and no synthetic hop. Its cell indices are specific to the bundled sheets; inspect a new sheet before reusing them.
+- `groove.js`: the alternate four-style example's authored pose order, with strong drawings on beats and no synthetic hop. Its cell indices are specific to those sheets; inspect a new sheet before reusing them. The default spaceship example preserves its original dance sequence directly in `compositions/orbital.html`.
 - `synccheck.js`: the overlay in step 4.
 
 **Characters (optional).** A dancer is one 4×4 sheet of 16 poses. `references/sprites.md` covers how to generate and check one, and `references/beat-motion.md` covers how it dances. Generating images may cost the person credits, so ask before you do it.

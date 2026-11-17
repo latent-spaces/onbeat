@@ -4,19 +4,23 @@
 
 <p align="center"><strong>No video model needed. Generate images for cents, then animate and render locally.</strong></p>
 
-https://github.com/user-attachments/assets/9c17b8b5-f133-4ccc-b93c-af4cd57e193e
+<p align="center"><a href="https://github.com/latent-spaces/onbeat/raw/refs/heads/main/skills/onbeat/example/preview.mp4"><img src="skills/onbeat/example/preview.jpg" width="420" alt="Play the approved spaceship dance video with sound"></a></p>
 
-<p align="center"><sub>Four styles in motion: paper cut, pixel art, handmade clay and 1980s anime. Original characters, expressive faces and a beat measured from the song.</sub></p>
+**▶ [Watch the 11.5-second MP4 with sound](https://github.com/latent-spaces/onbeat/raw/refs/heads/main/skills/onbeat/example/preview.mp4)** · [Video file](skills/onbeat/example/preview.mp4)
 
-The bundled example is a **34.6-second animation showcase**. Each style gets its own sequence of grounded full-body choreography and genuine face-dancing close-ups. The close-ups are new 3×3 head-and-shoulder drawings with nods, eye changes and expressions; they aren't enlarged body sprites. The anime sequence combines hand-inked '80s cels, a blue-hour city-pop rooftop and a longer face-led finish. Layered scenery gives each world depth, and the music drives the cuts and weight shifts.
+<p align="center"><sub>Retro spaceship dancing: two original human dancers and a mechanical robot, expressive face close-ups and a beat measured from the song.</sub></p>
 
-**Turn on sound** in the video above to hear the song and beat-aligned animation. [Render the bundled example yourself](#try-it-without-an-agent).
+The bundled example is an **11.5-second retro spaceship dance**. Two original human dancers and an articulated mechanical robot perform the original choreography, with the same beat timing and cuts. Separate 3×3 portrait sheets provide face dancing: nods, head tilts and eye changes. The room, planet and starfield are independent layers.
+
+The [34.6-second four-style showcase](skills/onbeat/examples/four-styles) is also included as an alternate example: paper cut, pixel art, handmade clay and original '80s anime.
+
+**Click the preview above and turn on sound** to hear the song and beat-aligned animation. [Render the bundled example yourself](#try-it-without-an-agent).
 
 onbeat is a skill for **Claude Code** and **Codex**. It teaches your agent to measure the beats and sung words of a song and to write a [HyperFrames](https://hyperframes.heygen.com) scene that moves on those times. The result is a vertical 1080×1920 MP4 for Reels, Shorts and TikTok.
 
 <p align="center"><img src=".github/sprite-dance.gif" width="840" alt="Process visualization: a robot sprite sheet, its animated dancer, and measured beat markers"></p>
 
-<p align="center"><sub>How it works: a pose sheet becomes a dancer, with the animation driven by measured beats. The robot illustrates the process; the video above shows the finished four-style example.</sub></p>
+<p align="center"><sub>How it works: a pose sheet becomes a dancer, with the animation driven by measured beats. The robot illustrates the process; the video above shows the finished spaceship example.</sub></p>
 
 ## Image models only. No video model needed.
 
@@ -110,10 +114,11 @@ skills/onbeat/
   SKILL.md      the method: measure, write one scene, check the sync, render
   references/   render rules, beat motion, character sprites
   scripts/      timing.py (beats, bars, words) and sprites.py (checks character sheets)
-  example/      a complete 34.6-second showcase to copy and rewrite
+  example/      the 11.5-second spaceship dance to copy and rewrite
+  examples/     the alternate 34.6-second four-style showcase
 ```
 
-The bundled example is the reproducible four-style animation showcase. It includes the original cast, separate scenery layers, source artwork and prompts; no image-generation account is needed to render it.
+Both examples include the original cast, separate scenery layers, source artwork and prompts. No image- or video-generation account is needed to render them.
 
 ## Setup, data and costs
 

@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const vm = require("node:vm");
-const example = path.join(__dirname, "../skills/onbeat/example");
+const example = path.join(__dirname, "../skills/onbeat/examples/four-styles");
 
 function build() {
   const window = {};

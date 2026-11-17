@@ -2,7 +2,7 @@
 
 `example/src/spritedance.js` makes sprite characters dance on the song's measured beats. `example/src/synccheck.js` draws an overlay so you can check that they do. Both are classic scripts that define a window global, like `example/src/beatsync.js`. Both only add tweens to the composition's one paused GSAP timeline, so every frame is a pure function of timeline time, as HyperFrames requires.
 
-Working example: `example/index.html` in this skill. The reusable helpers are `beatsync.js`, `spritedance.js` and `synccheck.js`; `showcase.js` builds the four-style solo showcase, layered scenery and dedicated close-ups. `groove.js` supplies its authored body-pose order.
+Working example: `example/index.html` in this skill. The reusable helpers are `beatsync.js`, `spritedance.js` and `synccheck.js`; The default spaceship scene in `example/compositions/orbital.html` steps through its original pose order on quarter beats and its separate close-ups on half beats. In `examples/four-styles/`, `showcase.js` builds the alternate solo showcase, layered scenery and dedicated close-ups; `groove.js` supplies its authored body-pose order.
 
 ## The rule
 

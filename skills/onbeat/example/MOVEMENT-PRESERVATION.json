@@ -1,0 +1,11 @@
+{
+  "orbitalTimelineAndLayout": "identical to original except robot portrait filenames",
+  "karaoke": "same markup and highlight timing; bundled Arimo italic substitutes for local Arial font",
+  "audio": "same original chorus; runtime audio encoded as MP3 without shifting start; approved render included",
+  "timing": "same beat/cut/word schedule; canonical data/timing JSON/JS added for shared helpers",
+  "bodyFrames": 48,
+  "portraitFrames": 27,
+  "beatPeriod": 0.479965,
+  "bodyStep": 0.11999125,
+  "portraitStep": 0.2399825
+}

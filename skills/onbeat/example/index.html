@@ -1,294 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=1080, height=1920" />
-    <title>OnBeat — four styles in motion</title>
-    <script src="assets/gsap.min.js"></script>
-    <script src="data/timing.js"></script>
-    <script src="src/beatsync.js"></script>
-    <script src="src/spritedance.js"></script>
-    <script src="src/synccheck.js"></script>
-    <script src="src/groove.js"></script>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        width: 1080px;
-        height: 1920px;
-        overflow: hidden;
-        background: #173e3a;
-      }
-      #root {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background: #173e3a;
-      }
-      #stage,
-      #camera,
-      #backs,
-      #fronts {
-        position: absolute;
-        inset: 0;
-      }
-      #camera {
-        transform-origin: 0 0;
-      }
-      #backs {
-        z-index: 0;
-      }
-      #fronts {
-        z-index: 5;
-        pointer-events: none;
-      }
-      .world {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        overflow: hidden;
-      }
-      .plate {
-        position: absolute;
-        left: -45px;
-        top: -80px;
-        width: 1170px;
-        height: 2080px;
-        object-fit: cover;
-      }
-      .pixel {
-        image-rendering: pixelated;
-      }
-      .actor {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 720px;
-        height: 720px;
-        transform-origin: 0 0;
-        opacity: 0;
-        z-index: 2;
-      }
-      .travel,
-      .groove,
-      .sprite {
-        position: absolute;
-        inset: 0;
-      }
-      .groove {
-        transform-origin: 50% 94%;
-      }
-      .sprite {
-        background-repeat: no-repeat;
-        background-size: 400% 400%;
-      }
-      .shadow {
-        position: absolute;
-        left: 28%;
-        top: 93%;
-        width: 44%;
-        height: 4%;
-        background: #20353b;
-        opacity: 0.18;
-        border-radius: 50%;
-      }
-      #moth {
-        background-image: url("assets/cast/moth.webp");
-      }
-      #beet {
-        background-image: url("assets/cast/beet.webp");
-        image-rendering: pixelated;
-      }
-      #clay {
-        background-image: url("assets/cast/clay.webp");
-      }
-      #anime {
-        background-image: url("assets/cast/anime-80s.webp");
-      }
-      #portrait {
-        position: absolute;
-        left: -140px;
-        top: 600px;
-        width: 1360px;
-        height: 1360px;
-        background-repeat: no-repeat;
-        background-size: 300% 300%;
-        opacity: 0;
-        z-index: 7;
-        transform-origin: 50% 75%;
-      }
-      #lyrics {
-        position: absolute;
-        left: 108px;
-        top: 230px;
-        width: 864px;
-        height: 330px;
-        z-index: 10;
-      }
-      .lyric {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 864px;
-        opacity: 0;
-        font: 900 italic 78px/1.22 sans-serif;
-        letter-spacing: -0.025em;
-        text-transform: uppercase;
-        color: #fff3d4;
-      }
-      .lyric span {
-        display: inline-block;
-        padding: 0 9px;
-        margin: 0 0 5px;
-        background: #183438;
-      }
-      #chapter {
-        position: absolute;
-        left: 108px;
-        top: 1665px;
-        z-index: 10;
-        font: 700 28px/1 sans-serif;
-        letter-spacing: 0.12em;
-        color: #fff3d4;
-        background: #183438;
-        padding: 12px 16px;
-        opacity: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      id="root"
-      data-composition-id="onbeat"
-      data-width="1080"
-      data-height="1920"
-      data-duration="34.5575"
-      data-fps="30"
-      data-layout-allow-overlap
-    >
-      <div id="stage">
-        <div id="camera" data-layout-allow-overlap data-layout-allow-overflow>
-          <div id="backs" data-layout-allow-overlap>
-            <div id="paper-back" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/paper-back.webp"
-                alt="paper scenery"
-              />
-            </div>
-            <div id="pixel-back" class="world" data-layout-allow-overflow>
-              <img
-                class="plate pixel"
-                src="assets/worlds/pixel-back.webp"
-                alt="pixel scenery"
-              />
-            </div>
-            <div id="clay-back" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/clay-back.webp"
-                alt="clay scenery"
-              />
-            </div>
-            <div id="anime-back" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/anime-back-80s.webp"
-                alt="anime scenery"
-              />
-            </div>
-          </div>
-          <div id="moth-actor" class="actor">
-            <div class="shadow"></div>
-            <div id="moth-travel" class="travel">
-              <div id="moth-groove" class="groove">
-                <div id="moth" class="sprite"></div>
-              </div>
-            </div>
-          </div>
-          <div id="beet-actor" class="actor">
-            <div class="shadow"></div>
-            <div id="beet-travel" class="travel">
-              <div id="beet-groove" class="groove">
-                <div id="beet" class="sprite"></div>
-              </div>
-            </div>
-          </div>
-          <div id="clay-actor" class="actor">
-            <div class="shadow"></div>
-            <div id="clay-travel" class="travel">
-              <div id="clay-groove" class="groove">
-                <div id="clay" class="sprite"></div>
-              </div>
-            </div>
-          </div>
-          <div id="anime-actor" class="actor">
-            <div class="shadow"></div>
-            <div id="anime-travel" class="travel">
-              <div id="anime-groove" class="groove">
-                <div id="anime" class="sprite"></div>
-              </div>
-            </div>
-          </div>
-          <div id="fronts" data-layout-allow-overlap>
-            <div id="paper-front" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/paper-front.webp"
-                alt="paper foreground"
-              />
-            </div>
-            <div id="pixel-front" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/pixel-front.webp"
-                alt="pixel foreground"
-              />
-            </div>
-            <div id="clay-front" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/clay-front.webp"
-                alt="clay foreground"
-              />
-            </div>
-            <div id="anime-front" class="world" data-layout-allow-overflow>
-              <img
-                class="plate"
-                src="assets/worlds/anime-front.webp"
-                alt="anime foreground"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="portrait" data-layout-allow-overflow></div>
-      <div id="lyrics"></div>
-      <div id="chapter">FOUR STYLES IN MOTION</div>
-      <audio
-        id="song"
-        class="clip"
-        src="assets/song.mp3"
-        data-start="0"
-        data-duration="34.5575"
-        data-track-index="0"
-      ></audio>
-    </div>
-    <script src="src/showcase.js"></script>
-    <script>
-      (function () {
-        var T = window.TIMING;
-        T.fps = Number(document.getElementById("root").dataset.fps);
-        var tl = gsap.timeline({ paused: true });
-        window.OnBeatShowcase(tl, T);
-        window.BeatSync.holdTo(tl, T);
-        window.__timelines = window.__timelines || {};
-        window.__timelines["onbeat"] = tl;
-      })();
-    </script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080, height=1920">
+  <title>Orbital dance — original cast</title>
+  <script src="assets/gsap.min.js"></script>
+  <script src="data/timing.js"></script>
+  <script src="src/beatsync.js"></script>
+  <script src="src/synccheck.js"></script>
+  <style>
+    * {box-sizing:border-box} html,body {margin:0;width:1080px;height:1920px;overflow:hidden;background:#1c2e3d}
+    #root {position:relative;width:100%;height:100%;overflow:hidden}
+    .clip {position:absolute;inset:0}
+  </style>
+</head>
+<body>
+  <div data-hf-id="hf-bf7f" id="root" data-composition-id="avatar-dance" data-width="1080" data-height="1920" data-duration="11.5192" data-fps="30">
+    <div data-hf-id="hf-48b4" id="orbital" class="clip" data-composition-id="orbital" data-composition-src="compositions/orbital.html" data-start="0" data-duration="11.5192" data-width="1080" data-height="1920" data-track-index="1" data-track-kind="graphics"></div>
+    <div data-hf-id="hf-1ngo" id="karaoke" class="clip" data-composition-id="karaoke" data-composition-src="compositions/karaoke.html" data-start="0" data-duration="11.5192" data-width="1080" data-height="1920" data-track-index="4" data-track-kind="captions" style="z-index:10"></div>
+    <audio data-hf-id="hf-tld5" id="chorus" class="clip" src="assets/song.mp3" data-start="0" data-duration="11.5192" data-track-index="0"></audio>
+  </div>
+  <script>
+    window.TIMING.fps=Number(document.getElementById("root").dataset.fps);
+    const tl=gsap.timeline({paused:true});
+    if(window.SyncCheck.wanted()) window.SyncCheck.overlay(tl,window.TIMING,{parent:document.getElementById("root")});
+    tl.to({}, {duration:11.5192});
+    window.__timelines=window.__timelines||{};
+    window.__timelines['avatar-dance']=tl;
+  </script>
+</body>
 </html>
