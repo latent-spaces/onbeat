@@ -2,15 +2,19 @@
 
 <p align="center"><strong>Give your coding agent a song. Get back a beat-synced lyric reel.</strong></p>
 
-<p align="center"><img src=".github/four-styles.gif" width="420" alt="Original paper, pixel, clay and 1980s anime characters in expressive face-dancing close-ups"></p>
+https://github.com/user-attachments/assets/9c17b8b5-f133-4ccc-b93c-af4cd57e193e
 
 <p align="center"><sub>Four styles in motion: paper cut, pixel art, handmade clay and 1980s anime. Original characters, expressive faces and a beat measured from the song.</sub></p>
 
 The bundled example is a **34.6-second animation showcase**. Each style gets its own sequence of grounded full-body choreography and genuine face-dancing close-ups. The close-ups are new 3×3 head-and-shoulder drawings with nods, eye changes and expressions; they aren't enlarged body sprites. The anime sequence combines hand-inked '80s cels, a blue-hour city-pop rooftop and a longer face-led finish. Layered scenery gives each world depth, and the music drives the cuts and weight shifts.
 
-**Watch with sound:** [render the bundled example](#try-it-without-an-agent). The GIF above is a silent close-up teaser; the full MP4 includes the song and timed lyrics.
+**Turn on sound** in the video above to hear the song and beat-aligned animation. [Render the bundled example yourself](#try-it-without-an-agent).
 
 onbeat is a skill for **Claude Code** and **Codex**. It teaches your agent to measure the beats and sung words of a song and to write a [HyperFrames](https://hyperframes.heygen.com) scene that moves on those times. The result is a vertical 1080×1920 MP4 for Reels, Shorts and TikTok.
+
+<p align="center"><img src=".github/sprite-dance.gif" width="840" alt="Process visualization: a robot sprite sheet, its animated dancer, and measured beat markers"></p>
+
+<p align="center"><sub>How it works: a pose sheet becomes a dancer, with the animation driven by measured beats. The robot illustrates the process; the video above shows the finished four-style example.</sub></p>
 
 ## Old-school animation, much cheaper to iterate
 
