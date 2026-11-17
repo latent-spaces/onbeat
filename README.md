@@ -2,6 +2,8 @@
 
 <p align="center"><strong>Give your coding agent a song. Get back a beat-synced lyric reel.</strong></p>
 
+<p align="center"><strong>No video model needed. Generate images for cents, then animate and render locally.</strong></p>
+
 https://github.com/user-attachments/assets/9c17b8b5-f133-4ccc-b93c-af4cd57e193e
 
 <p align="center"><sub>Four styles in motion: paper cut, pixel art, handmade clay and 1980s anime. Original characters, expressive faces and a beat measured from the song.</sub></p>
@@ -16,7 +18,11 @@ onbeat is a skill for **Claude Code** and **Codex**. It teaches your agent to me
 
 <p align="center"><sub>How it works: a pose sheet becomes a dancer, with the animation driven by measured beats. The robot illustrates the process; the video above shows the finished four-style example.</sub></p>
 
-## Old-school animation, much cheaper to iterate
+## Image models only. No video model needed.
+
+**A few cents per image instead of dollars per generated video clip.** onbeat uses an image model to make the artwork; HyperFrames handles the animation and renders the MP4 locally. You don't need a video-generation model, video credits or a new generated clip for every revision.
+
+For scale, Google's [image API pricing](https://ai.google.dev/gemini-api/docs/pricing#gemini-3.1-flash-lite-image) lists a 1K Gemini 3.1 Flash Lite image at $0.0336 in output charges. Its [published Veo 3 video rate](https://developers.googleblog.com/veo-3-and-veo-3-fast-new-pricing-new-configurations-and-better-resolution/) is $0.40 per second: roughly **3 cents for an image versus $3.20 for an eight-second clip**. These are illustrative generation prices, not the total cost of this showcase. More artwork and retries cost more; model choice, input charges, coding-agent usage and local computing also affect the total.
 
 Generate the artwork once. Animate it as many times as you like.
 
@@ -31,7 +37,7 @@ This is where the cost advantage comes from: **changing the timing, swapping a b
 | Another style joins the cast | Add its pose sheet; keep the existing cast and timing. |
 | The lyrics, layout or cut needs revision | Edit the scene and render again with the same images. |
 
-Getting several consistent characters, precise beat timing and matching scene changes from generated video can take repeated clip generation and selection. onbeat makes those choices explicit in code instead. That makes iteration much cheaper when you reuse artwork; the exact saving depends on the image/video providers and number of revisions. This is a workflow advantage, not a measured price benchmark.
+Getting several consistent characters, precise beat timing and matching scene changes from generated video can take repeated paid clip generations. onbeat makes those choices explicit in code, so revising the animation with existing artwork adds **no image- or video-generation charge**.
 
 The tradeoff is deliberate: this looks like assembled, pose-based animation. It is built for rhythmic dancing and stylized worlds; it does not simulate continuous cinematic character motion.
 
